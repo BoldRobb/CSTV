@@ -40,4 +40,13 @@ public class JugadorTeamlistRestController {
         return ResponseEntity.ok(jugadorTeamlistService.save(jugadorTeamlist));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteJugadorTeamlist(@PathVariable Long id){
+        if(!jugadorTeamlistService.findById(id).isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        jugadorTeamlistService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
