@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 @Table (name="\"usuarios\"")
 public class Usuarios {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
@@ -64,6 +66,13 @@ public class Usuarios {
     }
     public String getUsername() {
         return Username;
+    }
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
 }
