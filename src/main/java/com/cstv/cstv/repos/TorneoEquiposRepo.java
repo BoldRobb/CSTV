@@ -7,8 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface TorneoEquiposRepo extends JpaRepository<TorneoEquipos, Long> {
+public interface TorneoEquiposRepo extends JpaRepository<TorneoEquipos, com.cstv.cstv.entities.Ids.TorneoEquiposId> {
 
-    @Query("SELECT te FROM TorneoEquipos te WHERE te.torneo.id = :idTorneo")
-    List<TorneoEquipos> findByTorneoId(@Param("idTorneo") Long idTorneo);
+    List<TorneoEquipos> findByIdTorneo(Long idTorneo);
 }

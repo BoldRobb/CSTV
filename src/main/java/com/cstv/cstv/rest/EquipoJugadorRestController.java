@@ -21,10 +21,13 @@ public class EquipoJugadorRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EquipoJugadores> getEquipoJugadorById(@PathVariable Long id) {
-        return equipoJugadorService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public List<EquipoJugadores> getEquipoJugadorByIdEquipo(@PathVariable Long id) {
+        return equipoJugadorService.findByIdEquipo(id);
+    }
+    
+    @GetMapping("/{id}")
+    public List<EquipoJugadores> getEquipoJugadorByIdJugador(@PathVariable Long id) {
+        return equipoJugadorService.findByIdJugador(id);
     }
 
     @PostMapping
@@ -32,20 +35,21 @@ public class EquipoJugadorRestController {
         return equipoJugadorService.save(equipoJugador);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<EquipoJugadores> updateEquipoJugador(@PathVariable Long id, @RequestBody EquipoJugadores equipoJugador) {
-        if (!equipoJugadorService.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(equipoJugadorService.save(equipoJugador));
-    }
-
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEquipoJugador(@PathVariable Long id) {
         if (!equipoJugadorService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
         equipoJugadorService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }*/
+
+    @DeleteMapping("/jugador/{id}")
+    public ResponseEntity<Void> deleteJugadorFromEquipo(@PathVariable Long id) {
+        if (equipoJugadorService.findByIdJugador(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        equipoJugadorService.deleteByIdJugador(id);
         return ResponseEntity.noContent().build();
     }
 }

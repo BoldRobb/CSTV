@@ -1,6 +1,7 @@
 package com.cstv.cstv.service;
 
 import com.cstv.cstv.entities.JugadorTeamlist;
+import com.cstv.cstv.entities.Ids.JugadorTeamlistId;
 import com.cstv.cstv.repos.JugadorTeamlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,21 @@ public class JugadorTeamlistService {
         return jugadorTeamlistRepo.findAll();
     }
 
-    public Optional<JugadorTeamlist> findById(Long id) {
-        return jugadorTeamlistRepo.findById(id);
+    public Optional<JugadorTeamlist> findById(Long idJugador, Long idEquipo) {
+        JugadorTeamlistId jugadorTeamlistId = new JugadorTeamlistId(idJugador, idEquipo);
+        return jugadorTeamlistRepo.findById(jugadorTeamlistId);
+    }
+
+    public List<JugadorTeamlist> findByIdJugador(Long idJugador) {
+        return jugadorTeamlistRepo.findByIdJugador(idJugador);
     }
 
     public JugadorTeamlist save(JugadorTeamlist jugadorTeamlist) {
         return jugadorTeamlistRepo.save(jugadorTeamlist);
     }
 
-    public void deleteById(Long id) {
-        jugadorTeamlistRepo.deleteById(id);
+    public void deleteById(Long idJugador, Long idEquipo) {
+        JugadorTeamlistId jugadorTeamlistId = new JugadorTeamlistId(idJugador, idEquipo);
+        jugadorTeamlistRepo.deleteById(jugadorTeamlistId);
     }
 }

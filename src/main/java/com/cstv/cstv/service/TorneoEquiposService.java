@@ -1,6 +1,7 @@
 package com.cstv.cstv.service;
 
 import com.cstv.cstv.entities.TorneoEquipos;
+import com.cstv.cstv.entities.Ids.TorneoEquiposId;
 import com.cstv.cstv.repos.TorneoEquiposRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,19 +19,19 @@ public class TorneoEquiposService {
         return torneoEquiposRepo.findAll();
     }
 
-    public Optional<TorneoEquipos> findById(Long id) {
+    public Optional<TorneoEquipos> findById(TorneoEquiposId id) {
         return torneoEquiposRepo.findById(id);
     }
 
     public List<TorneoEquipos> findByTorneoId(Long idTorneo) {
-        return torneoEquiposRepo.findByTorneoId(idTorneo);
+        return torneoEquiposRepo.findByIdTorneo(idTorneo);
     }
 
     public TorneoEquipos save(TorneoEquipos torneoEquipos) {
         return torneoEquiposRepo.save(torneoEquipos);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(TorneoEquiposId id) {
         torneoEquiposRepo.deleteById(id);
     }
 }

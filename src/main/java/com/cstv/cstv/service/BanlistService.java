@@ -17,16 +17,18 @@ public class BanlistService {
     public List<Banlist> findAll() {
         return banlistRepo.findAll();
     }
-
-    public Optional<Banlist> findById(Long id) {
-        return banlistRepo.findById(id);
+    public List<Banlist> findByIdPartido(Long id) {
+        return banlistRepo.findByIdPartido(id);
     }
 
     public Banlist save(Banlist banlist) {
         return banlistRepo.save(banlist);
     }
 
-    public void deleteById(Long id) {
-        banlistRepo.deleteById(id);
+    public void deleteByIdPartido(Long id) {
+        banlistRepo.deleteByIdPartido(id);
+    }
+    public void deleteByIdPartidoAndMapa(Long id, String mapa) {
+        banlistRepo.deleteByIdPartidoAndMapa(id, mapa);
     }
 }
