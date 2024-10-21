@@ -1,13 +1,14 @@
 package com.cstv.cstv.service;
 
-import com.cstv.cstv.entities.Banlist;
-import com.cstv.cstv.repos.BanlistRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cstv.cstv.entities.Banlist;
+import com.cstv.cstv.entities.Ids.BanlistId;
+import com.cstv.cstv.repos.BanlistRepo;
 @Service
 public class BanlistService {
 
@@ -20,6 +21,9 @@ public class BanlistService {
     public List<Banlist> findByIdPartido(Long id) {
         return banlistRepo.findByIdPartido(id);
     }
+    public Optional<Banlist> findById(BanlistId id){
+        return banlistRepo.findById(id);
+    }
 
     public Banlist save(Banlist banlist) {
         return banlistRepo.save(banlist);
@@ -28,7 +32,7 @@ public class BanlistService {
     public void deleteByIdPartido(Long id) {
         banlistRepo.deleteByIdPartido(id);
     }
-    public void deleteByIdPartidoAndMapa(Long id, String mapa) {
-        banlistRepo.deleteByIdPartidoAndMapa(id, mapa);
+    public void deleteById(BanlistId id) {
+        banlistRepo.deleteById(id);
     }
 }

@@ -18,8 +18,8 @@ public class Noticia {
     @JoinColumn(name = "ID_Usuario", nullable = false)
     private Usuarios usuario;
 
-    @Lob
-    private byte[] imagen;
+    @Column
+    private String imagen;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String html;
@@ -43,11 +43,11 @@ public class Noticia {
         this.usuario = usuario;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

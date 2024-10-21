@@ -2,11 +2,14 @@ package com.cstv.cstv.rest;
 
 import com.cstv.cstv.entities.JugadorTeamlist;
 import com.cstv.cstv.service.JugadorTeamlistService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.cstv.cstv.entities.Ids.JugadorTeamlistId;
 
 @RestController
 @RequestMapping(value = "/api/jugador-teamlist")
@@ -20,11 +23,9 @@ public class JugadorTeamlistRestController {
         return jugadorTeamlistService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<JugadorTeamlist> getJugadorTeamlistById(@PathVariable Long id) {
-        return jugadorTeamlistService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/{idJugador}")
+    public List<JugadorTeamlist> getJugadorTeamlistByIdJugador(@PathVariable Long idJugador) {
+        return jugadorTeamlistService.findByIdJugador(idJugador);
     }
 
     @PostMapping
@@ -32,16 +33,9 @@ public class JugadorTeamlistRestController {
         return jugadorTeamlistService.save(jugadorTeamlist);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<JugadorTeamlist> updateJugadorTeamlist(@PathVariable Long id, @RequestBody JugadorTeamlist jugadorTeamlist) {
-        if (!jugadorTeamlistService.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(jugadorTeamlistService.save(jugadorTeamlist));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteJugadorTeamlist(@PathVariable Long id){
+    @DeleteMapping("/{idJugador}/{idEquipo}")
+    public ResponseEntity<Void> deleteJugadorTeamlist(@PathVariable Long idJugador, @PathVariable long idEquipo){
+       JugadorTeamlistId id = new JugadorTeamlistId(idJugador, idEquipo);
         if(!jugadorTeamlistService.findById(id).isPresent()){
             return ResponseEntity.notFound().build();
         }

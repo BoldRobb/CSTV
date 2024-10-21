@@ -19,8 +19,8 @@ public class Jugadores {
     @Column(name = "Estatus", length = 100)
     private String estatus;
 
-    @Lob
-    private byte[] foto;
+    @Column
+    private String foto;
 
     @ManyToOne
     @JoinColumn(name = "ID_EquipoActual")
@@ -58,11 +58,11 @@ public class Jugadores {
         this.estatus = estatus;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

@@ -1,14 +1,15 @@
 package com.cstv.cstv.entities.Ids;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
 @Embeddable
 public class BanlistId implements Serializable {
-    @Column(name = "ID_Equipo", nullable = false)
+    @Column(name = "ID_Partido", nullable = false)
     private Long idPartido;
     @Column (name = "Mapa", nullable = false)
     private String mapa;

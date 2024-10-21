@@ -23,8 +23,8 @@ public class Torneos {
     private Date fechaFinal;
 
 
-    @Lob
-    private byte[] logo;
+    @Column
+    private String logo;
 
     @Column(name = "tipo_bracket", nullable = false, length = 100)
     private String tipoBracket;
@@ -37,11 +37,11 @@ public class Torneos {
         this.tipoBracket = tipoBracket;
     }
 
-    public byte[] getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(byte[] logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 

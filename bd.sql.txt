@@ -1,231 +1,252 @@
 -- cstv.equipos definition
 
-CREATE TABLE equipos (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  Nombre varchar(100) NOT NULL,
-  RankingActual int DEFAULT NULL,
-  RankingMaximo int DEFAULT NULL,
-  Twitter varchar(100) DEFAULT NULL,
-  Instagram varchar(100) DEFAULT NULL,
-  Foto blob,
-  PRIMARY KEY (ID)
+CREATE TABLE `equipos` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `RankingActual` int DEFAULT NULL,
+  `RankingMaximo` int DEFAULT NULL,
+  `Twitter` varchar(100) DEFAULT NULL,
+  `Instagram` varchar(100) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `ranking_actual` int DEFAULT NULL,
+  `ranking_maximo` int DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- cstv.foro definition
 
-CREATE TABLE foro (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  Nombre varchar(200) NOT NULL,
-  Descripcion text,
-  PRIMARY KEY (ID)
+CREATE TABLE `foro` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(200) NOT NULL,
+  `descripcion` text,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Distintos foros principales';
+
+
+-- cstv.primary_sequence definition
+
+CREATE TABLE `primary_sequence` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- cstv.torneos definition
 
-CREATE TABLE torneos (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  Nombre varchar(100) NOT NULL,
-  Fecha_Final date DEFAULT NULL,
-  Fecha_Inicial date DEFAULT NULL,
-  Logo blob,
-  Tipo_Bracket varchar(100) NOT NULL,
-  PRIMARY KEY (ID)
+CREATE TABLE `torneos` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `fecha_final` datetime(6) DEFAULT NULL,
+  `fecha_inicial` datetime(6) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `Tipo_Bracket` varchar(100) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- cstv.usuarios definition
 
-CREATE TABLE usuarios (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  Username varchar(100) NOT NULL,
-  Password varchar(100) NOT NULL,
-  Correo varchar(100) NOT NULL,
-  Pais varchar(20) DEFAULT NULL,
-  Rol varchar(50) DEFAULT NULL,
-  PRIMARY KEY (ID),
-  UNIQUE KEY Usuarios_unique (Username),
-  UNIQUE KEY Usuarios_unique_1 (Correo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabla con la informacion de los usuarios';
+CREATE TABLE `usuarios` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `Username` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `Correo` varchar(100) NOT NULL,
+  `Pais` varchar(20) DEFAULT NULL,
+  `Rol` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Usuarios_unique` (`Username`),
+  UNIQUE KEY `Usuarios_unique_1` (`Correo`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabla con la informacion de los usuarios';
 
 
 -- cstv.jugadores definition
 
-CREATE TABLE jugadores (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  Nombre_Real varchar(100) DEFAULT NULL,
-  Mote varchar(100) DEFAULT NULL,
-  Estatus varchar(100) DEFAULT NULL,
-  Foto blob,
-  ID_EquipoActual bigint DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY jugadores_equipos_FK (ID_EquipoActual),
-  CONSTRAINT jugadores_equipos_FK FOREIGN KEY (ID_EquipoActual) REFERENCES equipos (ID)
+CREATE TABLE `jugadores` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `Nombre_Real` varchar(100) DEFAULT NULL,
+  `Mote` varchar(100) DEFAULT NULL,
+  `Estatus` varchar(100) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `ID_EquipoActual` bigint DEFAULT NULL,
+  `id_equipo_actual` bigint DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `jugadores_equipos_FK` (`ID_EquipoActual`),
+  KEY `FKis3asdposjyxyrmfou8x8t5v6` (`id_equipo_actual`),
+  CONSTRAINT `FKis3asdposjyxyrmfou8x8t5v6` FOREIGN KEY (`id_equipo_actual`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `jugadores_equipos_FK` FOREIGN KEY (`ID_EquipoActual`) REFERENCES `equipos` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- cstv.noticia definition
 
-CREATE TABLE noticia (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  ID_Usuario bigint NOT NULL,
-  Imagen blob,
-  HTML text NOT NULL,
-  Fecha date DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY Noticia_usuarios_FK (ID_Usuario),
-  CONSTRAINT Noticia_usuarios_FK FOREIGN KEY (ID_Usuario) REFERENCES usuarios (ID)
+CREATE TABLE `noticia` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `ID_Usuario` bigint NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `html` text NOT NULL,
+  `fecha` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Noticia_usuarios_FK` (`ID_Usuario`),
+  CONSTRAINT `Noticia_usuarios_FK` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- cstv.partido definition
 
-CREATE TABLE partido (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  Equipo1 bigint NOT NULL,
-  Equipo2 bigint NOT NULL,
-  ID_Torneo bigint NOT NULL,
-  ID_Ganador bigint DEFAULT NULL,
-  Formato varchar(100) DEFAULT NULL,
-  Ronda int DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY Partido_equipos_FK (Equipo1),
-  KEY Partido_equipos_FK_1 (Equipo2),
-  KEY Partido_torneos_FK (ID_Torneo),
-  CONSTRAINT Partido_equipos_FK FOREIGN KEY (Equipo1) REFERENCES equipos (ID),
-  CONSTRAINT Partido_equipos_FK_1 FOREIGN KEY (Equipo2) REFERENCES equipos (ID),
-  CONSTRAINT Partido_torneos_FK FOREIGN KEY (ID_Torneo) REFERENCES torneos (ID)
+CREATE TABLE `partido` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `Equipo1` bigint NOT NULL,
+  `Equipo2` bigint NOT NULL,
+  `ID_Torneo` bigint NOT NULL,
+  `ID_Ganador` bigint DEFAULT NULL,
+  `Formato` varchar(100) DEFAULT NULL,
+  `Ronda` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Partido_equipos_FK` (`Equipo1`),
+  KEY `Partido_equipos_FK_1` (`Equipo2`),
+  KEY `Partido_torneos_FK` (`ID_Torneo`),
+  KEY `FKm7kultcveeaxiksft7iet43xr` (`ID_Ganador`),
+  CONSTRAINT `FKm7kultcveeaxiksft7iet43xr` FOREIGN KEY (`ID_Ganador`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Partido_equipos_FK` FOREIGN KEY (`Equipo1`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Partido_equipos_FK_1` FOREIGN KEY (`Equipo2`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Partido_torneos_FK` FOREIGN KEY (`ID_Torneo`) REFERENCES `torneos` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- cstv.respuestas definition
-
-CREATE TABLE respuestas (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  ID_Usuario bigint NOT NULL,
-  ID_Topico bigint DEFAULT NULL,
-  ID_Respuesta bigint DEFAULT NULL,
-  Respuesta varchar(255) NOT NULL,
-  Fecha date DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY Respuestas_usuarios_FK (ID_Usuario),
-  CONSTRAINT Respuestas_usuarios_FK FOREIGN KEY (ID_Usuario) REFERENCES usuarios (ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Respuestas a topicos a respuestas mismas';
 
 
 -- cstv.topico definition
 
-CREATE TABLE topico (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  ID_Usuario bigint NOT NULL,
-  ID_Foro bigint NOT NULL,
-  Titulo varchar(100) NOT NULL,
-  Descripcion varchar(255) NOT NULL,
-  Fecha date DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY Topico_foro_FK (ID_Foro),
-  KEY Topico_usuarios_FK (ID_Usuario),
-  CONSTRAINT Topico_foro_FK FOREIGN KEY (ID_Foro) REFERENCES foro (ID),
-  CONSTRAINT Topico_usuarios_FK FOREIGN KEY (ID_Usuario) REFERENCES usuarios (ID)
+CREATE TABLE `topico` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `ID_Usuario` bigint NOT NULL,
+  `ID_Foro` bigint NOT NULL,
+  `Titulo` varchar(100) NOT NULL,
+  `Descripcion` varchar(255) NOT NULL,
+  `fecha` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Topico_foro_FK` (`ID_Foro`),
+  KEY `Topico_usuarios_FK` (`ID_Usuario`),
+  CONSTRAINT `Topico_foro_FK` FOREIGN KEY (`ID_Foro`) REFERENCES `foro` (`ID`),
+  CONSTRAINT `Topico_usuarios_FK` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Topico personalizado de cada foro';
 
 
 -- cstv.torneo_equipos definition
 
-CREATE TABLE torneo_equipos (
-  ID_Torneo bigint NOT NULL,
-  ID_Equipo bigint NOT NULL,
-  Posicion int DEFAULT NULL,
-  Premio int DEFAULT NULL,
-  KEY Torneo_Equipos_torneos_FK (ID_Torneo),
-  KEY Torneo_Equipos_equipos_FK (ID_Equipo),
-  CONSTRAINT Torneo_Equipos_equipos_FK FOREIGN KEY (ID_Equipo) REFERENCES equipos (ID),
-  CONSTRAINT Torneo_Equipos_torneos_FK FOREIGN KEY (ID_Torneo) REFERENCES torneos (ID)
+CREATE TABLE `torneo_equipos` (
+  `ID_Torneo` bigint NOT NULL,
+  `ID_Equipo` bigint NOT NULL,
+  `Posicion` int DEFAULT NULL,
+  `Premio` int DEFAULT NULL,
+  KEY `Torneo_Equipos_torneos_FK` (`ID_Torneo`),
+  KEY `Torneo_Equipos_equipos_FK` (`ID_Equipo`),
+  CONSTRAINT `Torneo_Equipos_equipos_FK` FOREIGN KEY (`ID_Equipo`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Torneo_Equipos_torneos_FK` FOREIGN KEY (`ID_Torneo`) REFERENCES `torneos` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Lista de equipos pertenecientes a un torneo con su posicion y premio';
 
 
 -- cstv.banlist definition
 
-CREATE TABLE banlist (
-  ID_Partido bigint NOT NULL,
-  Mapa varchar(100) DEFAULT NULL,
-  Estatus varchar(100) DEFAULT NULL,
-  KEY Banlist_partido_FK (ID_Partido),
-  CONSTRAINT Banlist_partido_FK FOREIGN KEY (ID_Partido) REFERENCES partido (ID)
+CREATE TABLE `banlist` (
+  `ID_Partido` bigint NOT NULL,
+  `mapa` varchar(255) NOT NULL,
+  `Estatus` varchar(100) DEFAULT NULL,
+  `id_equipo` bigint NOT NULL,
+  KEY `Banlist_partido_FK` (`ID_Partido`),
+  CONSTRAINT `Banlist_partido_FK` FOREIGN KEY (`ID_Partido`) REFERENCES `partido` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Lista de bans de un partido';
 
 
 -- cstv.equipo_jugadores definition
 
-CREATE TABLE equipo_jugadores (
-  ID_Equipo bigint NOT NULL,
-  ID_Jugador bigint NOT NULL,
-  KEY Equipo_Jugadores_equipos_FK (ID_Equipo),
-  KEY Equipo_Jugadores_jugadores_FK (ID_Jugador),
-  CONSTRAINT Equipo_Jugadores_equipos_FK FOREIGN KEY (ID_Equipo) REFERENCES equipos (ID),
-  CONSTRAINT Equipo_Jugadores_jugadores_FK FOREIGN KEY (ID_Jugador) REFERENCES jugadores (ID)
+CREATE TABLE `equipo_jugadores` (
+  `ID_Equipo` bigint NOT NULL,
+  `ID_Jugador` bigint NOT NULL,
+  KEY `Equipo_Jugadores_equipos_FK` (`ID_Equipo`),
+  KEY `Equipo_Jugadores_jugadores_FK` (`ID_Jugador`),
+  CONSTRAINT `Equipo_Jugadores_equipos_FK` FOREIGN KEY (`ID_Equipo`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Equipo_Jugadores_jugadores_FK` FOREIGN KEY (`ID_Jugador`) REFERENCES `jugadores` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Lista de jugadores en un equiipo';
 
 
 -- cstv.jugador_teamlist definition
 
-CREATE TABLE jugador_teamlist (
-  ID_Jugador bigint NOT NULL,
-  ID_Equipo bigint NOT NULL,
-  FechaInicio date DEFAULT NULL,
-  FechaFinal date DEFAULT NULL,
-  KEY Jugador_teamlist_jugadores_FK (ID_Jugador),
-  KEY Jugador_teamlist_equipos_FK (ID_Equipo),
-  CONSTRAINT Jugador_teamlist_equipos_FK FOREIGN KEY (ID_Equipo) REFERENCES equipos (ID),
-  CONSTRAINT Jugador_teamlist_jugadores_FK FOREIGN KEY (ID_Jugador) REFERENCES jugadores (ID)
+CREATE TABLE `jugador_teamlist` (
+  `ID_Jugador` bigint NOT NULL,
+  `ID_Equipo` bigint NOT NULL,
+  `FechaInicio` date DEFAULT NULL,
+  `FechaFinal` date DEFAULT NULL,
+  `fecha_final` datetime(6) DEFAULT NULL,
+  `fecha_inicio` datetime(6) DEFAULT NULL,
+  KEY `Jugador_teamlist_jugadores_FK` (`ID_Jugador`),
+  KEY `Jugador_teamlist_equipos_FK` (`ID_Equipo`),
+  CONSTRAINT `Jugador_teamlist_equipos_FK` FOREIGN KEY (`ID_Equipo`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Jugador_teamlist_jugadores_FK` FOREIGN KEY (`ID_Jugador`) REFERENCES `jugadores` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Lista de todos los equipos a los que ha pertenecido un jugador';
 
 
 -- cstv.jugador_trofeos definition
 
-CREATE TABLE jugador_trofeos (
-  ID_Jugador bigint NOT NULL,
-  ID_Torneo bigint NOT NULL,
-  KEY Jugador_trofeos_jugadores_FK (ID_Jugador),
-  KEY Jugador_trofeos_torneos_FK (ID_Torneo),
-  CONSTRAINT Jugador_trofeos_jugadores_FK FOREIGN KEY (ID_Jugador) REFERENCES jugadores (ID),
-  CONSTRAINT Jugador_trofeos_torneos_FK FOREIGN KEY (ID_Torneo) REFERENCES torneos (ID)
+CREATE TABLE `jugador_trofeos` (
+  `ID_Jugador` bigint NOT NULL,
+  `ID_Torneo` bigint NOT NULL,
+  KEY `Jugador_trofeos_jugadores_FK` (`ID_Jugador`),
+  KEY `Jugador_trofeos_torneos_FK` (`ID_Torneo`),
+  CONSTRAINT `Jugador_trofeos_jugadores_FK` FOREIGN KEY (`ID_Jugador`) REFERENCES `jugadores` (`ID`),
+  CONSTRAINT `Jugador_trofeos_torneos_FK` FOREIGN KEY (`ID_Torneo`) REFERENCES `torneos` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Lista de trofeos de un jugador';
 
 
 -- cstv.mapa definition
 
-CREATE TABLE mapa (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  ID_Partido bigint NOT NULL,
-  Mapa varchar(100) DEFAULT NULL,
-  Equipo1T int DEFAULT NULL,
-  Equipo1CT varchar(100) DEFAULT NULL,
-  Equipo2T varchar(100) DEFAULT NULL,
-  Equipo2CT varchar(100) DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY Mapa_partido_FK (ID_Partido),
-  CONSTRAINT Mapa_partido_FK FOREIGN KEY (ID_Partido) REFERENCES partido (ID)
+CREATE TABLE `mapa` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `ID_Partido` bigint NOT NULL,
+  `Mapa` varchar(100) DEFAULT NULL,
+  `Equipo1T` int DEFAULT NULL,
+  `equipo1ct` int DEFAULT NULL,
+  `equipo2t` int DEFAULT NULL,
+  `equipo2ct` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Mapa_partido_FK` (`ID_Partido`),
+  CONSTRAINT `Mapa_partido_FK` FOREIGN KEY (`ID_Partido`) REFERENCES `partido` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Mapa de un partido';
 
 
 -- cstv.mapa_stats definition
 
-CREATE TABLE mapa_stats (
-  ID bigint NOT NULL AUTO_INCREMENT,
-  ID_Mapa bigint NOT NULL,
-  ID_Equipo bigint NOT NULL,
-  ID_Jugador bigint NOT NULL,
-  Asesinatos int DEFAULT NULL,
-  Muertes int DEFAULT NULL,
-  KD double DEFAULT NULL,
-  ADR double DEFAULT NULL,
-  PRIMARY KEY (ID),
-  KEY Mapa_Stats_mapa_FK (ID_Mapa),
-  KEY Mapa_Stats_equipos_FK (ID_Equipo),
-  KEY Mapa_Stats_jugadores_FK (ID_Jugador),
-  CONSTRAINT Mapa_Stats_equipos_FK FOREIGN KEY (ID_Equipo) REFERENCES equipos (ID),
-  CONSTRAINT Mapa_Stats_jugadores_FK FOREIGN KEY (ID_Jugador) REFERENCES jugadores (ID),
-  CONSTRAINT Mapa_Stats_mapa_FK FOREIGN KEY (ID_Mapa) REFERENCES mapa (ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Estadisticas por jugador de un mapa';
+CREATE TABLE `mapa_stats` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `ID_Mapa` bigint NOT NULL,
+  `ID_Equipo` bigint NOT NULL,
+  `ID_Jugador` bigint NOT NULL,
+  `Asesinatos` int DEFAULT NULL,
+  `Muertes` int DEFAULT NULL,
+  `KD` double DEFAULT NULL,
+  `ADR` double DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Mapa_Stats_mapa_FK` (`ID_Mapa`),
+  KEY `Mapa_Stats_equipos_FK` (`ID_Equipo`),
+  KEY `Mapa_Stats_jugadores_FK` (`ID_Jugador`),
+  CONSTRAINT `Mapa_Stats_equipos_FK` FOREIGN KEY (`ID_Equipo`) REFERENCES `equipos` (`ID`),
+  CONSTRAINT `Mapa_Stats_jugadores_FK` FOREIGN KEY (`ID_Jugador`) REFERENCES `jugadores` (`ID`),
+  CONSTRAINT `Mapa_Stats_mapa_FK` FOREIGN KEY (`ID_Mapa`) REFERENCES `mapa` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Estadisticas por jugador de un mapa';
+
+
+-- cstv.respuestas definition
+
+CREATE TABLE `respuestas` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `ID_Usuario` bigint NOT NULL,
+  `ID_Topico` bigint DEFAULT NULL,
+  `ID_Respuesta` bigint DEFAULT NULL,
+  `Respuesta` varchar(255) NOT NULL,
+  `fecha` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Respuestas_usuarios_FK` (`ID_Usuario`),
+  KEY `FKjh5q59ilflb3d9kq332x9ob88` (`ID_Respuesta`),
+  KEY `FKj1ig2wncth0lc3w0wdm7fapsb` (`ID_Topico`),
+  CONSTRAINT `FKj1ig2wncth0lc3w0wdm7fapsb` FOREIGN KEY (`ID_Topico`) REFERENCES `topico` (`ID`),
+  CONSTRAINT `FKjh5q59ilflb3d9kq332x9ob88` FOREIGN KEY (`ID_Respuesta`) REFERENCES `respuestas` (`ID`),
+  CONSTRAINT `Respuestas_usuarios_FK` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Respuestas a topicos a respuestas mismas';

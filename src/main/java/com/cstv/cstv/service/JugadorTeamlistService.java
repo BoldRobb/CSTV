@@ -1,13 +1,14 @@
 package com.cstv.cstv.service;
 
-import com.cstv.cstv.entities.JugadorTeamlist;
-import com.cstv.cstv.entities.Ids.JugadorTeamlistId;
-import com.cstv.cstv.repos.JugadorTeamlistRepo;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.cstv.cstv.entities.Ids.JugadorTeamlistId;
+import com.cstv.cstv.entities.JugadorTeamlist;
+import com.cstv.cstv.repos.JugadorTeamlistRepo;
 
 @Service
 public class JugadorTeamlistService {
@@ -19,9 +20,8 @@ public class JugadorTeamlistService {
         return jugadorTeamlistRepo.findAll();
     }
 
-    public Optional<JugadorTeamlist> findById(Long idJugador, Long idEquipo) {
-        JugadorTeamlistId jugadorTeamlistId = new JugadorTeamlistId(idJugador, idEquipo);
-        return jugadorTeamlistRepo.findById(jugadorTeamlistId);
+    public Optional<JugadorTeamlist> findById(JugadorTeamlistId id) {
+        return jugadorTeamlistRepo.findById(id);
     }
 
     public List<JugadorTeamlist> findByIdJugador(Long idJugador) {
@@ -32,8 +32,7 @@ public class JugadorTeamlistService {
         return jugadorTeamlistRepo.save(jugadorTeamlist);
     }
 
-    public void deleteById(Long idJugador, Long idEquipo) {
-        JugadorTeamlistId jugadorTeamlistId = new JugadorTeamlistId(idJugador, idEquipo);
-        jugadorTeamlistRepo.deleteById(jugadorTeamlistId);
+    public void deleteById(JugadorTeamlistId id) {
+        jugadorTeamlistRepo.deleteById(id);
     }
 }

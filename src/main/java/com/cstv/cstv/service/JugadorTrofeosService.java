@@ -1,13 +1,14 @@
 package com.cstv.cstv.service;
 
-import com.cstv.cstv.entities.JugadorTrofeos;
-import com.cstv.cstv.entities.Ids.JugadorTrofeosId;
-import com.cstv.cstv.repos.JugadorTrofeosRepo;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.cstv.cstv.entities.Ids.JugadorTrofeosId;
+import com.cstv.cstv.entities.JugadorTrofeos;
+import com.cstv.cstv.repos.JugadorTrofeosRepo;
 
 @Service
 public class JugadorTrofeosService {
@@ -32,5 +33,8 @@ public class JugadorTrofeosService {
 
     public void deleteById(JugadorTrofeosId id) {
         jugadorTrofeosRepo.deleteById(id);
+    }
+    public void deleteByIdJugadorIdTrofeo(Long idJugador, Long idTorneo){
+        jugadorTrofeosRepo.deleteByIdJugadorIdTorneo(idJugador, idTorneo);
     }
 }

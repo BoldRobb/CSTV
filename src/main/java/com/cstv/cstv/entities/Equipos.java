@@ -24,8 +24,8 @@ public class Equipos {
     @Column(length = 100)
     private String instagram;
 
-    @Lob
-    private byte[] foto;
+    @Column(nullable = true)
+    private String foto;
 
     public Long getId() {
         return id;
@@ -67,11 +67,11 @@ public class Equipos {
         this.twitter = twitter;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
