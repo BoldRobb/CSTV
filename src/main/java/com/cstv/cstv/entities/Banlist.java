@@ -15,6 +15,8 @@ public class Banlist {
     @EmbeddedId
     private BanlistId id;
 
+    
+
     @Column(name = "ID_Partido", nullable = false, insertable = false, updatable = false)
     private long idPartido;
 
@@ -23,6 +25,9 @@ public class Banlist {
 
     @Column(name = "Estatus", length = 100)
     private String estatus;
+
+    @Column(name="ID_Equipo", nullable = false, insertable = false, updatable = false)
+    private long idEquipo;
 
 
     public BanlistId getId() {
@@ -55,6 +60,14 @@ public class Banlist {
 
     public void setEstatus(String estatus) {
         this.estatus = estatus;
+    }
+
+    public long getIdEquipo() {
+        return idEquipo;
+    }
+
+    public void setIdEquipo(long idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
 

@@ -1,8 +1,15 @@
 package com.cstv.cstv.entities;
 
-import jakarta.persistence.*;
-
 import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "noticia")
@@ -26,6 +33,9 @@ public class Noticia {
 
     @Column(name = "Fecha")
     private Date fecha;
+
+    @Column(name= "titulo", nullable= false)
+    private String titulo;
 
     public Long getId() {
         return id;
@@ -65,6 +75,14 @@ public class Noticia {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
 }
