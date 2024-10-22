@@ -35,4 +35,5 @@ public class BanlistService {
     public void deleteById(BanlistId id) {
         banlistRepo.deleteById(id);
     }
+    
 }

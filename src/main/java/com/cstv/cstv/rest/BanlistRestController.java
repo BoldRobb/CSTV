@@ -57,4 +57,5 @@ public class BanlistRestController {
         banlistService.deleteByIdPartido(idPartido);
         return ResponseEntity.noContent().build();
     }
+    
 }

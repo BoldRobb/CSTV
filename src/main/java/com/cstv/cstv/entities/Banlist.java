@@ -1,7 +1,11 @@
 package com.cstv.cstv.entities;
 
 import com.cstv.cstv.entities.Ids.BanlistId;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "banlist")
@@ -9,16 +13,26 @@ public class Banlist {
 
 
     @EmbeddedId
-    private BanlistId Id;
-    @ManyToOne
-    @JoinColumn(name = "ID_Partido", nullable = false, insertable = false, updatable = false)
-    private Partido partido;
+    private BanlistId id;
 
-    @Column(name = "Mapa", length = 100,nullable = false , insertable = false, updatable = false)
+    @Column(name = "ID_Partido", nullable = false, insertable = false, updatable = false)
+    private long idPartido;
+
+    @Column(name = "Mapa", length = 100, nullable = false, insertable = false, updatable = false)
     private String mapa;
 
     @Column(name = "Estatus", length = 100)
     private String estatus;
+
+
+    public BanlistId getId() {
+        return id;
+    }
+
+    public void setId(BanlistId id) {
+        this.id = id;
+    }
+
     public String getMapa() {
         return mapa;
     }
@@ -27,12 +41,12 @@ public class Banlist {
         this.mapa = mapa;
     }
 
-    public Partido getPartido() {
-        return partido;
+    public Long getIdPartido() {
+        return idPartido;
     }
 
-    public void setPartido(Partido partido) {
-        this.partido = partido;
+    public void setIdPartido(long partido) {
+        this.idPartido = partido;
     }
 
     public String getEstatus() {

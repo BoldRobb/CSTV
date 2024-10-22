@@ -1,7 +1,13 @@
 package com.cstv.cstv.entities;
 
 import com.cstv.cstv.entities.Ids.TorneoEquiposId;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "torneo_equipos")
@@ -13,12 +19,12 @@ public class TorneoEquipos {
     // Relación con la entidad Equipo
     @ManyToOne
     @JoinColumn(name = "ID_Equipo", insertable = false, updatable = false)
-    private Equipos equipo;
+    private Long idEquipo;
 
     // Relación con la entidad Torneo
     @ManyToOne
     @JoinColumn(name = "ID_Torneo", insertable = false, updatable = false)
-    private Torneos torneo;
+    private Long idTorneo;
 
     @Column(name = "Posicion")
     private Integer posicion;
@@ -26,20 +32,20 @@ public class TorneoEquipos {
     @Column(name = "Premio")
     private Integer premio;
 
-    public Torneos getTorneo() {
-        return torneo;
+    public Long getidTorneo() {
+        return idTorneo;
     }
 
-    public void setTorneo(Torneos torneo) {
-        this.torneo = torneo;
+    public void setIdTorneo(Long torneo) {
+        this.idTorneo = torneo;
     }
 
-    public Equipos getEquipo() {
-        return equipo;
+    public Long getIdEquipo() {
+        return idEquipo;
     }
 
-    public void setEquipo(Equipos equipo) {
-        this.equipo = equipo;
+    public void setIdEquipo(Long equipo) {
+        this.idEquipo = equipo;
     }
 
     public Integer getPosicion() {

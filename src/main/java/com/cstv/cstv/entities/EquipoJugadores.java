@@ -1,7 +1,12 @@
 package com.cstv.cstv.entities;
 
 import com.cstv.cstv.entities.Ids.EquipoJugadoresId;
-import jakarta.persistence.*;
+
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "equipo_jugadores")
@@ -22,7 +27,7 @@ public class EquipoJugadores {
         return equipo;
     }
 
-    public void setEquipo(Equipos equipo) {
+    public void setIdEquipo(Equipos equipo) {
         this.equipo = equipo;
     }
 
@@ -30,7 +35,7 @@ public class EquipoJugadores {
         return jugador;
     }
 
-    public void setJugador(Jugadores jugador) {
+    public void setIdJugador(Jugadores jugador) {
         this.jugador = jugador;
     }
 

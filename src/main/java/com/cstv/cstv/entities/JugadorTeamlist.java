@@ -1,9 +1,15 @@
 package com.cstv.cstv.entities;
 
-import com.cstv.cstv.entities.Ids.JugadorTeamlistId;
-import jakarta.persistence.*;
-
 import java.util.Date;
+
+import com.cstv.cstv.entities.Ids.JugadorTeamlistId;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "jugador_teamlist")
@@ -14,11 +20,11 @@ public class JugadorTeamlist {
 
     @ManyToOne
     @JoinColumn(name = "ID_Jugador", nullable = false, insertable = false, updatable = false)
-    private Jugadores jugador;
+    private Long idJugador;
 
     @ManyToOne
     @JoinColumn(name = "ID_Equipo", nullable = false, insertable = false, updatable = false)
-    private Equipos equipo;
+    private long idEquipo;
 
 
     @Column(name = "FechaInicio")
@@ -34,20 +40,20 @@ public class JugadorTeamlist {
         this.fechaInicio = fechaInicio;
     }
 
-    public Jugadores getJugador() {
-        return jugador;
+    public Long getIdJugador() {
+        return idJugador;
     }
 
-    public void setJugador(Jugadores jugador) {
-        this.jugador = jugador;
+    public void setIdJugador(Long jugador) {
+        this.idJugador = jugador;
     }
 
-    public Equipos getEquipo() {
-        return equipo;
+    public Long getIdEquipo() {
+        return idEquipo;
     }
 
-    public void setEquipo(Equipos equipo) {
-        this.equipo = equipo;
+    public void setIdEquipo(Long equipo) {
+        this.idEquipo = equipo;
     }
 
     public Date getFechaFinal() {
