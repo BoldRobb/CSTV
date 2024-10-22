@@ -16,15 +16,15 @@ import jakarta.persistence.Table;
 public class JugadorTeamlist {
 
     @EmbeddedId
-    private JugadorTeamlistId Id;
+    private JugadorTeamlistId id;
 
     @ManyToOne
     @JoinColumn(name = "ID_Jugador", nullable = false, insertable = false, updatable = false)
-    private Long idJugador;
+    private Jugadores idJugador;
 
     @ManyToOne
     @JoinColumn(name = "ID_Equipo", nullable = false, insertable = false, updatable = false)
-    private long idEquipo;
+    private Equipos idEquipo;
 
 
     @Column(name = "FechaInicio")
@@ -40,19 +40,19 @@ public class JugadorTeamlist {
         this.fechaInicio = fechaInicio;
     }
 
-    public Long getIdJugador() {
+    public Jugadores getIdJugador() {
         return idJugador;
     }
 
-    public void setIdJugador(Long jugador) {
+    public void setIdJugador(Jugadores jugador) {
         this.idJugador = jugador;
     }
 
-    public Long getIdEquipo() {
+    public Equipos getIdEquipo() {
         return idEquipo;
     }
 
-    public void setIdEquipo(Long equipo) {
+    public void setIdEquipo(Equipos equipo) {
         this.idEquipo = equipo;
     }
 

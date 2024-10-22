@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EquipoJugadoresRepo extends JpaRepository<EquipoJugadores, com.cstv.cstv.entities.Ids.EquipoJugadoresId> {
 
-    List<EquipoJugadores> findByIdEquipo(Long idEquipo);
-    List<EquipoJugadores> findByIdJugador(Long idJugador);
-    void deleteByIdJugador(Long idJugador);
+    List<EquipoJugadores> findById_IdEquipo(Long idEquipo);
+    List<EquipoJugadores> findById_IdJugador(Long idJugador);
+    void deleteById_IdJugador(Long idJugador);
 }

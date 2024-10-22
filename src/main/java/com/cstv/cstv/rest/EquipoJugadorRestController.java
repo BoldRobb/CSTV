@@ -20,12 +20,12 @@ public class EquipoJugadorRestController {
         return equipoJugadorService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/equipo/{id}")
     public List<EquipoJugadores> getEquipoJugadorByIdEquipo(@PathVariable Long id) {
         return equipoJugadorService.findByIdEquipo(id);
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/jugador/{id}")
     public List<EquipoJugadores> getEquipoJugadorByIdJugador(@PathVariable Long id) {
         return equipoJugadorService.findByIdJugador(id);
     }

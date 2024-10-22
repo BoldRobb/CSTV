@@ -20,17 +20,17 @@ public class EquipoJugadoresService {
     }
 
     public List<EquipoJugadores> findByIdJugador(Long idJugador) {
-        return equipoJugadoresRepo.findByIdJugador(idJugador);
+        return equipoJugadoresRepo.findById_IdJugador(idJugador);
     }
 
     public List<EquipoJugadores> findByIdEquipo(Long idEquipo) {
-        return equipoJugadoresRepo.findByIdEquipo(idEquipo);
+        return equipoJugadoresRepo.findById_IdEquipo(idEquipo);
     }   
     public EquipoJugadores save(EquipoJugadores equipoJugadores) {
         return equipoJugadoresRepo.save(equipoJugadores);
     }
     public void deleteByIdJugador(Long idJugador) {
-        equipoJugadoresRepo.deleteByIdJugador(idJugador);
+        equipoJugadoresRepo.deleteById_IdJugador(idJugador);
     }
     public void deleteById(EquipoJugadoresId id) {
         equipoJugadoresRepo.deleteById(id);

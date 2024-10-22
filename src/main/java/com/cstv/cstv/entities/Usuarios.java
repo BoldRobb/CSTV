@@ -17,7 +17,7 @@ public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
 
     @Column(nullable=false, length = 100, unique = true)
     private String Username;
@@ -53,7 +53,7 @@ public class Usuarios {
         return Correo;
     }
     public long getId() {
-        return ID;
+        return id;
     }
     public String getPais() {
         return Pais;
@@ -67,12 +67,9 @@ public class Usuarios {
     public String getUsername() {
         return Username;
     }
-    public Long getID() {
-        return ID;
-    }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long ID) {
+        this.id = ID;
     }
 
 }

@@ -14,17 +14,17 @@ import jakarta.persistence.Table;
 public class TorneoEquipos {
 
     @EmbeddedId
-    private TorneoEquiposId Id;
+    private TorneoEquiposId id;
 
     // Relación con la entidad Equipo
     @ManyToOne
     @JoinColumn(name = "ID_Equipo", insertable = false, updatable = false)
-    private Long idEquipo;
+    private Equipos idEquipo;
 
     // Relación con la entidad Torneo
     @ManyToOne
     @JoinColumn(name = "ID_Torneo", insertable = false, updatable = false)
-    private Long idTorneo;
+    private Torneos idTorneo;
 
     @Column(name = "Posicion")
     private Integer posicion;
@@ -32,19 +32,19 @@ public class TorneoEquipos {
     @Column(name = "Premio")
     private Integer premio;
 
-    public Long getidTorneo() {
+    public Torneos getidTorneo() {
         return idTorneo;
     }
 
-    public void setIdTorneo(Long torneo) {
+    public void setIdTorneo(Torneos torneo) {
         this.idTorneo = torneo;
     }
 
-    public Long getIdEquipo() {
+    public Equipos getIdEquipo() {
         return idEquipo;
     }
 
-    public void setIdEquipo(Long equipo) {
+    public void setIdEquipo(Equipos equipo) {
         this.idEquipo = equipo;
     }
 

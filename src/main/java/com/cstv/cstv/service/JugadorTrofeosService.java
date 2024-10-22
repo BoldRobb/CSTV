@@ -24,7 +24,7 @@ public class JugadorTrofeosService {
         return jugadorTrofeosRepo.findById(id);
     }
     public List<JugadorTrofeos> findByIdJugador(Long idJugador) {
-        return jugadorTrofeosRepo.findByIdJugador(idJugador);
+        return jugadorTrofeosRepo.findById_IdJugador(idJugador);
     }
     
     public JugadorTrofeos save(JugadorTrofeos jugadorTrofeos) {
@@ -34,7 +34,8 @@ public class JugadorTrofeosService {
     public void deleteById(JugadorTrofeosId id) {
         jugadorTrofeosRepo.deleteById(id);
     }
-    public void deleteByIdJugadorIdTrofeo(Long idJugador, Long idTorneo){
-        jugadorTrofeosRepo.deleteByIdJugadorIdTorneo(idJugador, idTorneo);
+    public void deleteByIdJugadorIdTrofeo(JugadorTrofeosId id) {
+        
+        jugadorTrofeosRepo.deleteById(id);
     }
 }

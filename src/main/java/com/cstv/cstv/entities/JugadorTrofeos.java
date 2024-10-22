@@ -13,28 +13,28 @@ import jakarta.persistence.Table;
 public class JugadorTrofeos {
 
     @EmbeddedId
-    private JugadorTrofeosId Id;
+    private JugadorTrofeosId id;
     @ManyToOne
     @JoinColumn(name = "ID_Jugador", nullable = false, insertable = false, updatable = false)
-    private Long idJugador;
+    private Jugadores idJugador;
 
     @ManyToOne
     @JoinColumn(name = "ID_Torneo", nullable = false, insertable = false, updatable = false)
-    private Long idTorneo;
+    private Torneos idTorneo;
 
-    public Long getIdJugador() {
+    public Jugadores getIdJugador() {
         return idJugador;
     }
 
-    public void setIdJugador(Long jugador) {
+    public void setIdJugador(Jugadores jugador) {
         this.idJugador = jugador;
     }
 
-    public Long getIdTorneo() {
+    public Torneos getIdTorneo() {
         return idTorneo;
     }
 
-    public void setIdTorneo(Long torneo) {
+    public void setIdTorneo(Torneos torneo) {
         this.idTorneo = torneo;
     }
 }

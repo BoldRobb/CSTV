@@ -25,7 +25,7 @@ public class JugadorTeamlistService {
     }
 
     public List<JugadorTeamlist> findByIdJugador(Long idJugador) {
-        return jugadorTeamlistRepo.findByIdJugador(idJugador);
+        return jugadorTeamlistRepo.findById_IdJugador(idJugador);
     }
 
     public JugadorTeamlist save(JugadorTeamlist jugadorTeamlist) {

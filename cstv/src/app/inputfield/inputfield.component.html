@@ -1,0 +1,23 @@
+<label
+  [for]="id"
+  class="block mb-1.5 text-sm font-medium text-gray-900 dark:text-white"
+  >{{ label }}</label
+>
+<input
+  [class]="getCssClasses()"
+  [class.invalid]="control.invalid && control.dirty && control.touched"
+  [type]="type"
+  [id]="id"
+  [formControl]="control"
+  [name]="name"
+  [placeholder]="placeholder"
+  [required]="required"
+/>
+<ng-container *ngIf="control.invalid && control.dirty && control.touched">
+    <div
+      *ngFor="let err of control.errors | keyvalue"
+      class="mt-2 text-sm text-red-600 dark:text-red-500"
+    >
+      {{ getErrorMessage() }}
+    </div>
+  </ng-container>

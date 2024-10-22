@@ -51,7 +51,7 @@ public class UsuariosRest {
         if (!usuariosService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        usuarios.setID(id);
+        usuarios.setId(id);
         return ResponseEntity.ok(usuariosService.save(usuarios));
     }
 
