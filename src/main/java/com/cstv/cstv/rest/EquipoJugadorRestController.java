@@ -1,12 +1,22 @@
 package com.cstv.cstv.rest;
 
-import com.cstv.cstv.entities.EquipoJugadores;
-import com.cstv.cstv.service.EquipoJugadoresService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.cstv.cstv.domain.EquipoJugadorDTO;
+import com.cstv.cstv.entities.EquipoJugadores;
+import com.cstv.cstv.entities.Equipos;
+import com.cstv.cstv.entities.Jugadores;
+import com.cstv.cstv.service.EquipoJugadoresService;
 
 @RestController
 @RequestMapping(value = "/api/equipo-jugadores")
@@ -31,7 +41,15 @@ public class EquipoJugadorRestController {
     }
 
     @PostMapping
-    public EquipoJugadores createEquipoJugador(@RequestBody EquipoJugadores equipoJugador) {
+    public EquipoJugadores createEquipoJugador(@RequestBody EquipoJugadorDTO equipoJugadorDTO) {
+        EquipoJugadores equipoJugador = new EquipoJugadores();
+        Equipos equipo = new Equipos();
+        equipo.setId(equipoJugadorDTO.getIdEquipo());
+        equipoJugador.setIdEquipo(equipo);
+        Jugadores jugador = new Jugadores();
+        jugador.setId(equipoJugadorDTO.getIdJugador());
+        equipoJugador.setIdJugador(jugador);
+        
         return equipoJugadorService.save(equipoJugador);
     }
 

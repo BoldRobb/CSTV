@@ -1,6 +1,7 @@
 package com.cstv.cstv.entities;
 
 import jakarta.persistence.*;
+import com.cstv.cstv.entities.Equipos;
 
 @Entity
 @Table(name = "mapa_stats")
@@ -86,8 +87,8 @@ public class MapaStats {
         return equipo;
     }
 
-    public void setEquipo(Equipos equipo) {
-        this.equipo = equipo;
+    public void setEquipo(Equipos equipos) {
+        this.equipo = equipos;
     }
 
     public Mapa getMapa() {

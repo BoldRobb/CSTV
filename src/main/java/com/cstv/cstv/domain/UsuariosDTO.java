@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 public class UsuariosDTO {
 
 
-    private long ID;
+    private Long ID;
 
     @NotNull
     private String Username;
@@ -59,11 +59,11 @@ public class UsuariosDTO {
         return super.toString();
     }
 
-    public void setID(long ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
-    public long getID() {
+    public Long getID() {
         return ID;
     }
 }

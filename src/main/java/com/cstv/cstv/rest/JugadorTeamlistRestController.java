@@ -1,6 +1,9 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.JugadorTeamlistDTO;
+import com.cstv.cstv.entities.Equipos;
 import com.cstv.cstv.entities.JugadorTeamlist;
+import com.cstv.cstv.entities.Jugadores;
 import com.cstv.cstv.service.JugadorTeamlistService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,14 @@ public class JugadorTeamlistRestController {
     }
 
     @PostMapping
-    public JugadorTeamlist createJugadorTeamlist(@RequestBody JugadorTeamlist jugadorTeamlist) {
+    public JugadorTeamlist createJugadorTeamlist(@RequestBody JugadorTeamlistDTO jugadorTeamlistDTO) {
+        JugadorTeamlist jugadorTeamlist = new JugadorTeamlist();
+        jugadorTeamlist.setIdEquipo(new Equipos());
+        jugadorTeamlist.getIdEquipo().setId(jugadorTeamlistDTO.getIdEquipo());
+        jugadorTeamlist.setIdJugador(new Jugadores());
+        jugadorTeamlist.getIdJugador().setId(jugadorTeamlistDTO.getIdEquipo());
+        jugadorTeamlist.setFechaInicio(jugadorTeamlistDTO.getFechaInicio());
+        jugadorTeamlist.setFechaFinal(jugadorTeamlistDTO.getFechaFinal());        
         return jugadorTeamlistService.save(jugadorTeamlist);
     }
 

@@ -1,6 +1,8 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.NoticiaDTO;
 import com.cstv.cstv.entities.Noticia;
+import com.cstv.cstv.entities.Usuarios;
 import com.cstv.cstv.service.NoticiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,14 @@ public class NoticiaRestController {
     }
 
     @PostMapping
-    public Noticia createNoticia(@RequestBody Noticia noticia) {
+    public Noticia createNoticia(@RequestBody NoticiaDTO noticiaDTO) {
+        Noticia noticia = new Noticia();
+        noticia.setUsuario(new Usuarios());
+        noticia.getUsuario().setId(noticiaDTO.getUsuarioId());
+        noticia.setImagen(noticiaDTO.getImagen());
+        noticia.setHtml(noticiaDTO.getHtml());
+        noticia.setFecha(noticiaDTO.getFecha());
+        noticia.setTitulo(noticiaDTO.getTitulo());
         return noticiaService.save(noticia);
     }
 

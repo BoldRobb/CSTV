@@ -1,16 +1,16 @@
 package com.cstv.cstv.domain;
 
 public class BanlistDTO{
-    private long idPartido;
+    private Long idPartido;
     private String mapa;
     private String estatus;
-    private long idEquipo;
+    private Long idEquipo;
 
-    public long getIdPartido() {
+    public Long getIdPartido() {
         return idPartido;
     }
 
-    public void setIdPartido(long idPartido) {
+    public void setIdPartido(Long idPartido) {
         this.idPartido = idPartido;
     }
 
@@ -30,11 +30,11 @@ public class BanlistDTO{
         this.estatus = estatus;
     }
 
-    public long getIdEquipo() {
+    public Long getIdEquipo() {
         return idEquipo;
     }
 
-    public void setIdEquipo(long idEquipo) {
+    public void setIdEquipo(Long idEquipo) {
         this.idEquipo = idEquipo;
     }
 }

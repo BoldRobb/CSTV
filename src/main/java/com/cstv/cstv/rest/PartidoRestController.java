@@ -1,6 +1,9 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.PartidoDTO;
+import com.cstv.cstv.entities.Equipos;
 import com.cstv.cstv.entities.Partido;
+import com.cstv.cstv.entities.Torneos;
 import com.cstv.cstv.service.PartidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +31,19 @@ public class PartidoRestController {
     }
 
     @PostMapping
-    public Partido createPartido(@RequestBody Partido partido) {
+    public Partido createPartido(@RequestBody PartidoDTO partidoDTO) {
+        Partido partido = new Partido();
+        partido.setId(partidoDTO.getId());
+        partido.setEquipo1(new Equipos());
+        partido.getEquipo1().setId(partidoDTO.getEquipo1());
+        partido.setEquipo2(new Equipos());
+        partido.getEquipo2().setId(partidoDTO.getEquipo2());
+        partido.setTorneo(new Torneos());
+        partido.getTorneo().setId(partidoDTO.getIdTorneo());
+        partido.setGanador(new Equipos());
+        partido.getGanador().setId(partidoDTO.getIdGanador());
+        partido.setFormato(partidoDTO.getFormato());
+        partido.setRonda(partidoDTO.getRonda());
         return partidoService.save(partido);
     }
 

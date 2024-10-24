@@ -1,6 +1,8 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.MapaDTO;
 import com.cstv.cstv.entities.Mapa;
+import com.cstv.cstv.entities.Partido;
 import com.cstv.cstv.repos.MapaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,17 @@ public class MapaRestController {
     }
 
     @PostMapping
-    public Mapa createMapa(@RequestBody Mapa mapa){
+    public Mapa createMapa(@RequestBody MapaDTO mapaDTO){
+        Mapa mapa = new Mapa();
+        mapa.setId(mapaDTO.getId());
+        mapa.setPartido(new Partido());
+        mapa.getPartido().setId(mapaDTO.getIdPartido());
+        mapa.setMapa(mapaDTO.getMapa());
+        mapa.setEquipo1T(mapaDTO.getEquipo1T());
+        mapa.setEquipo1CT(mapaDTO.getEquipo1CT());
+        mapa.setEquipo2T(mapaDTO.getEquipo2T());
+        mapa.setEquipo2CT(mapaDTO.getEquipo2CT());
+        
         return mapaRepo.save(mapa);
     }
 

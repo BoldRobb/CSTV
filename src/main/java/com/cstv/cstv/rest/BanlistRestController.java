@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cstv.cstv.domain.BanlistDTO;
 import com.cstv.cstv.entities.Banlist;
 import com.cstv.cstv.entities.Ids.BanlistId;
 import com.cstv.cstv.service.BanlistService;
@@ -34,8 +35,16 @@ public class BanlistRestController {
     }
 
     @PostMapping
-    public Banlist createBanlist(@RequestBody Banlist banlist) {
-        return banlistService.save(banlist);
+    public ResponseEntity<Banlist> createBanlist(@RequestBody BanlistDTO banlistDTO) {
+        Banlist banlist = new Banlist();
+        
+        banlist.setIdPartido(banlistDTO.getIdPartido());
+        banlist.setMapa(banlistDTO.getMapa());
+        banlist.setEstatus(banlistDTO.getEstatus());
+        banlist.setIdEquipo(banlistDTO.getIdEquipo());
+
+        Banlist savedBanlist = banlistService.save(banlist);
+        return ResponseEntity.ok(savedBanlist);
     }
 
 

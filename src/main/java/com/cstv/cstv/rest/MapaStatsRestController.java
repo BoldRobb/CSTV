@@ -1,5 +1,9 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.MapaStatsDTO;
+import com.cstv.cstv.entities.Equipos;
+import com.cstv.cstv.entities.Jugadores;
+import com.cstv.cstv.entities.Mapa;
 import com.cstv.cstv.entities.MapaStats;
 import com.cstv.cstv.repos.MapaStatsRepo;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +29,19 @@ public class MapaStatsRestController {
     }
 
     @PostMapping
-    public MapaStats createMapaStats(@RequestBody MapaStats mapaStats){
+    public MapaStats createMapaStats(@RequestBody MapaStatsDTO mapaStatsDTO){
+        MapaStats mapaStats = new MapaStats();
+        mapaStats.setId(mapaStatsDTO.getId());
+        mapaStats.setMapa(new Mapa());
+        mapaStats.getMapa().setId(mapaStatsDTO.getIdMapa());
+        mapaStats.setEquipo(new Equipos());
+        mapaStats.getEquipo().setId(mapaStatsDTO.getIdEquipo());
+        mapaStats.setJugador(new Jugadores());
+        mapaStats.getJugador().setId(mapaStatsDTO.getIdJugador());
+        mapaStats.setAsesinatos(mapaStatsDTO.getAsesinatos());
+        mapaStats.setMuertes(mapaStatsDTO.getMuertes());
+        mapaStats.setKd(mapaStatsDTO.getKD());
+        mapaStats.setAdr(mapaStatsDTO.getADR());
         return mapaStatsRepo.save(mapaStats);
     }
     @PutMapping("/{id}")
