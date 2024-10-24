@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { NoticiaMainComponent } from './noticia-main/noticia-main.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NoticiaMainComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

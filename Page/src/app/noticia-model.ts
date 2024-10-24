@@ -1,10 +1,11 @@
 import { model } from "@angular/core";
+import { UsuarioModel } from "./usuario-model";
 
 export class NoticiaModel {
-    private id: number;
-    private id_usuario: number;
-    private titulo: string;
-    private img: string;
-    private html: string;
-    private fecha: Date;
+  id!: number;
+  usuario!: UsuarioModel;
+  imagen!: string;
+  html!: string;
+  fecha!: Date;
+  titulo!: string;
 }

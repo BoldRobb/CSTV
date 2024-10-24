@@ -32,7 +32,7 @@ public class TorneoEquipos {
     @Column(name = "Premio")
     private Integer premio;
 
-    public Torneos getidTorneo() {
+    public Torneos getIdTorneo() {
         return idTorneo;
     }
 

@@ -1,6 +1,9 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.TopicoDTO;
+import com.cstv.cstv.entities.Foro;
 import com.cstv.cstv.entities.Topico;
+import com.cstv.cstv.entities.Usuarios;
 import com.cstv.cstv.service.TopicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +31,16 @@ public class TopicoRestController {
     }
 
     @PostMapping
-    public Topico createTopico(@RequestBody Topico topico) {
+    public Topico createTopico(@RequestBody TopicoDTO topicoDTO) {
+        Topico topico = new Topico();
+        topico.setTitulo(topicoDTO.getTitulo());
+        topico.setDescripcion(topicoDTO.getDescripcion());
+        topico.setFecha(topicoDTO.getFecha());
+        topico.setId(topicoDTO.getId());
+        topico.setForo(new Foro());
+        topico.getForo().setId(topicoDTO.getIdForo());
+        topico.setUsuario(new Usuarios());
+        topico.getUsuario().setId(topicoDTO.getIdUsuario());
         return topicoService.save(topico);
     }
 

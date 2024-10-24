@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cstv.cstv.entities.Ids.TorneoEquiposId;
+import com.cstv.cstv.domain.TorneoEquiposDTO;
+import com.cstv.cstv.entities.Equipos;
 import com.cstv.cstv.entities.TorneoEquipos;
+import com.cstv.cstv.entities.Torneos;
 import com.cstv.cstv.service.TorneoEquiposService;
 
 @RestController
@@ -34,7 +37,14 @@ public class TorneoEquipoRestController {
     }
 
     @PostMapping
-    public TorneoEquipos createTorneoEquipo(@RequestBody TorneoEquipos torneoEquipo) {
+    public TorneoEquipos createTorneoEquipo(@RequestBody TorneoEquiposDTO torneoEquipoDTO) {
+        TorneoEquipos torneoEquipo = new TorneoEquipos();
+        torneoEquipo.setIdEquipo(new Equipos());
+        torneoEquipo.setIdTorneo(new Torneos());
+        torneoEquipo.getIdEquipo().setId(torneoEquipoDTO.getIdEquipo());
+        torneoEquipo.getIdTorneo().setId(torneoEquipoDTO.getIdTorneo());
+        torneoEquipo.setPosicion(torneoEquipoDTO.getPosicion());
+        torneoEquipo.setPremio(torneoEquipoDTO.getPremio());
         return torneoEquipoService.save(torneoEquipo);
     }
 

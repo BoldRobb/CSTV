@@ -1,6 +1,9 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.domain.RespuestasDTO;
 import com.cstv.cstv.entities.Respuestas;
+import com.cstv.cstv.entities.Topico;
+import com.cstv.cstv.entities.Usuarios;
 import com.cstv.cstv.service.RespuestaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +31,17 @@ public class RespuestaRestController {
     }
 
     @PostMapping
-    public Respuestas createRespuesta(@RequestBody Respuestas respuesta) {
+    public Respuestas createRespuesta(@RequestBody RespuestasDTO respuestaDTO) {
+        Respuestas respuesta = new Respuestas();
+        respuesta.setId(respuestaDTO.getId());
+        respuesta.setRespuesta(respuestaDTO.getRespuesta());
+        respuesta.setFecha(respuestaDTO.getFecha());
+        respuesta.setUsuario(new Usuarios());
+        respuesta.getUsuario().setId(respuestaDTO.getIdUsuario());
+        respuesta.setTopico(new Topico());
+        respuesta.getTopico().setId(respuestaDTO.getIdTopico());
+        respuesta.setRespuestaPadre(new Respuestas());
+        respuesta.getRespuestaPadre().setId(respuestaDTO.getIdRespuesta());
         return respuestaService.save(respuesta);
     }
 

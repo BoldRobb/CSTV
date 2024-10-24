@@ -12,7 +12,7 @@ export class NoticiaService {
 
   constructor(private http: HttpClient) { }
 
-  getNoticias(): Observable<NoticiaModel[]> {
-    return this.http.get<NoticiaModel[]>(this.apiUrl);
+  getNoticias(id: number): Observable<NoticiaModel> {
+    return this.http.get<NoticiaModel>(this.apiUrl+`/${id}`);
   }
 }
