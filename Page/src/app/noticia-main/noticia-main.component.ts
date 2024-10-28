@@ -10,13 +10,12 @@ import { NoticiaModel } from '../models/noticia-model';
 })
 
 export class NoticiaMainComponent implements OnInit {
-  id: number = 1;
   noticia!: NoticiaModel;
 
   constructor(private noticiaService: NoticiaService) { }
 
   ngOnInit(): void {
-    this.noticiaService.getNoticias(this.id).subscribe(
+    this.noticiaService.getNoticiaMain().subscribe(
       data => this.noticia = data,
       error => console.error(error)
     );

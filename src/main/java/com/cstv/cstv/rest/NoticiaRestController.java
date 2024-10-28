@@ -58,4 +58,8 @@ public class NoticiaRestController {
         noticiaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/date")
+    public List<Noticia> getAllNoticiasByDateList() {
+        return noticiaService.findAllByOrderByFechaDesc();
+    }
 }

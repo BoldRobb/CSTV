@@ -29,4 +29,8 @@ public class NoticiaService {
     public void deleteById(Long id) {
         noticiaRepo.deleteById(id);
     }
+    public List<Noticia> findAllByOrderByFechaDesc() {
+        return noticiaRepo.findAllByOrderByFechaDesc();
+    }
+
 }

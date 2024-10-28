@@ -1,0 +1,7 @@
+.noticiasHolder{
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    position: fixed;
+    background-color: #182234;
+}
