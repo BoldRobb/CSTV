@@ -21,14 +21,7 @@ CREATE TABLE `foro` (
   `Nombre` varchar(200) NOT NULL,
   `descripcion` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Distintos foros principales';
-
-
--- cstv.primary_sequence definition
-
-CREATE TABLE `primary_sequence` (
-  `next_val` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Distintos foros principales';
 
 
 -- cstv.torneos definition
@@ -56,7 +49,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Usuarios_unique` (`Username`),
   UNIQUE KEY `Usuarios_unique_1` (`Correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabla con la informacion de los usuarios';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabla con la informacion de los usuarios';
 
 
 -- cstv.jugadores definition
@@ -74,7 +67,7 @@ CREATE TABLE `jugadores` (
   KEY `FKis3asdposjyxyrmfou8x8t5v6` (`id_equipo_actual`),
   CONSTRAINT `FKis3asdposjyxyrmfou8x8t5v6` FOREIGN KEY (`id_equipo_actual`) REFERENCES `equipos` (`ID`),
   CONSTRAINT `jugadores_equipos_FK` FOREIGN KEY (`ID_EquipoActual`) REFERENCES `equipos` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- cstv.noticia definition
@@ -85,9 +78,19 @@ CREATE TABLE `noticia` (
   `imagen` varchar(255) DEFAULT NULL,
   `html` text NOT NULL,
   `fecha` datetime(6) DEFAULT NULL,
+  `titulo` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Noticia_usuarios_FK` (`ID_Usuario`),
   CONSTRAINT `Noticia_usuarios_FK` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- cstv.noticia_main definition
+
+CREATE TABLE `noticia_main` (
+  `ID_Noticia` bigint NOT NULL,
+  KEY `noticia_main_noticia_FK` (`ID_Noticia`),
+  CONSTRAINT `noticia_main_noticia_FK` FOREIGN KEY (`ID_Noticia`) REFERENCES `noticia` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -203,9 +206,9 @@ CREATE TABLE `mapa` (
   `ID_Partido` bigint NOT NULL,
   `Mapa` varchar(100) DEFAULT NULL,
   `Equipo1T` int DEFAULT NULL,
-  `equipo1ct` int DEFAULT NULL,
-  `equipo2t` int DEFAULT NULL,
-  `equipo2ct` int DEFAULT NULL,
+  `Equipo1CT` int DEFAULT NULL,
+  `Equipo2T` int DEFAULT NULL,
+  `Equipo2CT` int DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `Mapa_partido_FK` (`ID_Partido`),
   CONSTRAINT `Mapa_partido_FK` FOREIGN KEY (`ID_Partido`) REFERENCES `partido` (`ID`)
@@ -230,7 +233,7 @@ CREATE TABLE `mapa_stats` (
   CONSTRAINT `Mapa_Stats_equipos_FK` FOREIGN KEY (`ID_Equipo`) REFERENCES `equipos` (`ID`),
   CONSTRAINT `Mapa_Stats_jugadores_FK` FOREIGN KEY (`ID_Jugador`) REFERENCES `jugadores` (`ID`),
   CONSTRAINT `Mapa_Stats_mapa_FK` FOREIGN KEY (`ID_Mapa`) REFERENCES `mapa` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Estadisticas por jugador de un mapa';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Estadisticas por jugador de un mapa';
 
 
 -- cstv.respuestas definition

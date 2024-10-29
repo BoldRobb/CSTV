@@ -1,10 +1,16 @@
 .noticiasHolder{
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
     background-color: #182234;
+    padding: 0.5rem 0 0.5rem 0;
 }
 h1{
     color: white;
     margin: 0 0 0 1rem;
+}
+.noticiaTitle{
+    color: white;
+    margin: 0 0 0 1rem;
+    font-weight: 400;
+    font-size: 32px;
 }

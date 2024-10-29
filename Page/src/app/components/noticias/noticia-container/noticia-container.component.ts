@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NoticiaModel } from '../models/noticia-model';
-import { NoticiaService } from '../services/noticia-service.service';
+import { NoticiaModel } from '../../../models/noticia-model';
+import { NoticiaService } from '../../../services/noticia-service.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-noticia-container',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './noticia-container.component.html',
   styleUrl: './noticia-container.component.css'
 })
@@ -39,7 +40,7 @@ export class NoticiaContainerComponent implements OnInit {
     if (this.id !== undefined) {
       this.noticiaService.getNoticias(this.id).subscribe(
         data => {
-          this.noticia = data;          // Convertir this.noticia.fecha a un objeto Date
+          this.noticia = data;         
           const fecha = new Date(this.noticia.fecha);
           this.timedif = this.getDateDifference(fecha);
           console.log(this.noticia);

@@ -5,6 +5,7 @@
     margin-right: 10px;
     padding: 10px;
     background-color: #303D57;
-    width: 50rem;
+    width: 60rem;
     height: auto;
+    max-height: 30rem;
 }

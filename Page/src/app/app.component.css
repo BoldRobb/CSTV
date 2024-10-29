@@ -1,5 +1,17 @@
-.noticiasHome{
-    display:flex;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noticiasHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recentActivity {
+    display: flex;
     justify-content: center;
     align-items: center;
 }

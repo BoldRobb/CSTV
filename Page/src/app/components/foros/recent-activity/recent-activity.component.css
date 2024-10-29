@@ -1,0 +1,40 @@
+.topicos{
+    display: grid; 
+    grid-template-columns: 1fr; 
+}
+.container{
+    display: grid; 
+    grid-template-columns: 1fr;
+    background-color: #303D57;
+    width: 10rem;
+    height: auto;
+    max-height: 30rem;
+    
+    outline: #1F242D solid 2px;
+}
+.title{
+    font-size: 18px;
+    color: white;
+    margin: 0;
+    padding: 4px 4px 4px 4px;
+}
+.topicoTitle{
+    color: #9A9797;
+    font-size: 16px;
+    margin: 0;
+    
+    padding: 10px 4px 10px 4px;
+    outline: #1F242D solid 2px;
+    text-decoration: none;
+
+}
+.topicoTitle:hover{
+    color: white;
+}
+.main{
+    outline: rgba(255, 255, 255, 0.1) solid 1px;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+}

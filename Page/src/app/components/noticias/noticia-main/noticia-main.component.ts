@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NoticiaService } from '../services/noticia-service.service';
-import { NoticiaModel } from '../models/noticia-model';
+import { NoticiaService } from '../../../services/noticia-service.service';
+import { NoticiaModel } from '../../../models/noticia-model';
 @Component({
   selector: 'app-noticia-main',
   standalone: true,
