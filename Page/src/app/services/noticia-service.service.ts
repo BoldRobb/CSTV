@@ -25,4 +25,7 @@ export class NoticiaService {
       })
     );
   }
+  getNoticiasDesc(): Observable<NoticiaModel[]> {
+    return this.http.get<NoticiaModel[]>(this.apiUrl+'/date');
+  }
 }
