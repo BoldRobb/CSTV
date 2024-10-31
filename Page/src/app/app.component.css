@@ -4,14 +4,19 @@
     align-items: center;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    width: 100%;
+}
+
 .noticiasHome {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
 }
 
 .recentActivity {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 2rem;
+    margin-left: 20%;
 }

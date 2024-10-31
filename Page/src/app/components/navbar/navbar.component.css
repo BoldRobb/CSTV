@@ -20,6 +20,7 @@
 
 .individualBox:hover {
   background-color: #1F242D;
+  cursor: pointer;
 }
 
 input {
