@@ -18,8 +18,8 @@ import { RouterModule } from '@angular/router';
     constructor(private foroService: ForoServiceService) {}
 
     ngOnInit(): void {
-      this.foroService.getTopicos().subscribe((data: TopicoModel[]) => {
-        this.topicos = data;
+      this.foroService.getTopicosLatest().subscribe((data: TopicoModel[]) => {
+        this.topicos = data.slice(0, 15);
       });
     }
   }

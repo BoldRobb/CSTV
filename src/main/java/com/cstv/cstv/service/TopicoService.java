@@ -1,12 +1,13 @@
 package com.cstv.cstv.service;
 
-import com.cstv.cstv.entities.Topico;
-import com.cstv.cstv.repos.TopicoRepo;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.cstv.cstv.entities.Topico;
+import com.cstv.cstv.repos.TopicoRepo;
 
 @Service
 public class TopicoService {
@@ -28,5 +29,12 @@ public class TopicoService {
 
     public void deleteById(Long id) {
         topicoRepo.deleteById(id);
+    }
+
+    public List<Topico> findAllOrderByDesc(){
+        return topicoRepo.findAllByOrderByFechaDesc();
+    }
+    public List<Topico> findAllByOrderByLatest(){
+        return topicoRepo.findAllByOrderByLatestDesc();
     }
 }

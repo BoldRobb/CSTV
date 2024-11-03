@@ -29,6 +29,14 @@ public class TopicoRestController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    @GetMapping("/date")
+    public List<Topico> getAllTopicosByDate(){
+        return topicoService.findAllOrderByDesc();
+    }
+    @GetMapping("/latest")
+    public List<Topico> getAllTopicosByLatest(){
+        return topicoService.findAllByOrderByLatest();
+    }
 
     @PostMapping
     public Topico createTopico(@RequestBody TopicoDTO topicoDTO) {

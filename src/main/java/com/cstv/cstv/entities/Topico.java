@@ -77,6 +77,15 @@ public class Topico {
     @Column(name = "Fecha")
     private Date fecha;
 
+    @Column(name= "Latest")
+    private Date latest;
 
+    public Date getLatest() {
+        return latest;
+    }
+
+    public void setLatest(Date latest) {
+        this.latest = latest;
+    }
 }
 

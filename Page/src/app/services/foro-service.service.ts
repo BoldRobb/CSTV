@@ -13,6 +13,12 @@ export class ForoServiceService {
 
   constructor(private http: HttpClient) { }
 
+  getTopicosDesc(): Observable<TopicoModel[]>{
+    return this.http.get<TopicoModel[]>(this.apiUrl+'/date');
+  }
+  getTopicosLatest(): Observable<TopicoModel[]>{
+    return this.http.get<TopicoModel[]>(this.apiUrl+'/latest');
+  }
   getTopicos(): Observable<TopicoModel[]> {
     return this.http.get<TopicoModel[]>(this.apiUrl);
   }
