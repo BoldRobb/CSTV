@@ -4,5 +4,6 @@ import { NoticiaHomeComponent } from './components/noticias/noticia-home/noticia
 
 export const routes: Routes = [
     {path: 'news/:id', component: NoticiaIndividualComponent},
-    {path: '', component: NoticiaHomeComponent}
+    {path: '', component: NoticiaHomeComponent},
+    {path: 'news', component: NoticiaHomeComponent}
     ];
