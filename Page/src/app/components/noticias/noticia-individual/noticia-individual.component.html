@@ -1,20 +1,27 @@
-<div class ="holder">
-    <div class="noticia">@if (noticia!=undefined && isloading==false) {
-        <h1>{{ noticia.titulo }}</h1>
-            <div class="grid-container">
-                <div class="grid-item left">
-                <a [routerLink]="['/profile/', noticia.usuario.id]">{{ noticia.usuario.username }}</a>
-            </div>  
-                <div class="grid-item right">{{ fechapublicacion }}</div>
-            
-            
-    </div>
-    <img class="noticiaimage" [src]="noticia.imagen" [alt]="noticia.titulo">
-        <div class="noticiahtml" [innerHTML]="noticia.html"></div>
-    } @else {
-        @if (!noticia && isloading==false) {
-            <h1>Error 404: New not found</h1>
+
+<div class="grid-container2">
+    <div class ="holder">
+        <div class="noticia">@if (noticia!=undefined && isloading==false) {
+            <h1>{{ noticia.titulo }}</h1>
+                <div class="grid-container">
+                    <div class="grid-item left">
+                    <a [routerLink]="['/profile/', noticia.usuario.id]">{{ noticia.usuario.username }}</a>
+                </div>  
+                    <div class="grid-item right">{{ fechapublicacion }}</div>
+                
+                
+        </div>
+        <img class="noticiaimage" [src]="noticia.imagen" [alt]="noticia.titulo">
+            <div class="noticiahtml" [innerHTML]="noticia.html"></div>
+        } @else {
+            @if (!noticia && isloading==false) {
+                <h1>Error 404: New not found</h1>
+            }
         }
-    }
+        </div>
     </div>
+
+<div class="recentActivity">
+    <app-recent-activity></app-recent-activity>
+</div>
 </div>

@@ -6,11 +6,12 @@ import { NoticiaModel } from '../../../models/noticia-model';
 import { CommonModule } from '@angular/common';
 import { UsuarioModel } from '../../../models/usuario-model';
 import { UsuarioService } from '../../../services/usuario-service.service';
+import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
 
 @Component({
   selector: 'app-noticia-individual',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, RouterModule],
+  imports: [NavbarComponent, CommonModule, RouterModule, RecentActivityComponent],
   templateUrl: './noticia-individual.component.html',
   styleUrl: './noticia-individual.component.css'
 })

@@ -50,6 +50,5 @@ export class NoticiaContainerComponent implements OnInit {
     } else {
       console.error('ID is undefined');
     }
-    console.log(this.noticia);
   }
 }

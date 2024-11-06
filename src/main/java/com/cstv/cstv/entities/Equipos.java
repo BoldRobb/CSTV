@@ -13,7 +13,9 @@ public class Equipos {
     @Column(nullable = false, length = 100)
     private String nombre;
 
+    @Column(name = "rankingActual"  )
     private Integer rankingActual;
+    @Column(name = "rankingMaximo")
     private Integer rankingMaximo;
 
     @Column(length = 100)

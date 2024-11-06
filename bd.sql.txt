@@ -253,3 +253,16 @@ CREATE TABLE `respuestas` (
   CONSTRAINT `FKjh5q59ilflb3d9kq332x9ob88` FOREIGN KEY (`ID_Respuesta`) REFERENCES `respuestas` (`ID`),
   CONSTRAINT `Respuestas_usuarios_FK` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Respuestas a topicos a respuestas mismas';
+
+-- cstv.ranking_historial definition
+
+CREATE TABLE `ranking_historial` (
+  `ID` bigint NOT NULL AUTO_INCREMENT,
+  `id_equipo` bigint NOT NULL,
+  `ranking` int DEFAULT NULL,
+  `fecha` datetime(6) NOT NULL,
+  `puntos` int NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ranking_historial_equipos_FK` (`id_equipo`),
+  CONSTRAINT `ranking_historial_equipos_FK` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Guardado semanal del ranking de cada equipo';
