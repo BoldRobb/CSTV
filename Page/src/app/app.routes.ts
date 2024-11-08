@@ -3,11 +3,21 @@ import { NoticiaIndividualComponent } from './components/noticias/noticia-indivi
 import { NoticiaHomeComponent } from './components/noticias/noticia-home/noticia-home.component';
 import { LayoutNoticiaComponent } from './components/noticias/layout-noticia/layout-noticia.component';
 import { ScoreboardComponent } from './components/live/scoreboard/scoreboard.component';
+import { ForumsComponent } from './components/foros/forums/forums.component';
+import { ForumTopicsComponent } from './components/foros/forum-topics/forum-topics.component';
 
 export const routes: Routes = [
+    //Noticias
     {path: 'news', redirectTo:'',},
+    {path: 'news/:id', component: NoticiaIndividualComponent },
+    //Ranking
     {path: 'ranking', component: ScoreboardComponent},
-    { path: 'news/:id', component: NoticiaIndividualComponent },
+
+    //Foro
+    {path: 'forum', component: ForumsComponent},
+    {path: 'forum/:id', component: ForumTopicsComponent},
+
+    //Home
     {path: '', component: LayoutNoticiaComponent},
-    { path: '**', redirectTo: '' }
+    {path: '**', redirectTo: '' }
 ];
