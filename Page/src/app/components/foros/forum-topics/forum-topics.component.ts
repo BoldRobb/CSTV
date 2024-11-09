@@ -53,7 +53,9 @@ ngOnInit(): void {
     if (this.id !== undefined) {
       this.foroService.getTopicosForo(this.id).subscribe(
         data => {
-          this.topicos = data;
+          this.topicos = data.map(topic => {
+            return topic;
+          });
           console.log(this.topicos);
         },
         error => {
@@ -64,6 +66,15 @@ ngOnInit(): void {
       console.error('ID is undefined');
     }
   }
+
+  formatDate(date: any): string {
+    const validDate = new Date(date);
+    const day = String(validDate.getDate()).padStart(2, '0');
+    const month = String(validDate.getMonth() + 1).padStart(2, '0');
+    const year = validDate.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+  
   createTopic() {
     throw new Error('Method not implemented.');
     }

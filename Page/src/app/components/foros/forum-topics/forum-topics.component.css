@@ -115,3 +115,24 @@ input.form-control, textarea.form-control {
     color: red;
     font-size: 20px;
 }
+.topics-table{
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.topics-table th{
+    color: #9A9797;
+    font-size: 24px;
+    text-align: left;
+    background-color: #212C39;
+}
+.topics-table td{
+    color: #9A9797;
+    font-size: 20px;
+    text-align: left;
+}
+.topics-table a{
+    color: #1B68DD;
+    text-decoration: none;
+}

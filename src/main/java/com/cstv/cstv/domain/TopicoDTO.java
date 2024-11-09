@@ -9,6 +9,7 @@ private Long idForo;
 private String titulo;
 private String descripcion;
 private Date fecha;
+private Date latest;
 
     public Long getId() {
         return id;
@@ -56,5 +57,13 @@ private Date fecha;
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Date getLatest() {
+        return latest;
+    }
+
+    public void setLatest(Date latest) {
+        this.latest = latest;
     }
 }

@@ -28,7 +28,7 @@ export class ForoServiceService {
     return this.http.get<TopicoModel>(this.apiUrl + '/' + id);
   }
   getTopicosForo(id: number): Observable<TopicoModel[]> {
-    return this.http.get<TopicoModel[]>(this.apiUrl + '/foro/' + id);
+    return this.http.get<TopicoModel[]>(this.apiUrl + '/byForum/' + id);
   }
   getForos(): Observable<ForoModel[]>{
     return this.http.get<ForoModel[]>(this.apiUrlForums);

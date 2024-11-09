@@ -54,6 +54,7 @@ public class TopicoRestController {
         topico.getForo().setId(topicoDTO.getIdForo());
         topico.setUsuario(new Usuarios());
         topico.getUsuario().setId(topicoDTO.getIdUsuario());
+        topico.setLatest(topicoDTO.getLatest());
         return topicoService.save(topico);
     }
 

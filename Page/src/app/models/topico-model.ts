@@ -8,14 +8,16 @@ export class TopicoModel {
     titulo: string;
     descripcion: string;
     fecha: Date;
+    latest: Date;
 
-    constructor(id: number, usuario: UsuarioModel, foro: ForoModel, titulo: string, descripcion: string, fecha: Date) {
+    constructor(id: number, usuario: UsuarioModel, foro: ForoModel, titulo: string, descripcion: string, fecha: Date, latest: Date) {
         this.id = id;
         this.usuario = usuario;
         this.foro = foro;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fecha = fecha;
+        this.latest = latest;
     }
     getId(): number {
         return this.id;
@@ -64,5 +66,10 @@ export class TopicoModel {
     setFecha(fecha: Date): void {
         this.fecha = fecha;
     }
-    
+    getLatest(): Date {
+        return this.latest;
+    }
+    setLatest(latest: Date): void {
+        this.latest = latest;
+    }
 }

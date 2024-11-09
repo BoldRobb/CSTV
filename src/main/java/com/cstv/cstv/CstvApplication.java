@@ -7,11 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CstvApplication {
-	private static Logger logger = LoggerFactory.getLogger(CstvApplication.class);
+	
 	public static void main(String[] args) {
-		logger.warn("Prueba de warn");
 		SpringApplication.run(CstvApplication.class, args);
 	}
-	//logger.warn("mensaje);
 
 }

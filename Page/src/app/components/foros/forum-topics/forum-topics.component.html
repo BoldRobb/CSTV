@@ -3,24 +3,27 @@
         <div class="holder1">
             <h1>Forum > {{foro?.nombre}}</h1>
             <hr>
-            <div class="topics">
-                <div *ngFor="let topic of topicos">
-                    <div class="topic">
-                        <div class="topic-title">
-                            <a [routerLink]="['/foros', foro?.id, 'topic', topic?.id]">{{topic?.titulo}}</a>
-                        </div>
-                        <div class="topic-description">
-                            {{topic?.descripcion}}
-                        </div>
-                        <div class="topic-info">
-                            <div class="topic-info-item">
-                                <i class="fa fa-user"></i> {{topic?.usuario?.username}}
-            </div>
+
+            <table class="topics-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Latest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let topic of topicos; let i = index"  [ngStyle]="{'background-color': i % 2 === 0 ? '#1F242D' : '#212C39'}">
+                        <td>
+                            <a [routerLink]="['/forum/topic/', foro?.id, 'topic', topic?.id]">{{topic?.titulo}}</a>
+                        </td>
+                        <td>{{topic?.usuario?.username}}</td>
+                        <td>{{ formatDate(topic.latest) }}</td>
+                    
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-    </div>
-    </div>
-</div>
         <div class="holder1">
             <h1>Create new topic</h1>
             <hr>
