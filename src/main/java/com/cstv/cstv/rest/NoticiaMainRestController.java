@@ -1,5 +1,6 @@
 package com.cstv.cstv.rest;
 
+import com.cstv.cstv.service.NoticiaMainService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping(value = "/api/noticiaMain")
 public class NoticiaMainRestController {
     @Autowired
-    NoticiaMainRepo noticiaMainRepo;
+    NoticiaMainService noticiaMainRepo;
     @GetMapping
     public NoticiaMain geNoticiaMain() {
-        return noticiaMainRepo.findAll().get(0);
+        return noticiaMainRepo.find();
     }
 
     @GetMapping("/delete")

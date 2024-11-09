@@ -10,4 +10,5 @@ public interface TopicoRepo extends JpaRepository<Topico, Long> {
 
     public List<Topico> findAllByOrderByFechaDesc();
     public List<Topico> findAllByOrderByLatestDesc();
+    public List<Topico> findAllByForo_Id(Long id);
 }

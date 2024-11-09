@@ -24,13 +24,17 @@ export class ForoServiceService {
   getTopicos(): Observable<TopicoModel[]> {
     return this.http.get<TopicoModel[]>(this.apiUrl);
   }
-
   getTopico(id: number): Observable<TopicoModel> {
     return this.http.get<TopicoModel>(this.apiUrl + '/' + id);
   }
-
+  getTopicosForo(id: number): Observable<TopicoModel[]> {
+    return this.http.get<TopicoModel[]>(this.apiUrl + '/foro/' + id);
+  }
   getForos(): Observable<ForoModel[]>{
     return this.http.get<ForoModel[]>(this.apiUrlForums);
+  }
+  getForo(id: number): Observable<ForoModel> {
+    return this.http.get<ForoModel>(this.apiUrlForums + '/' + id);
   }
 
 }

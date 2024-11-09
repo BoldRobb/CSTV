@@ -1,1 +1,47 @@
-<p>forum-topics works!</p>
+<div class="grid-container">
+    <div class="forums-container">
+        <div class="holder1">
+            <h1>Forum > {{foro?.nombre}}</h1>
+            <hr>
+            <div class="topics">
+                <div *ngFor="let topic of topicos">
+                    <div class="topic">
+                        <div class="topic-title">
+                            <a [routerLink]="['/foros', foro?.id, 'topic', topic?.id]">{{topic?.titulo}}</a>
+                        </div>
+                        <div class="topic-description">
+                            {{topic?.descripcion}}
+                        </div>
+                        <div class="topic-info">
+                            <div class="topic-info-item">
+                                <i class="fa fa-user"></i> {{topic?.usuario?.username}}
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+        <div class="holder1">
+            <h1>Create new topic</h1>
+            <hr>
+            <div class="new-topic">
+                <form [formGroup]="newTopicForm" (ngSubmit)="createTopic()">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" formControlName="title" placeholder="Topic Title">
+                        <h2>Description</h2>
+                        <textarea class="form-control" id="description" formControlName="description" rows="6" style="resize: none;"></textarea>
+                        <div [ngClass]="{'char-counter': true, 'char-counter-exceed': newTopicForm.get('description')?.value?.length > 255}">
+                            {{ newTopicForm.get('description')?.value?.length || 0 }} / 255 characters
+                        </div>
+                        <button type="submit" class="btn-primary" >Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+
+    <div class="recentActivity">
+     <app-recent-activity></app-recent-activity>
+    </div>
+</div>

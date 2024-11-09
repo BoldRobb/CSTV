@@ -4,6 +4,7 @@ import com.cstv.cstv.domain.TopicoDTO;
 import com.cstv.cstv.entities.Foro;
 import com.cstv.cstv.entities.Topico;
 import com.cstv.cstv.entities.Usuarios;
+import com.cstv.cstv.service.ForoService;
 import com.cstv.cstv.service.TopicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class TopicoRestController {
     @Autowired
     private TopicoService topicoService;
 
+    private ForoService foroService;
+
+
     @GetMapping
     public List<Topico> getAllTopicos() {
         return topicoService.findAll();
@@ -29,6 +33,7 @@ public class TopicoRestController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @GetMapping("/date")
     public List<Topico> getAllTopicosByDate(){
         return topicoService.findAllOrderByDesc();
@@ -68,5 +73,9 @@ public class TopicoRestController {
         }
         topicoService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/byForum/{id}")
+    public List<Topico> getAllByIdForo(@PathVariable Long id) {
+        return topicoService.findAllByForo_Id(id);
     }
 }
