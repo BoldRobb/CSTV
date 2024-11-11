@@ -1,7 +1,7 @@
-import { Noticia } from './noticia-model';
+import { NoticiaModel } from './noticia-model';
 
 describe('Noticia', () => {
   it('should create an instance', () => {
-    expect(new Noticia()).toBeTruthy();
+    expect(new NoticiaModel()).toBeTruthy();
   });
 });

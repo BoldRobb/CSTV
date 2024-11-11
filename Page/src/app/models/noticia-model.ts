@@ -1,4 +1,3 @@
-import { model } from "@angular/core";
 import { UsuarioModel } from "./usuario-model";
 
 export class NoticiaModel {

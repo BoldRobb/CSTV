@@ -20,7 +20,6 @@ export class NoticiaService {
   getNoticiaMain(): Observable<NoticiaModel> {
     return this.http.get<NoticiaMainModel>(this.apiUrlMain).pipe(
       switchMap((noticiaMain: NoticiaMainModel) => {
-        console.log("noticiaMain: ", noticiaMain);
         return this.http.get<NoticiaModel>(`${this.apiUrl}/${noticiaMain.idNoticia}`);
       })
     );
