@@ -4,7 +4,7 @@ import { LayoutNoticiaComponent } from './components/noticias/layout-noticia/lay
 import { ForumsComponent } from './components/foros/forums/forums.component';
 import { ForumTopicsComponent } from './components/foros/forum-topics/forum-topics.component';
 import { RankingComponent } from './components/ranking/ranking/ranking.component';
-import { EventsMainComponent } from './components/events-main/events-main.component';
+import { EventsMainComponent } from './components/eventos/events-main/events-main.component';
 
 
 export const routes: Routes = [

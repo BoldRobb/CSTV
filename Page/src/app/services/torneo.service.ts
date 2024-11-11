@@ -19,12 +19,15 @@ export class TorneoService {
   }
 
   getTorneoMain(): Observable<TorneoModel>{
-    
     return this.http.get<TorneomainModel>(this.apiUrlMain).pipe(
       switchMap((torneoMain: TorneomainModel) => {
         return this.http.get<TorneoModel>(`${this.apiUrl}/${torneoMain.id}`);
       })
     );
+  }
+
+  getTorneo(id: number): Observable<TorneoModel>{
+    return this.http.get<TorneoModel>(`${this.apiUrl}/${id}`);
   }
 
 }
