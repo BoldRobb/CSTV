@@ -36,18 +36,25 @@
     padding: 0px 4px 4px 4px;
 }
 .eventsContainer{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
     background-color: #182234;
-    margin-left: auto;
+    padding: 1.5rem;
     width: 60rem;
-    margin-right: 5%;
+    display: flex;
+    margin-right: 4%;
 }
 .imgMain{
     margin-top: 10px;
     height: 20rem;
     width: 60rem;
     object-fit: cover;
+}
+.eventTitle{
+    color: white;
+    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 32px;
 }

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -63,8 +65,13 @@ public class RankingHistorialRestController {
     }
 
     @GetMapping("/fecha/{fecha}")
-    public List<RankingHistorial> getRankingByFecha(@PathVariable Date fecha) {
-        return rankingHistorialService.findAllByFecha(fecha);
+    public List<RankingHistorial> getRankingByFecha(@PathVariable String fecha) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = new Date();
+        fechaDate = formato.parse(fecha);
+        System.out.println(fechaDate);
+
+        return rankingHistorialService.findAllByFecha(fechaDate);
     }
     @GetMapping("/equipo/{id}")
     public List<RankingHistorial> getRankingByEquipo(@PathVariable Long id) {

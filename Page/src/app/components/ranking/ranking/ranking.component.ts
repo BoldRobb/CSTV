@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
 import { RankingService } from '../../../services/ranking.service';
+import { RankingModel } from '../../../models/ranking-model';
 
 
 @Component({
@@ -13,8 +14,13 @@ import { RankingService } from '../../../services/ranking.service';
 })
 export class RankingComponent implements OnInit {
   constructor(private rankingService: RankingService){}
+
+  ranking?: RankingModel[];
+
   ngOnInit(): void{
-    console.log(new Date());
-    console.log(this.rankingService.getRankingToday())
+    this.rankingService.getRankingToday().subscribe(data => {
+      this.ranking = data;
+      console.log(this.ranking);
+    });
   }
 }
