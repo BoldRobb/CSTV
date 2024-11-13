@@ -29,4 +29,8 @@ public class TorneoService {
     public void deleteById(Long id) {
         torneoRepo.deleteById(id);
     }
+
+    public List<Torneos> findByNombreContainingIgnoreCase(String nombre) {
+        return torneoRepo.findByNombreContainingIgnoreCase(nombre);
+    }
 }

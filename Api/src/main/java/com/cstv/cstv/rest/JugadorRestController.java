@@ -69,4 +69,9 @@ public class JugadorRestController {
         jugadorService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/nombre/{nombre}")
+    public List<Jugadores> getJugadorByNombre(@PathVariable String nombre) {
+        return jugadorService.findByNombreContainingIgnoreCase(nombre);
+    }
 }

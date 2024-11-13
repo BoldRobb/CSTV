@@ -27,8 +27,9 @@ public class RankingHistorialService {
         rankingHistorialRepo.deleteById(id);
     }
 
-    public List<RankingHistorial> findAllByFecha(Date fecha){
-        return rankingHistorialRepo.findAllByFechaOrderByRankingDesc(fecha);
+
+    public List<RankingHistorial> findAllByFecha(Date fecha) {
+        return rankingHistorialRepo.findAllByFechaBetween(fecha);
     }
     public List<RankingHistorial> findAllByEquipo(Long equipo){
         return rankingHistorialRepo.findAllByEquipo_Id(equipo);

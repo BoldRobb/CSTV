@@ -1,0 +1,32 @@
+<app-alert [message]="alertMessage" [type]="alertType"></app-alert>
+
+<div class="equipo-form">
+    <h1>Agregar Nuevo Equipo</h1>
+    <form [formGroup]="equipoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="rankingActual">Ranking Actual:</label>
+        <input type="number" id="rankingActual" formControlName="rankingActual" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="rankingMaximo">Ranking Máximo:</label>
+        <input type="number" id="rankingMaximo" formControlName="rankingMaximo" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="twitter">Twitter:</label>
+        <input type="text" id="twitter" formControlName="twitter" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="instagram">Instagram:</label>
+        <input type="text" id="instagram" formControlName="instagram" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="foto">Foto:</label>
+        <input type="text" id="foto" formControlName="foto" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>

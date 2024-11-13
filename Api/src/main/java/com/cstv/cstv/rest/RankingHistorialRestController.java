@@ -40,7 +40,8 @@ public class RankingHistorialRestController {
         rankingHistorial.setId(rankingHistorialDTO.getId());
         rankingHistorial.setEquipo(new Equipos());
         rankingHistorial.getEquipo().setId(rankingHistorialDTO.getEquipo_id());
-        rankingHistorial.setFecha(rankingHistorialDTO.getFecha());
+        rankingHistorial.setFechaInicio(rankingHistorialDTO.getFechaInicio());
+        rankingHistorial.setFechaFin(rankingHistorialDTO.getFechaFin());
         rankingHistorial.setRanking(rankingHistorialDTO.getRanking());
         rankingHistorial.setPuntos(rankingHistorialDTO.getPuntos());
         return rankingHistorialService.save(rankingHistorial);
@@ -69,7 +70,6 @@ public class RankingHistorialRestController {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaDate = new Date();
         fechaDate = formato.parse(fecha);
-        System.out.println(fechaDate);
 
         return rankingHistorialService.findAllByFecha(fechaDate);
     }

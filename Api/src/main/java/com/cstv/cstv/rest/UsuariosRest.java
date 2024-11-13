@@ -63,4 +63,9 @@ public class UsuariosRest {
         usuariosService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/nombre/{nombre}")
+    public List<Usuarios> getUserByNombre(@PathVariable String nombre) {
+        return usuariosService.findByNombreContainingIgnoreCase(nombre);
+    }
 }

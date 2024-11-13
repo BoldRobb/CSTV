@@ -49,4 +49,9 @@ public class TorneoRestController {
         torneoService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/nombre/{nombre}")
+    public List<Torneos> getTorneoByNombre(@PathVariable String nombre) {
+        return torneoService.findByNombreContainingIgnoreCase(nombre);
+    }
 }

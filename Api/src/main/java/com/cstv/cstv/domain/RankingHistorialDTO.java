@@ -7,8 +7,9 @@ public class RankingHistorialDTO {
     private Long id;
     private Long equipo_id;
     private int ranking;
-    private Date fecha;
+    private Date fechaInicio;
     private int puntos;
+    private Date fechaFin;
 
     public Long getId() {
         return id;
@@ -34,12 +35,12 @@ public class RankingHistorialDTO {
         this.ranking = ranking;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(Date fecha) {
+        this.fechaInicio = fecha;
     }
 
     public int getPuntos() {
@@ -48,5 +49,12 @@ public class RankingHistorialDTO {
 
     public void setPuntos(int puntos) {
         this.puntos = puntos;
+    }
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFinal) {
+        this.fechaFin = fechaFinal;
     }
 }

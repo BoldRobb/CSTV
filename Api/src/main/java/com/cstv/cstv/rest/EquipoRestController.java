@@ -29,6 +29,7 @@ public class EquipoRestController {
 
     @PostMapping
     public Equipos createEquipo(@RequestBody Equipos equipo) {
+        equipo.setId(null);
         return equipoService.save(equipo);
     }
 
@@ -48,5 +49,10 @@ public class EquipoRestController {
         }
         equipoService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/nombre/{nombre}")
+    public List<Equipos> getEquipoByNombre(@PathVariable String nombre) {
+        return equipoService.findByNombreContainingIgnoreCase(nombre);
     }
 }

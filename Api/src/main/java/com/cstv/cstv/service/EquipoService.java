@@ -29,4 +29,8 @@ public class EquipoService {
     public void deleteById(Long id) {
         equipoRepo.deleteById(id);
     }
+
+    public List<Equipos> findByNombreContainingIgnoreCase(String nombre) {
+        return equipoRepo.findByNombreContainingIgnoreCase(nombre);
+    }
 }

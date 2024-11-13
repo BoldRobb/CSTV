@@ -8,7 +8,7 @@ import { RankingModel } from '../models/ranking-model';
 })
 export class RankingService {
 
-  private apiUrl = 'http://localhost:8080/api/ranking/'
+  private apiUrl = 'http://localhost:8080/api/ranking'
   private apiUrlFecha = 'http://localhost:8080/api/ranking/fecha/'
   constructor(private http: HttpClient) { }
 
@@ -16,5 +16,8 @@ export class RankingService {
     const hoy = new Date().toISOString().split('T')[0]; // Convierte la fecha a formato yyyy-MM-dd
     console.log(hoy);
     return this.http.get<RankingModel[]>(`${this.apiUrlFecha}${hoy}`);
+  }
+  addRanking(ranking: RankingModel): Observable<RankingModel> {
+    return this.http.post<RankingModel>(this.apiUrl, ranking);
   }
 }

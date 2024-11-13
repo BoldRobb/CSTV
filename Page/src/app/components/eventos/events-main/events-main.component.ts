@@ -11,7 +11,7 @@ import { EventContainerComponent } from '../event-container/event-container.comp
   standalone: true,
   imports: [RecentActivityComponent, CommonModule, EventContainerComponent],
   templateUrl: './events-main.component.html',
-  styleUrl: './events-main.component.css'
+  styleUrl: './events-main.component.css',
 })
 export class EventsMainComponent {
 

@@ -18,8 +18,13 @@ public class RankingHistorial {
     private int ranking;
 
 
-    @Column(name = "fecha", nullable = false)
-    private Date fecha;
+    @Column(name = "fechaInicio", nullable = false)
+    private Date fechaInicio;
+
+
+    @Column(name = "fechaFin", nullable = false)
+    private Date fechaFin;
+
 
     @Column(name = "puntos")
     private int puntos;
@@ -32,12 +37,12 @@ public class RankingHistorial {
         this.puntos = puntos;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(Date fecha) {
+        this.fechaInicio = fecha;
     }
 
     public int getRanking() {
@@ -62,6 +67,14 @@ public class RankingHistorial {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
 

@@ -5,14 +5,16 @@ export class RankingModel {
     id: number;
     equipo: EquipoModel;
     ranking: number;
-    fecha: Date;
+    fechaInicio: Date;
+    fechaFin: Date;
     puntos: number;
 
-    constructor(id: number, equipo: EquipoModel, ranking: number, fecha: Date, puntos: number){
+    constructor(id: number, equipo: EquipoModel, ranking: number, fechaInicio: Date,fechaFin: Date,  puntos: number){
         this.id=id;
         this.equipo=equipo;
         this.ranking=ranking;
-        this.fecha=fecha;
+        this.fechaInicio=fechaInicio;
+        this.fechaFin=fechaFin;
         this.puntos=puntos;
     }
 
@@ -38,14 +40,18 @@ export class RankingModel {
         this.ranking = ranking;
       }
 
-    getFecha(): Date{
-        return this.fecha;
-    }
-
-    setFecha(fecha: Date){
-        this.fecha = fecha;
-    }
-
+      getFechaInicio(): Date{
+        return this.fechaInicio;
+      }
+      setFechaInicio(fechaInicio: Date){
+        this.fechaInicio = fechaInicio;
+      }
+      getFechaFin(): Date{
+        return this.fechaFin;
+      }
+      setFechaFin(fechaFin: Date){
+        this.fechaFin = fechaFin;
+      }
     getPuntos(): number{
         return this.puntos;
     }

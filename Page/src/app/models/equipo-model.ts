@@ -1,5 +1,5 @@
 export class EquipoModel {
-    id: number;
+    id?: number;
     nombre: string;
     rankingActual: number;
     rankingMaximo: number;
@@ -7,8 +7,8 @@ export class EquipoModel {
     instagram: string;
     foto: string;
 
-    constructor(id: number, nombre: string, rankingA: number, rankingM: number, twitter: string, instagram: string, foto: string){
-        this.id=id;
+    constructor( nombre: string, rankingA: number, rankingM: number, twitter: string, instagram: string, foto: string){
+
         this.nombre=nombre;
         this.rankingActual=rankingA;
         this.rankingMaximo=rankingM;
@@ -18,7 +18,7 @@ export class EquipoModel {
      }
 
      getId(): number{
-        return this.id;
+        return this.id ?? 0;
      }
      setId(id: number): void{
         this.id=id;

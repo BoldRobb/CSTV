@@ -3,16 +3,11 @@ package com.cstv.cstv.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cstv.cstv.entities.Jugadores;
-import com.cstv.cstv.repos.JugadorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.cstv.cstv.domain.UsuariosDTO;
 import com.cstv.cstv.entities.Usuarios;
 import com.cstv.cstv.repos.UsuariosRepo;
-import com.cstv.cstv.util.NotFoundException;
 
 @Service
 public class UsuariosService {
@@ -35,4 +30,7 @@ public class UsuariosService {
         usuariosRepo.deleteById(id);
     }
 
+    public List<Usuarios> findByNombreContainingIgnoreCase(String nombre) {
+        return usuariosRepo.findByUsernameContainingIgnoreCase(nombre);
+    }
 }

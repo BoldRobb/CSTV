@@ -8,10 +8,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EquipoService {
 
-  private apiUrl = "http://localhost:8080/api/equipos/";
+  private apiUrl = "http://localhost:8080/api/equipos";
   constructor(private http: HttpClient) { }
 
   getEquipos(id: number): Observable<EquipoModel> {
-    return this.http.get<EquipoModel>(this.apiUrl+id);
+    return this.http.get<EquipoModel>(this.apiUrl+"/"+id);
+  }
+  addEquipo(equipo: EquipoModel): Observable<EquipoModel> {
+    return this.http.post<EquipoModel>(this.apiUrl, equipo);
   }
 }

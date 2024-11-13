@@ -21,8 +21,6 @@ public class Equipos {
     @Column(length = 100)
     private String twitter;
 
-
-
     @Column(length = 100)
     private String instagram;
 
