@@ -20,52 +20,51 @@ public class Usuarios {
     private Long id;
 
     @Column(nullable=false, length = 100, unique = true)
-    private String Username;
+    private String username;
 
     @Column(nullable=false, length = 100)
-    private String Password;
+    private String password;
 
     @Column(nullable=false, length = 100, unique = true)
-    private String Correo;
+    private String correo;
 
     @Column(nullable=true, length = 20)
-    private String Pais;
+    private String pais;
 
     @Column(nullable=false, length = 50)
-    private String Rol;
+    private String rol;
 
     public void setCorreo(String correo) {
-        Correo = correo;
+        this.correo = correo;
     }
     public void setPais(String pais) {
-        Pais = pais;
+        this.pais = pais;
     }
-    public void setPassword(String password) {
-        Password = password;
+    public void setPassword(String password) {this.password = password;
     }
     public void setRol(String rol) {
-        Rol = rol;
+        this.rol = rol;
     }
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
     public long getId() {
         return id;
     }
     public String getPais() {
-        return Pais;
+        return pais;
     }
     public String getPassword() {
-        return Password;
+        return password;
     }
     public String getRol() {
-        return Rol;
+        return rol;
     }
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setId(Long ID) {
