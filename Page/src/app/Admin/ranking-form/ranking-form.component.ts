@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RankingService } from '../../services/ranking.service';
+import { EquipoService } from '../../services/equipo.service';
 import { RankingModel } from '../../models/ranking-model';
 import { EquipoModel } from '../../models/equipo-model';
 import { RouterModule } from '@angular/router';
 import { AlertComponent } from '../../components/global/alert/alert.component';
-
 
 @Component({
   selector: 'app-ranking-form',
@@ -18,8 +18,9 @@ export class RankingFormComponent implements OnInit {
   rankingForm: FormGroup;
   alertMessage!: string;
   alertType!: 'success' | 'error';
+  equiposFiltrados: EquipoModel[] = [];
 
-  constructor(private fb: FormBuilder, private rankingService: RankingService) {
+  constructor(private fb: FormBuilder, private rankingService: RankingService, private equipoService: EquipoService) {
     this.rankingForm = this.fb.group({
       equipo: ['', Validators.required],
       ranking: ['', Validators.required],
@@ -30,6 +31,22 @@ export class RankingFormComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onEquipoInput(): void {
+    const equipoInput = this.rankingForm.get('equipo')?.value;
+    if (equipoInput) {
+      this.equipoService.getEquiposNombre(equipoInput).subscribe(
+        (equipos: EquipoModel[]) => {
+          this.equiposFiltrados = equipos;
+        },
+        error => {
+          console.error('Error al buscar equipos', error);
+        }
+      );
+    } else {
+      this.equiposFiltrados = [];
+    }
+  }
 
   onSubmit(): void {
     if (this.rankingForm.valid) {

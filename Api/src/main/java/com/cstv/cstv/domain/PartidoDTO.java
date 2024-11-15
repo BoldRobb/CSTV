@@ -7,7 +7,7 @@ public class PartidoDTO {
     private Long idTorneo;
     private Long idGanador;
     private String formato;
-    private int ronda;
+    private String marcador;
 
     public Long getId() {
         return id;
@@ -57,12 +57,11 @@ public class PartidoDTO {
         this.formato = formato;
     }
 
-    public int getRonda() {
-        return ronda;
+    public String getMarcador() {
+        return marcador;
     }
 
-    public void setRonda(int ronda) {
-        this.ronda = ronda;
+    public void setMarcador(String marcador) {
+        this.marcador = marcador;
     }
-
 }

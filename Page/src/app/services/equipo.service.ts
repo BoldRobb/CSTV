@@ -17,4 +17,7 @@ export class EquipoService {
   addEquipo(equipo: EquipoModel): Observable<EquipoModel> {
     return this.http.post<EquipoModel>(this.apiUrl, equipo);
   }
+  getEquiposNombre(nombre: string): Observable<EquipoModel[]>{
+    return this.http.get<EquipoModel[]>(this.apiUrl+"/nombre/"+nombre);
+  }
 }

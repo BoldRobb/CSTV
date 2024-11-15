@@ -22,8 +22,6 @@ public class Partido {
     @JoinColumn(name = "ID_Torneo", referencedColumnName = "id")
     private Torneos torneo;
 
-
-
     @ManyToOne
     @JoinColumn(name = "ID_Ganador", referencedColumnName = "id")
     private Equipos ganador;
@@ -31,15 +29,8 @@ public class Partido {
     @Column(name = "Formato", length = 100)
     private String formato;
 
-    @Column(name = "Ronda")
-    private Integer ronda;
-    public Integer getRonda() {
-        return ronda;
-    }
-
-    public void setRonda(Integer ronda) {
-        this.ronda = ronda;
-    }
+    @Column (name = "Marcador")
+    private String marcador;
 
     public String getFormato() {
         return formato;
@@ -89,4 +80,11 @@ public class Partido {
         this.id = id;
     }
 
+    public String getMarcador() {
+        return marcador;
+    }
+
+    public void setMarcador(String marcador) {
+        this.marcador = marcador;
+    }
 }

@@ -14,9 +14,7 @@ public class Banlist {
 
     @EmbeddedId
     private BanlistId id;
-
     
-
     @Column(name = "ID_Partido", nullable = false, insertable = false, updatable = false)
     private long idPartido;
 

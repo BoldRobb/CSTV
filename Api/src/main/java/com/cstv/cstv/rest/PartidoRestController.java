@@ -43,7 +43,7 @@ public class PartidoRestController {
         partido.setGanador(new Equipos());
         partido.getGanador().setId(partidoDTO.getIdGanador());
         partido.setFormato(partidoDTO.getFormato());
-        partido.setRonda(partidoDTO.getRonda());
+        partido.setMarcador(partidoDTO.getMarcador());
         return partidoService.save(partido);
     }
 
