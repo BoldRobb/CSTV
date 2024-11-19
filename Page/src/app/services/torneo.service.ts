@@ -14,6 +14,9 @@ export class TorneoService {
   private apiUrlEquipos = 'http://localhost:8080/api/torneo-equipos'
   constructor(private http: HttpClient) { }
   
+  addTorneo(torneo: TorneoModel): Observable<TorneoModel> {
+    return this.http.post<TorneoModel>(this.apiUrl, torneo);
+  }
   getTorneos(): Observable<TorneoModel[]>{
     return this.http.get<TorneoModel[]>(this.apiUrl);
   }

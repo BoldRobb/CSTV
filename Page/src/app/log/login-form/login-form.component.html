@@ -1,0 +1,22 @@
+<div class="login-container">
+  <h2>Sign in to your account</h2>
+  <form>
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Username" />
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Password" />
+
+    <div class="options">
+      <label>
+        <input type="checkbox" /> Remember me
+      </label>
+      <a href="#">Forgot my password</a>
+    </div>
+    
+    <button type="submit">Sign in</button>
+
+    <p>Don't have an account?</p>
+    <button type="button" (click)="navigateToSignup()">Sign up</button>
+  </form>
+</div>

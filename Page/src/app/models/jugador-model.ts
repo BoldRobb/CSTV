@@ -8,13 +8,15 @@ id!: number;
  estatus: string;
 foto: string;
  equipoActual: EquipoModel;
+ pais: string;
 
-    constructor(nombreReal: string, mote: string, estatus: string, foto: string, equipoActual: EquipoModel){
+    constructor(nombreReal: string, mote: string, estatus: string, foto: string, equipoActual: EquipoModel, pais: string){
         this.nombreReal = nombreReal;
         this.mote = mote;
         this.estatus = estatus;
         this.foto = foto;
         this.equipoActual = equipoActual;
+        this.pais = pais;
 
     }
     setId(id: number): void{

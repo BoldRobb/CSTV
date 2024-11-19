@@ -44,6 +44,7 @@ public class JugadorRestController {
         jugador.setMote(jugadorDTO.getMote());
         jugador.setEstatus(jugadorDTO.getEstatus());
         jugador.setFoto(jugadorDTO.getFoto());
+        jugador.setPais(jugadorDTO.getPais());
         if(jugadorDTO.getIdEquipoActual() != null){
             jugador.setEquipoActual(new Equipos());
             jugador.getEquipoActual().setId(jugadorDTO.getIdEquipoActual());

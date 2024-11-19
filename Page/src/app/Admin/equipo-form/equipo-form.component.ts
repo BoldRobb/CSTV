@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EquipoModel } from '../../models/equipo-model';
 import { EquipoService } from '../../services/equipo.service';
 import { AlertComponent } from '../../components/global/alert/alert.component';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-equipo-form',
   standalone: true,
   templateUrl: './equipo-form.component.html',
   styleUrls: ['./equipo-form.component.css'],
-  imports: [ReactiveFormsModule, AlertComponent],
+  imports: [ReactiveFormsModule, AlertComponent, CommonModule, FormsModule],
 
 })
 export class EquipoFormComponent implements OnInit {
   equipoForm: FormGroup;
   alertMessage!: string;
   alertType!: 'success' | 'error';
+  teamId!: number;
   constructor(private fb: FormBuilder, private equipoService: EquipoService) {
     this.equipoForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -50,4 +51,5 @@ export class EquipoFormComponent implements OnInit {
       this.alertMessage = '';
     }, 5000);
   }
+
 }

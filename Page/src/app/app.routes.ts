@@ -8,6 +8,13 @@ import { EventsMainComponent } from './components/eventos/events-main/events-mai
 import { PanelComponent } from './Admin/panel/panel.component';
 import { EquipoFormComponent } from './Admin/equipo-form/equipo-form.component';
 import { RankingFormComponent } from './Admin/ranking-form/ranking-form.component';
+import { NoticiaFormComponent } from './Admin/noticia-form/noticia-form.component';
+import { UsuarioFormComponent } from './Admin/usuario-form/usuario-form.component';
+import { JugadorFormComponent } from './Admin/jugador-form/jugador-form.component';
+import { TorneoEquiposModel } from './models/torneo-equipos-model';
+import { TorneoFormComponent } from './Admin/torneo-form/torneo-form.component';
+import { LoginFormComponent } from './log/login-form/login-form.component';
+import { SignupFormComponent } from './log/signup-form/signup-form.component';
 
 
 export const routes: Routes = [
@@ -26,13 +33,18 @@ export const routes: Routes = [
         {path: 'teamsForm', component: EquipoFormComponent},
         {path: 'topicsForm', component: PanelComponent},
         {path: 'rankingForm', component: RankingFormComponent},
-        {path: 'eventsForm', component: PanelComponent},
+        {path: 'eventsForm', component: TorneoFormComponent},
+        {path: 'newsForm', component: NoticiaFormComponent},
+        {path: 'usersForm', component: UsuarioFormComponent},
+        {path: 'playersForm', component: JugadorFormComponent},
         
         {path: 'Topic', component: PanelComponent},
 
     ]},
     //Eventos
     {path: 'events', component: EventsMainComponent},
+    //Cuenta
+    {path: 'register', component: SignupFormComponent},
     //Home
     {path: '', component: LayoutNoticiaComponent},
     {path: '**', redirectTo: '' },

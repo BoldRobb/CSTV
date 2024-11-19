@@ -6,11 +6,12 @@ import { RankingModel } from '../../models/ranking-model';
 import { EquipoModel } from '../../models/equipo-model';
 import { RouterModule } from '@angular/router';
 import { AlertComponent } from '../../components/global/alert/alert.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ranking-form',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, AlertComponent],
+  imports: [ReactiveFormsModule, RouterModule, AlertComponent, CommonModule],
   templateUrl: './ranking-form.component.html',
   styleUrl: './ranking-form.component.css'
 })
@@ -63,7 +64,7 @@ export class RankingFormComponent implements OnInit {
   }
 
   private createRankingModel(formValue: any): RankingModel {
-    const equipo = new EquipoModel(formValue.equipo, 0, 0, '', '', '');
+    const equipo = new EquipoModel(0, formValue.equipo, 0, 0, '', '', '');
     return new RankingModel(0, equipo, formValue.ranking, new Date(formValue.fechaInicio), new Date(formValue.fechaFin), formValue.puntos);
   }
 

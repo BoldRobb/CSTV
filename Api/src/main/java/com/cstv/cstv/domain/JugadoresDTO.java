@@ -6,7 +6,7 @@ public class JugadoresDTO {
     private String estatus;
     private String foto;
     private Long idEquipoActual;
-
+    private String pais;
 
     public String getNombreReal() {
         return nombreReal;
@@ -46,5 +46,12 @@ public class JugadoresDTO {
 
     public void setIdEquipoActual(Long idEquipoActual) {
         this.idEquipoActual = idEquipoActual;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }

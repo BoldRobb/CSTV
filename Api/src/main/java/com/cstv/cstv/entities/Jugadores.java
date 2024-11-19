@@ -22,6 +22,10 @@ public class Jugadores {
     @Column
     private String foto;
 
+
+
+    @Column
+    private String pais;
     @ManyToOne
     @JoinColumn(name = "ID_EquipoActual")
     private Equipos equipoActual;
@@ -72,6 +76,13 @@ public class Jugadores {
 
     public void setEquipoActual(Equipos equipoActual) {
         this.equipoActual = equipoActual;
+    }
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
 }

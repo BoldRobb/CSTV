@@ -1,0 +1,31 @@
+<app-alert [message]="alertMessage" [type]="alertType"></app-alert>
+
+<div class="noticia-form">
+  <h1>Agregar Nueva Noticia</h1>
+  <form [formGroup]="noticiaForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="usuario">Usuario:</label>
+      <input type="text" id="usuario" formControlName="usuario" class="form-control" list="usuariosList" (input)="onUsuarioInput()" required>
+      <datalist id="usuariosList">
+        <option *ngFor="let usuario of usuariosFiltrados" [value]="usuario.username"></option>
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label for="imagen">Imagen:</label>
+      <input type="text" id="imagen" formControlName="imagen" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" formControlName="titulo" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" formControlName="fecha" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="htmlFile">Archivo HTML:</label>
+      <input type="file" id="htmlFile" (change)="onFileChange($event)" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</div>

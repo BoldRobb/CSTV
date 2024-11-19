@@ -2,10 +2,10 @@ export class TorneoModel {
 
     id: number;
     nombre: string;
-    fechaFinal: Date;
     fechaInicial: Date;
+    fechaFinal: Date;
     logo: string;
-    tipo_bracket: string;
+    tipoBracket: string;
     prizepool: number;
     equipos_cant: number;
     localizacion: string;
@@ -18,7 +18,7 @@ export class TorneoModel {
         this.fechaFinal=fechaFinal;
         this.fechaInicial=fechaInicial;
         this.logo=logo;
-        this.tipo_bracket=tipo_bracket;
+        this.tipoBracket=tipo_bracket;
         this.prizepool=prizepool;
         this.equipos_cant=equipos_cant;
         this.localizacion=localizacion;
