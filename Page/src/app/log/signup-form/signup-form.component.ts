@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { COUNTRIES } from '../../../global/countries';
 import { CommonModule } from '@angular/common';
 import { UsuarioModel } from '../../models/usuario-model';
@@ -17,39 +17,68 @@ export class SignupFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, this.usernameValidator]],
+      password: ['', [Validators.required, this.passwordValidator]],
       confirmPassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: ['', [Validators.required, Validators.email]],
       country: ['', Validators.required]
-    }, { validator: [this.emailMatchValidator, this.passwordMatchValidator] } );
+    }, { validator: [this.emailMatchValidator, this.passwordMatchValidator] });
   }
 
   ngOnInit(): void {}
 
-  emailMatchValidator(group: FormGroup): any {
+  usernameValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const usernamePattern = /^[a-zA-Z0-9_]{6,}$/;
+    if (!usernamePattern.test(value)) {
+      return { invalidUsername: true };
+    }
+    return null;
+  }
+
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordPattern.test(value)) {
+      return { invalidPassword: true };
+    }
+    return null;
+  }
+
+  emailMatchValidator(group: FormGroup): ValidationErrors | null {
     const email = group.get('email')?.value;
     const confirmEmail = group.get('confirmEmail')?.value;
-    return email === confirmEmail ? null : { notMatching: true };
+    if (email !== confirmEmail) {
+      return { emailMismatch: true };
+    }
+    return null;
   }
-  passwordMatchValidator(group: FormGroup): any {
+
+  passwordMatchValidator(group: FormGroup): ValidationErrors | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { notMatching: true };
+    if (password !== confirmPassword) {
+      return { passwordMismatch: true };
+    }
+    return null;
   }
 
   onSubmit(): void {
     if (this.signupForm.valid) {
-      /*const newUser = new UsuarioModel(
-        0,
-        this.signupForm.get('username').value,
-        this.signupForm.get('password').value,
-        this.signupForm.get('email').value,
-        "user",
-        this.signupForm.get('country').value,
-      )*/
-      console.log('Form Submitted', this.signupForm.value);
+      const nuevoUsuario: UsuarioModel = this.createUsuarioModel(this.signupForm.value);
+      // Lógica para enviar el formulario
     }
+  }
+
+  private createUsuarioModel(formValue: any): UsuarioModel {
+    return new UsuarioModel(
+      0,
+      formValue.username,
+      formValue.password,
+      formValue.email,
+      'User',
+      formValue.country
+    );
   }
 }

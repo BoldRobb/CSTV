@@ -24,7 +24,9 @@ export class NavbarComponent implements OnInit {
   }
 
   openLoginForm(): void {
+    console.log(this.showLoginForm);
     this.showLoginForm = true;
+    
   }
 
   closeLoginForm(event: Event): void {

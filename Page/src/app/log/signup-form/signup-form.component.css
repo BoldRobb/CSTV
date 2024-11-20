@@ -1,10 +1,11 @@
 .signup-container {
     background-color: #182234;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 0px;
     outline: 4px solid #1F242D;
     color: #9A9797;
     margin: auto;
+    margin-top: 4px;
     width: 60rem;
   }
   
@@ -40,7 +41,7 @@
   }
   
   button {
-    grid-column: span 2;
+    width: 100%;
     padding: 0.75rem;
     background-color: #303D57;
     color: #9A9797;

@@ -16,7 +16,9 @@ import { Router } from '@angular/router';
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    console.log("puto")
+  }
 
   navigateToSignup(): void {
     this.router.navigate(['/register']);
