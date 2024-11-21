@@ -3,6 +3,7 @@ import { EquipoModel } from '../../../models/equipo-model';
 import { EquipoService } from '../../../services/equipo.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { RankingModel } from '../../../models/ranking-model';
 
 @Component({
   selector: 'app-ranking-container',
@@ -12,15 +13,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './ranking-container.component.css'
 })
 export class RankingContainerComponent {
-  @Input()id?: number;
-  equipo?: EquipoModel;
+  @Input()ranking: RankingModel | undefined;
+  encontrado: boolean = true;
   constructor(private equipoService: EquipoService) { }
 
   ngOnInit() { 
-    if (this.id !== undefined) {
-      this.equipoService.getEquipos(this.id).subscribe((data) => {
-        this.equipo = data;
-      });
+    if(this.ranking == undefined){
+      this.encontrado = false;
     }
   }
 }

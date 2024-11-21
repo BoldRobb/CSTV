@@ -1,5 +1,6 @@
 <div class="simple-container">
-    <img src="{{equipo?.foto}}" alt="{{equipo?.nombre}}" class="teamLogo">
-    <a [routerLink]="['team/',equipo?.id]" class="event-title" routerLinkActive="active">{{equipo?.nombre}}</a>
-
+    <p class = "rankingNumber">{{ranking?.ranking}}</p>
+    <img src="{{ranking?.equipo?.id}}" alt="{{ranking?.equipo?.nombre}}" class="teamLogo">
+    <a [routerLink]="['team/',ranking?.equipo?.id]" class="event-title" routerLinkActive="active">{{ranking?.equipo?.nombre}}</a>
+    <p class = "rankingPoints">{{ranking?.puntos}}</p>
 </div>

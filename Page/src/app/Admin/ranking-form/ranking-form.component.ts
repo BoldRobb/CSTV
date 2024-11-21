@@ -51,7 +51,13 @@ export class RankingFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.rankingForm.valid) {
-      const nuevoRanking: RankingModel = this.createRankingModel(this.rankingForm.value);
+      const formValue = this.rankingForm.value;
+      const equipo = this.equiposFiltrados.find(e => e.nombre === formValue.equipo);
+      if (!equipo) {
+        this.showAlert('Equipo no encontrado', 'error');
+        return;
+      }
+      const nuevoRanking = new  RankingModel(0, equipo, formValue.ranking, new Date(formValue.fechaInicio), new Date(formValue.fechaFin), formValue.puntos);
       this.rankingService.addRanking(nuevoRanking).subscribe(
         response => {
           this.showAlert('Ranking guardado', 'success');
@@ -63,10 +69,6 @@ export class RankingFormComponent implements OnInit {
     }
   }
 
-  private createRankingModel(formValue: any): RankingModel {
-    const equipo = new EquipoModel(0, formValue.equipo, 0, 0, '', '', '');
-    return new RankingModel(0, equipo, formValue.ranking, new Date(formValue.fechaInicio), new Date(formValue.fechaFin), formValue.puntos);
-  }
 
   private showAlert(message: string, type: 'success' | 'error'): void {
     this.alertMessage = message;

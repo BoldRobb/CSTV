@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
 import { RankingService } from '../../../services/ranking.service';
 import { RankingModel } from '../../../models/ranking-model';
+import { RankingContainerComponent } from '../ranking-container/ranking-container.component';
 
 
 @Component({
   selector: 'app-ranking',
   standalone: true,
-  imports: [RecentActivityComponent, CommonModule],
+  imports: [RecentActivityComponent, CommonModule, RankingContainerComponent],
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.css'
 })

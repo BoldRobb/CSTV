@@ -3,19 +3,23 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, 
 import { COUNTRIES } from '../../../global/countries';
 import { CommonModule } from '@angular/common';
 import { UsuarioModel } from '../../models/usuario-model';
+import { UsuarioService } from '../../services/usuario-service.service';
+import { AlertComponent } from '../../components/global/alert/alert.component';
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [ReactiveFormsModule, CommonModule, AlertComponent]
 })
 export class SignupFormComponent implements OnInit {
   signupForm: FormGroup;
   countries = COUNTRIES;
+  alertMessage!: string;
+  alertType!: 'success' | 'error';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, this.usernameValidator]],
       password: ['', [Validators.required, this.passwordValidator]],
@@ -67,7 +71,15 @@ export class SignupFormComponent implements OnInit {
   onSubmit(): void {
     if (this.signupForm.valid) {
       const nuevoUsuario: UsuarioModel = this.createUsuarioModel(this.signupForm.value);
-      // Lógica para enviar el formulario
+      this.usuarioService.createUsuario(nuevoUsuario).subscribe(
+        response => {
+          this.showAlert('Noticia guardada', 'success');
+        },
+        error => {
+          this.showAlert('Error al guardar la noticia', 'error');
+        }
+      );
+
     }
   }
 
@@ -80,5 +92,12 @@ export class SignupFormComponent implements OnInit {
       'User',
       formValue.country
     );
+  }
+  private showAlert(message: string, type: 'success' | 'error'): void {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = '';
+    }, 5000);
   }
 }
