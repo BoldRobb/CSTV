@@ -62,4 +62,8 @@ public class NoticiaRestController {
     public List<Noticia> getAllNoticiasByDateList() {
         return noticiaService.findAllByOrderByFechaDesc();
     }
+    @GetMapping("/user/{id}")
+    public List<Noticia> getAllNoticiasByUser(@PathVariable Long id) {
+        return noticiaService.findAllByUsuario_Id(id);
+    }
 }

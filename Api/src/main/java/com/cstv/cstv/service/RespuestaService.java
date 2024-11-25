@@ -29,4 +29,12 @@ public class RespuestaService {
     public void deleteById(Long id) {
         respuestaRepo.deleteById(id);
     }
+
+    public List<Respuestas> findAllByTopico_Id(Long id) {
+        return respuestaRepo.findAllByTopico_Id(id);
+    }
+
+    public List<Respuestas> findAllByRespuestaPadre(Long id) {
+        return respuestaRepo.findAllByRespuestaPadre(id);
+    }
 }

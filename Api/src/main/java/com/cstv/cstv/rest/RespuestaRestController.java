@@ -40,8 +40,7 @@ public class RespuestaRestController {
         respuesta.getUsuario().setId(respuestaDTO.getIdUsuario());
         respuesta.setTopico(new Topico());
         respuesta.getTopico().setId(respuestaDTO.getIdTopico());
-        respuesta.setRespuestaPadre(new Respuestas());
-        respuesta.getRespuestaPadre().setId(respuestaDTO.getIdRespuesta());
+        respuesta.setRespuestaPadre(respuestaDTO.getIdRespuesta());
         return respuestaService.save(respuesta);
     }
 
@@ -62,4 +61,15 @@ public class RespuestaRestController {
         respuestaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/topico/{id}")
+    public List<Respuestas> getAllRespuestasByTopicoId(@PathVariable Long id) {
+        return respuestaService.findAllByTopico_Id(id);
+    }
+
+    @GetMapping("/padre/{id}")
+    public List<Respuestas> getAllRespuestasByPadreId(@PathVariable Long id) {
+        return respuestaService.findAllByRespuestaPadre(id);
+    }
+
 }

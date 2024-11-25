@@ -57,15 +57,15 @@
         Country is required
       </div>
     </div>
-
-
+    <div class="form-group">
+      <h3>Privacy and Data</h3>
+      <p>
+        By creating your account on CSTV, you give us permission to store your personal information.
+      </p>
+    </div>
+    <button type="submit" [disabled]="signupForm.invalid">Create account</button>
   </form>
-  <div class="form-group">
-    <h3>Privacy and Data</h3>
-    <p>
-      By creating your account on CSTV, you give us permission to store your personal information.
-    </p>
-  </div>
+  
 
-  <button type="submit" [disabled]="signupForm.invalid">Create account</button>
+  
 </div>

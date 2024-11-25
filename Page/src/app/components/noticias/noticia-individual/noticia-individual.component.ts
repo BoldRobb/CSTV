@@ -19,6 +19,7 @@ export class NoticiaIndividualComponent {
   id?: number;
   noticia?: NoticiaModel;
   isloading = true;
+  pageNotFound = false;
   usuario?: UsuarioModel;
   fechapublicacion?: string;
   constructor(private route: ActivatedRoute, private noticiaService: NoticiaService, private usuarioService: UsuarioService) {}
@@ -45,6 +46,7 @@ export class NoticiaIndividualComponent {
         },
         error =>{console.error(error);
           this.isloading = false;
+          this.pageNotFound = true;
         } ,
       );
     } else {

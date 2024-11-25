@@ -28,13 +28,9 @@ public class NoticiaMainRestController {
         return noticiaMainRepo.find();
     }
 
-    @GetMapping("/delete")
-    public void deleteAll() {
-        noticiaMainRepo.deleteAll();
-    }
-
     @PostMapping("/{id}")
     public NoticiaMain saveNoticiaMain(@PathVariable Long id) {
+        noticiaMainRepo.deleteAll();
         NoticiaMain entity = new NoticiaMain();
         entity.setIdNoticia(id);
         return noticiaMainRepo.save(entity);

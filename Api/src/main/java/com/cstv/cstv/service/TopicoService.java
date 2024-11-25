@@ -38,4 +38,5 @@ public class TopicoService {
         return topicoRepo.findAllByOrderByLatestDesc();
     }
     public List<Topico> findAllByForo_Id(Long id) {return topicoRepo.findAllByForo_Id(id);}
+    public List<Topico> findAllByUsuario_Id(Long id) {return topicoRepo.findAllByUsuario_Id(id);}
 }

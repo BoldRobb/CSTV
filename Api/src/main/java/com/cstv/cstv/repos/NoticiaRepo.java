@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NoticiaRepo extends JpaRepository<Noticia, Long> {
     public List<Noticia> findAllByOrderByFechaDesc();
+    public List<Noticia> findAllByUsuario_Id(Long id);
 }

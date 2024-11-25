@@ -79,4 +79,8 @@ public class TopicoRestController {
     public List<Topico> getAllByIdForo(@PathVariable Long id) {
         return topicoService.findAllByForo_Id(id);
     }
+    @GetMapping("/user/{id}")
+    public List<Topico> getAllByIdUsuario(@PathVariable Long id) {
+        return topicoService.findAllByUsuario_Id(id);
+    }
 }

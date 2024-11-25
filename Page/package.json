@@ -20,6 +20,7 @@
     "@angular/platform-browser": "18.2.9",
     "@angular/platform-browser-dynamic": "18.2.9",
     "@angular/router": "18.2.9",
+    "@google/generative-ai": "^0.21.0",
     "@popperjs/core": "~2.11.8",
     "country-flag-icons": "^1.5.13",
     "page": "file:",

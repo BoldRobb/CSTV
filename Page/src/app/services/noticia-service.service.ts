@@ -31,4 +31,7 @@ export class NoticiaService {
   getNoticiasDesc(): Observable<NoticiaModel[]> {
     return this.http.get<NoticiaModel[]>(this.apiUrl+'/date');
   }
+  getNoticiasByUserId(id: number): Observable<NoticiaModel[]> {
+    return this.http.get<NoticiaModel[]>(this.apiUrl+'/user/'+id);
+  }
 }

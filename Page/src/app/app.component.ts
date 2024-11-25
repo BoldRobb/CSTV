@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RecentActivityComponent } from './components/foros/recent-activity/recent-activity.component';
-import { ScoreboardComponent } from './components/live/scoreboard/scoreboard.component';
-import { EquipoFormComponent } from './Admin/equipo-form/equipo-form.component';
-import { LoginFormComponent } from './log/login-form/login-form.component';
+
+import { AuthService } from './services/auth.service';
+import { AuthNavbarComponent } from './components/navbar/auth-navbar/auth-navbar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, RecentActivityComponent,ScoreboardComponent, EquipoFormComponent, LoginFormComponent],
+  imports: [RouterOutlet, NavbarComponent, AuthNavbarComponent, CommonModule],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Page';
+  isLoggedIn = false;
   open($event: any) {
     console.log($event);
+  }
+  
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.isLoggedIn().subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 }

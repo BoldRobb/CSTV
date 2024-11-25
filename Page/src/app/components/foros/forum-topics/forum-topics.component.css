@@ -136,3 +136,8 @@ input.form-control, textarea.form-control {
     color: #1B68DD;
     text-decoration: none;
 }
+.notLoggedText{
+    color: #9A9797;
+    font-size: 24px;
+    margin-top: 1rem;
+}

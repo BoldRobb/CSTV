@@ -37,8 +37,8 @@ export class UsuarioFormComponent implements OnInit {
         formValue.password,
         formValue.username,
         formValue.correo,
-        formValue.rol,
-        formValue.pais
+        formValue.pais,
+        formValue.rol
       );
       this.usuarioService.createUsuario(nuevoUsuario).subscribe(
         response => {

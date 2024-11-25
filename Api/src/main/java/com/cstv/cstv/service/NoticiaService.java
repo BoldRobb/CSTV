@@ -33,4 +33,7 @@ public class NoticiaService {
         return noticiaRepo.findAllByOrderByFechaDesc();
     }
 
+    public List<Noticia> findAllByUsuario_Id(Long id) {
+        return noticiaRepo.findAllByUsuario_Id(id);
+    }
 }

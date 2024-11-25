@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TopicoModel } from '../models/topico-model';
 import { ForoModel } from '../models/foro-model';
+import { TopicoDTO } from '../models/DTO/topicoDTO';
 
 
 @Injectable({
@@ -27,6 +28,9 @@ export class ForoServiceService {
   getTopico(id: number): Observable<TopicoModel> {
     return this.http.get<TopicoModel>(this.apiUrl + '/' + id);
   }
+  getTopicosByUserId(id: number): Observable<TopicoModel[]> {
+    return this.http.get<TopicoModel[]>(this.apiUrl + '/user/' + id);
+  }
   getTopicosForo(id: number): Observable<TopicoModel[]> {
     return this.http.get<TopicoModel[]>(this.apiUrl + '/byForum/' + id);
   }
@@ -35,6 +39,9 @@ export class ForoServiceService {
   }
   getForo(id: number): Observable<ForoModel> {
     return this.http.get<ForoModel>(this.apiUrlForums + '/' + id);
+  }
+  createTopico(topico: TopicoDTO): Observable<TopicoModel> {
+    return this.http.post<TopicoModel>(this.apiUrl, topico);
   }
 
 }

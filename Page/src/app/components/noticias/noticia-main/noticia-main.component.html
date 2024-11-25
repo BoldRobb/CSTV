@@ -1,3 +1,7 @@
-<div>
+<div *ngIf="isLoading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+  
+  <div *ngIf="!isLoading" >
     <img class="NoticiaMain" [src]="noticia.imagen" [alt]="noticia.titulo">
-</div>
+  </div>

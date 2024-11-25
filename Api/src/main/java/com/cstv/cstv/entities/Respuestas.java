@@ -8,8 +8,6 @@ import java.util.Date;
 @Table(name = "respuestas")
 public class Respuestas {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +20,10 @@ public class Respuestas {
     @JoinColumn(name = "ID_Topico")
     private Topico topico;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_Respuesta")
-    private Respuestas respuestaPadre;
+    @Column(name = "ID_Respuesta")
+    private Long respuestaPadre;
+
+
 
     @Column(nullable = false, length = 255)
     private String respuesta;
@@ -56,11 +55,11 @@ public class Respuestas {
         this.topico = topico;
     }
 
-    public Respuestas getRespuestaPadre() {
+    public Long getRespuestaPadre() {
         return respuestaPadre;
     }
 
-    public void setRespuestaPadre(Respuestas respuestaPadre) {
+    public void setRespuestaPadre(Long respuestaPadre) {
         this.respuestaPadre = respuestaPadre;
     }
 

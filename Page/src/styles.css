@@ -5,4 +5,26 @@ body{
     margin: 0;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.errorContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: #303D57;
+    border-radius: 0px;
+    outline: 4px solid #1F242D;
+    color: #ffffff;
+    width: 60rem;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 4px;
+}
+.errorTitle{
+    margin: 0 auto;
+    font-size: 72px;
+    color: white;
+    margin-bottom: 20px;
+}
+.errorText{
+    font-size: 16px;
+    color: white;
+}

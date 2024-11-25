@@ -16,25 +16,27 @@ export class NoticiaPrincipalComponent implements OnInit {
   noticiasHoy: NoticiaModel[] = [];
   noticiasAyer: NoticiaModel[] = [];
   noticiasRestantes: NoticiaModel[] = [];
-
+  isLoading = true;
   constructor(private noticiaService: NoticiaService) {}
 
   ngOnInit(): void {
-    this.noticiaService.getNoticiasDesc().subscribe((noticias: NoticiaModel[]) => {
-      const hoy = new Date();
-      const ayer = new Date();
-      ayer.setDate(hoy.getDate() - 1);
-      noticias.forEach(noticia => {
-        const noticiaFecha = new Date(noticia.fecha);
-        if (this.isSameDay(noticiaFecha, hoy)) {
-          this.noticiasHoy.push(noticia);
-        } else if (this.isSameDay(noticiaFecha, ayer)) {
-          this.noticiasAyer.push(noticia);
-        } else {
-          this.noticiasRestantes.push(noticia);
-        }
-      });
-    });
+    this.noticiaService.getNoticiasDesc().subscribe(
+      noticias => {
+        const today = new Date();
+        const yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+
+        this.noticiasHoy = noticias.filter(noticia => new Date(noticia.fecha).toDateString() === today.toDateString());
+        this.noticiasAyer = noticias.filter(noticia => new Date(noticia.fecha).toDateString() === yesterday.toDateString());
+        this.noticiasRestantes = noticias.filter(noticia => new Date(noticia.fecha) < yesterday);
+
+        this.isLoading = false;
+      },
+      error => {
+        console.error('Error loading noticias', error);
+        this.isLoading = false;
+      }
+    );
   }
 
   private isSameDay(date1: Date, date2: Date): boolean {

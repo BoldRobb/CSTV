@@ -43,7 +43,7 @@ export class NoticiaContainerComponent implements OnInit {
           this.noticia = data;         
           const fecha = new Date(this.noticia.fecha);
           this.timedif = this.getDateDifference(fecha);
-          console.log(this.noticia);
+          //console.log(this.noticia);
         },
         error => console.error(error),
       );

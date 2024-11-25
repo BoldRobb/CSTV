@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { UsuarioModel } from '../../models/usuario-model';
 import { UsuarioService } from '../../services/usuario-service.service';
 import { AlertComponent } from '../../components/global/alert/alert.component';
+import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai';
+import { environment } from '../../../environments/environment.development';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -18,8 +21,35 @@ export class SignupFormComponent implements OnInit {
   countries = COUNTRIES;
   alertMessage!: string;
   alertType!: 'success' | 'error';
+  genAI = new GoogleGenerativeAI(environment.API_KEY);
+generationConfig = {
+  safetySettings: [
+    {
+      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+      threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+    },
+  ],
+  temperature: 0.9,
+  top_p: 1,
+  top_k: 32,
+  maxOutputTokens: 100, // limit output
+};
+model = this.genAI.getGenerativeModel({
+  model: 'gemini-pro', // or 'gemini-pro-vision'
+  ...this.generationConfig,
+});
+  
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+async TestGeminiPro(mensaje: string): Promise<boolean> {
+
+  const prompt = 'Regresame true o false si este username es dañino: ' + mensaje;
+  const result =  this.model.generateContent(prompt);
+  const response =  (await result).response;
+  const isHarmful = response.text().toLowerCase().includes('true');
+  return isHarmful;
+};
+
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService, private router: Router) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, this.usernameValidator]],
       password: ['', [Validators.required, this.passwordValidator]],
@@ -68,29 +98,39 @@ export class SignupFormComponent implements OnInit {
     return null;
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
+    const isHarmful = this.TestGeminiPro(this.signupForm.value.username);
     if (this.signupForm.valid) {
+      if (!(await isHarmful)) {
+
+      
       const nuevoUsuario: UsuarioModel = this.createUsuarioModel(this.signupForm.value);
       this.usuarioService.createUsuario(nuevoUsuario).subscribe(
         response => {
-          this.showAlert('Noticia guardada', 'success');
+          console.log('Usuario creado', response);
+          this.showAlert('User succesfully created', 'success');
+          this.signupForm.reset();
         },
         error => {
-          this.showAlert('Error al guardar la noticia', 'error');
+          this.showAlert('Error creating the user', 'error');
+          console.log('Error creating the user', error);
         }
       );
-
+      }else{
+        this.showAlert('Username not available due harmful content', 'error');
+      }
     }
   }
 
   private createUsuarioModel(formValue: any): UsuarioModel {
     return new UsuarioModel(
       0,
-      formValue.username,
       formValue.password,
+      formValue.username,
       formValue.email,
+      formValue.country,
       'User',
-      formValue.country
+      ''
     );
   }
   private showAlert(message: string, type: 'success' | 'error'): void {

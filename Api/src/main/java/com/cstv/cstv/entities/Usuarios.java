@@ -34,6 +34,9 @@ public class Usuarios {
     @Column(nullable=false, length = 50)
     private String rol;
 
+    @Column(nullable = true, length = 500)
+    private String biografia;
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
@@ -71,4 +74,10 @@ public class Usuarios {
         this.id = ID;
     }
 
+    public String getBiografia() {
+        return biografia;
+    }
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
 }

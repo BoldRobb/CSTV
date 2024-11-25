@@ -41,7 +41,8 @@
   }
   
   button {
-    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     padding: 0.75rem;
     background-color: #303D57;
     color: #9A9797;
@@ -61,5 +62,8 @@
   }
   .simple-text{
     font-size: 24px;
+    color: #9A9797;
+  }
+  a{
     color: #9A9797;
   }

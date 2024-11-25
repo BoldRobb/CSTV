@@ -15,6 +15,10 @@ import { TorneoEquiposModel } from './models/torneo-equipos-model';
 import { TorneoFormComponent } from './Admin/torneo-form/torneo-form.component';
 import { LoginFormComponent } from './log/login-form/login-form.component';
 import { SignupFormComponent } from './log/signup-form/signup-form.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { TestComponent } from './test/test/test.component';
+import { TopicoIndividualComponent } from './components/foros/topico-individual/topico-individual.component';
 
 
 export const routes: Routes = [
@@ -27,7 +31,7 @@ export const routes: Routes = [
     //Foro
     {path: 'forum', component: ForumsComponent},
     {path: 'forum/:id', component: ForumTopicsComponent},
-
+    {path: 'forum/:id/topic/:idTopic', component: TopicoIndividualComponent},
     //Admin
     {path: 'admin', component: PanelComponent, children: [
         {path: 'teamsForm', component: EquipoFormComponent},
@@ -45,8 +49,14 @@ export const routes: Routes = [
     {path: 'events', component: EventsMainComponent},
     //Cuenta
     {path: 'register', component: SignupFormComponent},
+    {path: 'profile/:id', component: ProfileComponent},
+    {path: 'editProfile', component: EditProfileComponent},
+    //test
+    {path: 'test', component: TestComponent},
     //Home
     {path: '', component: LayoutNoticiaComponent},
     {path: '**', redirectTo: '' },
+    //test
+    
     
 ];
