@@ -31,7 +31,7 @@ export const routes: Routes = [
     //Foro
     {path: 'forum', component: ForumsComponent},
     {path: 'forum/:id', component: ForumTopicsComponent},
-    {path: 'forum/:id/topic/:idTopic', component: TopicoIndividualComponent},
+    {path: 'topic/:idTopic', component: TopicoIndividualComponent},
     //Admin
     {path: 'admin', component: PanelComponent, children: [
         {path: 'teamsForm', component: EquipoFormComponent},

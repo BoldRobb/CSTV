@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertComponent } from '../../global/alert/alert.component';
 import { CommonModule } from '@angular/common';
 import { TopicoModel } from '../../../models/topico-model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ForoServiceService } from '../../../services/foro-service.service';
 import { RespuestaServiceService } from '../../../services/respuesta-service.service';
 import { RespuestasModel } from '../../../models/respuestas-model';
@@ -10,14 +10,14 @@ import { RespuestasModel } from '../../../models/respuestas-model';
 @Component({
   selector: 'app-topico-individual',
   standalone: true,
-  imports: [AlertComponent, CommonModule],
+  imports: [AlertComponent, CommonModule, RouterModule ],
   templateUrl: './topico-individual.component.html',
   styleUrl: './topico-individual.component.css'
 })
 export class TopicoIndividualComponent implements OnInit {
   alertMessage!: string;
   alertType!: 'success' | 'error';
-  isLoading= false;
+  isLoading= true;
   pageNotFound = false;
   topico?: TopicoModel;
   respuestas: RespuestasModel[] = [];
@@ -78,6 +78,14 @@ export class TopicoIndividualComponent implements OnInit {
         console.error('Error loading respuestas de respuestas', error);
       }
     );
+  }
+  normalizeDate(date: Date | undefined): string {        
+    if(!date) return '';  
+    const fecha = new Date(date);
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+    const anio = fecha.getFullYear();
+    return `${dia}-${mes}-${anio}`;
   }
 }
 

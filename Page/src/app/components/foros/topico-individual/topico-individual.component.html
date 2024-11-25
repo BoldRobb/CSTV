@@ -3,42 +3,61 @@
   <div class="spinner"></div>
 </div>
 <div *ngIf="!isLoading && !pageNotFound; else error" class="forum-container">
+  
     <div class="forum-item">
+      <div class="forumbg">
       <div class="forum-header">
-        {{topico?.titulo}}
+        <div class="forum-header-left">
+          {{ topico?.titulo }}
+        </div>
+        <div class="forum-header-right">
+          <a [routerLink]="['/profile/',topico?.usuario?.id]" class="link">{{ topico?.usuario?.username }}</a>
+        </div>
       </div>
+      <hr class="divisoria">
       <div class="forum-body">
         {{topico?.descripcion}}
       </div>
+      <hr class="divisoria">
       <div class="forum-footer">
-        {{topico?.fecha}}
+
+        {{ normalizeDate(topico?.fecha) }}
       </div>
+    </div>
       <!-- Subrespuesta -->
       <div *ngFor="let respuesta of respuestas"  class="forum-children">
-        <div *ngIf="respuesta.respuestaPadre==null">
-        <div class="forum-item">
+        <div *ngIf="respuesta.respuestaPadre==null" >
+          <div class ="forumbg">
           <div class="forum-header">
-            {{respuesta.usuario.username}}
+            <a [routerLink]="['/profile/',respuesta.usuario.id]" class="link">{{respuesta.usuario.username }}</a>
           </div>
+          <hr class="divisoria">
           <div class="forum-body">
             {{respuesta.respuesta}}
-          <div class="forum-footer">
-            {{respuesta.fecha}}
           </div>
-        </div>
+            <hr class="divisoria">
+          <div class="forum-footer">
+            {{normalizeDate(respuesta.fecha)}}
+          </div>
+        
+      </div>
           <!-- Sub-subrespuesta -->
           <div *ngIf="respuestasDeRespuestas[respuesta.id]" class="forum-children">
             <div *ngFor="let respuestaDeRespuesta of respuestasDeRespuestas[respuesta.id]" class="forum-item">
+              <div class="forumbg">
               <div class="forum-header">
-                {{respuestaDeRespuesta.usuario.username}}
+                <a [routerLink]="['/profile/',respuestaDeRespuesta.usuario.id]" class="link">{{respuestaDeRespuesta.usuario.username }}</a>
               </div>
+              <hr class="divisoria">
               <div class="forum-body">
                 {{respuestaDeRespuesta.respuesta}}
               </div>
+              <hr class="divisoria">
               <div class="forum-footer">
-                {{respuestaDeRespuesta.fecha}}
+                {{normalizeDate(respuestaDeRespuesta.fecha)}}
               </div>
             </div>
+            
           </div>
         </div>
         </div>

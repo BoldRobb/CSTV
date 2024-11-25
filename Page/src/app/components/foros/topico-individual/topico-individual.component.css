@@ -5,7 +5,7 @@
     border-radius: 0px;
     color: #9A9797;
     font-family: Arial, sans-serif;
-    width: 60%;
+    width: 60rem;
     margin: 0 auto;
   }
   
@@ -35,10 +35,13 @@
   
   /* Encabezado del foro */
   .forum-header {
-    background-color: #3a4758;
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: bold;
+    font-size: 20px;
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
   }
   
   /* Cuerpo del foro */
@@ -46,20 +49,24 @@
     margin-top: 10px;
     margin-bottom: 10px;
     line-height: 1.5;
+    margin-left: 10px;
+    font-size: 16px;
   }
   
   /* Pie del foro */
   .forum-footer {
     font-size: 0.9em;
-    color: #c1c7cd;
+    color: #9A9797;
     text-align: right;
+    font-size: 14px;
   }
   
   /* Subcontenedor (hijos) */
   .forum-children {
     margin-left: 30px;
-    border-left: 2px solid #596d85;
+    border-left: 2px solid #9A9797;
     padding-left: 20px;
+    background-color: none;
   }
   .spinner-container {
     display: flex;
@@ -80,4 +87,21 @@
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+  .forumbg{
+    background-color: #212C39;
+    margin-bottom: 1rem;
+  }
+  .divisoria{
+    border-bottom: 1px solid #9A9797;
+    width: 100%;
+  }
+  .link{
+    color: #9A9797;
+    text-decoration: none;
+  }
+  .link:hover{
+
+    color: white;
+    cursor: pointer;
   }

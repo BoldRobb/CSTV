@@ -23,7 +23,7 @@
                 <tbody>
                     <tr *ngFor="let topic of topicos; let i = index"  [ngStyle]="{'background-color': i % 2 === 0 ? '#1F242D' : '#212C39'}">
                         <td>
-                            <a [routerLink]="['/forum/', foro?.id, '/topic', topic?.id]">{{topic?.titulo}}</a>
+                            <a [routerLink]="['/topic', topic?.id]">{{topic?.titulo}}</a>
                         </td>
                         <td>{{topic?.usuario?.username}}</td>
                         <td>{{ formatDate(topic.latest) }}</td>
