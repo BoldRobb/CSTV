@@ -19,6 +19,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { TestComponent } from './test/test/test.component';
 import { TopicoIndividualComponent } from './components/foros/topico-individual/topico-individual.component';
+import { TeamLayoutComponent } from './components/team/team-layout/team-layout.component';
 
 
 export const routes: Routes = [
@@ -41,7 +42,6 @@ export const routes: Routes = [
         {path: 'newsForm', component: NoticiaFormComponent},
         {path: 'usersForm', component: UsuarioFormComponent},
         {path: 'playersForm', component: JugadorFormComponent},
-        
         {path: 'Topic', component: PanelComponent},
 
     ]},
@@ -51,6 +51,9 @@ export const routes: Routes = [
     {path: 'register', component: SignupFormComponent},
     {path: 'profile/:id', component: ProfileComponent},
     {path: 'editProfile', component: EditProfileComponent},
+
+    //Teams
+    {path: 'team/:id', component: TeamLayoutComponent},
     //test
     {path: 'test', component: TestComponent},
     //Home

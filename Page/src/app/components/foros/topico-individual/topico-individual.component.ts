@@ -87,5 +87,8 @@ export class TopicoIndividualComponent implements OnInit {
     const anio = fecha.getFullYear();
     return `${dia}-${mes}-${anio}`;
   }
+  responderTopico(){
+    
+  }
 }
 

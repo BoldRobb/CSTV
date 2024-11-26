@@ -20,8 +20,12 @@
       </div>
       <hr class="divisoria">
       <div class="forum-footer">
-
-        {{ normalizeDate(topico?.fecha) }}
+        <div class="forum-footer-left">
+            <a (click)="responderTopico()" class="responder">Responder</a>
+        </div>
+        <div class="forum-footer-right">
+          {{ normalizeDate(topico?.fecha) }}
+        </div>
       </div>
     </div>
       <!-- Subrespuesta -->
@@ -37,7 +41,12 @@
           </div>
             <hr class="divisoria">
           <div class="forum-footer">
-            {{normalizeDate(respuesta.fecha)}}
+            <div class="forum-footer-left">
+              <a (click)="responderTopico()" class="responder">Responder</a>
+          </div>
+          <div class="forum-footer-right">
+            {{ normalizeDate(respuesta.fecha) }}
+          </div>
           </div>
         
       </div>
@@ -53,7 +62,7 @@
                 {{respuestaDeRespuesta.respuesta}}
               </div>
               <hr class="divisoria">
-              <div class="forum-footer">
+              <div class="forum-footer-rr">
                 {{normalizeDate(respuestaDeRespuesta.fecha)}}
               </div>
             </div>

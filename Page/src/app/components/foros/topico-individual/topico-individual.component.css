@@ -56,9 +56,13 @@
   /* Pie del foro */
   .forum-footer {
     font-size: 0.9em;
-    color: #9A9797;
+    
     text-align: right;
     font-size: 14px;
+    margin: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   /* Subcontenedor (hijos) */
@@ -102,6 +106,21 @@
   }
   .link:hover{
 
+    color: white;
+    cursor: pointer;
+  }
+  .forum-footer-rr {
+    font-size: 0.9em;
+    color: #9A9797;
+    text-align: right;
+    font-size: 14px;
+    margin: 5px 10px;
+  }
+  .responder{
+    color: #9A9797;
+    text-decoration: none;
+  }
+  .responder hover{
     color: white;
     cursor: pointer;
   }

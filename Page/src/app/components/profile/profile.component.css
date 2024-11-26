@@ -112,3 +112,7 @@
     text-decoration: none;
     color: #1B68DD;
   }
+  .linkProfile hover{
+    text-decoration: none;
+    color: white;
+  }
