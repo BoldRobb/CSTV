@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EquipoService } from '../../../services/equipo.service';
 import { EquipoModel } from '../../../models/equipo-model';
 import { JugadorModel } from '../../../models/jugador-model';
+import { CommonModule } from '@angular/common';
+import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
 
 @Component({
   selector: 'app-team-layout',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RecentActivityComponent, RouterModule],
   templateUrl: './team-layout.component.html',
   styleUrl: './team-layout.component.css'
 })
 export class TeamLayoutComponent implements OnInit{
 
-  isLoading=false;
+  isLoading=true;
   pageNotFound = false;
   id? : number;
   equipo?:EquipoModel;
@@ -45,6 +47,7 @@ export class TeamLayoutComponent implements OnInit{
     });
     this.equipoService.getJugadoresEquipo(this.id).subscribe(data=>{
       this.jugadores=data;
+      console.log(this.jugadores);
     })
     }
   }

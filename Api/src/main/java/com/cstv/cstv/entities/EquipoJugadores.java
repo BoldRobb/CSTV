@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 @Table(name = "equipo_jugadores")
 public class EquipoJugadores {
 
+
     @EmbeddedId
     private EquipoJugadoresId id;
 
@@ -37,6 +38,13 @@ public class EquipoJugadores {
 
     public void setIdJugador(Jugadores jugador) {
         this.jugador = jugador;
+    }
+    public EquipoJugadoresId getId() {
+        return id;
+    }
+
+    public void setId(EquipoJugadoresId id) {
+        this.id = id;
     }
 
 }

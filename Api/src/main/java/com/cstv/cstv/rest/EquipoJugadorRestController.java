@@ -1,7 +1,9 @@
 package com.cstv.cstv.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.cstv.cstv.entities.Ids.EquipoJugadoresId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +33,10 @@ public class EquipoJugadorRestController {
     }
 
     @GetMapping("/equipo/{id}")
-    public List<EquipoJugadores> getEquipoJugadorByIdEquipo(@PathVariable Long id) {
-        return equipoJugadorService.findByIdEquipo(id);
+    public List<Jugadores> getEquipoJugadorByIdEquipo(@PathVariable Long id) {
+        return equipoJugadorService.findByIdEquipo(id).stream()
+                .map(EquipoJugadores::getJugador)
+                .collect(Collectors.toList());
     }
     
     @GetMapping("/jugador/{id}")
@@ -43,6 +47,7 @@ public class EquipoJugadorRestController {
     @PostMapping
     public EquipoJugadores createEquipoJugador(@RequestBody EquipoJugadorDTO equipoJugadorDTO) {
         EquipoJugadores equipoJugador = new EquipoJugadores();
+        equipoJugador.setId(new EquipoJugadoresId(equipoJugadorDTO.getIdEquipo(), equipoJugadorDTO.getIdJugador()));
         Equipos equipo = new Equipos();
         equipo.setId(equipoJugadorDTO.getIdEquipo());
         equipoJugador.setIdEquipo(equipo);

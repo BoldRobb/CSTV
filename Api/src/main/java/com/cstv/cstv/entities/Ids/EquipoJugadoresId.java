@@ -1,5 +1,6 @@
 package com.cstv.cstv.entities.Ids;
 
+import com.cstv.cstv.entities.EquipoJugadores;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -15,6 +16,10 @@ public class EquipoJugadoresId implements Serializable {
 
     // Constructor, getters y setters
 
+    public EquipoJugadoresId(Long idE, Long idJ) {
+        this.idEquipo= idE;
+        this.idJugador= idJ;
+    }
     public EquipoJugadoresId() {
     }
 

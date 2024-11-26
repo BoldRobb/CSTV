@@ -1,1 +1,55 @@
-<p>team-layout works!</p>
+
+<div *ngIf="isLoading" class="spinner-container">
+  <div class="spinner"></div>
+</div>
+<div *ngIf="!isLoading && !pageNotFound; else error" class="forum-container">
+
+  <div class="grid-container">
+
+    <div class="teambg">
+      <div class="teamHolder">
+        <div class="jugadores-container">
+          <div *ngFor="let jugador of jugadores" class="jugador">
+            <img [src]="jugador.foto" [alt]="jugador.mote" class="jugador-foto">
+            <a [routerLink]="['player/', jugador.id]" class="jugador-link">{{ jugador.mote }}</a>
+          </div>
+        </div>
+        <hr>
+        <div class="team-info">
+          <div class="team-info-left">
+            <img [src]="equipo?.foto" [alt]="equipo?.nombre" class="equipo-foto">
+            <a class="team-info-title">{{ equipo?.nombre }}</a>
+          </div>
+          <div class="team-info-right">
+            <p class="team-info-title">Social Media</p>
+            <div class="team-info-social">
+              <a href="{{equipo?.twitter}}" class="team-info-social-link">
+                <img src="icons/twitter.png" alt="Twitter" class="social-icon">
+              </a>
+              <a href="{{equipo?.instagram}}" class="team-info-social-link">
+                <img src="icons/instagram.png" alt="Instagram" class="social-icon">
+              </a>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    
+    <div class="recentActivity">
+     <app-recent-activity></app-recent-activity>
+    </div>
+</div>
+</div>
+
+
+  <ng-template #error>
+    <div *ngIf="pageNotFound">
+      
+        <div class="errorContainer">
+          <p class="errorTitle">Page Not Found</p>
+          <p class="errorText">The page you are looking for does not exist.</p>
+        </div>
+     
+    </div>
+  </ng-template>  
