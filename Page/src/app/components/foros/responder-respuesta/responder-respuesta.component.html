@@ -1,0 +1,11 @@
+<div class="forum-children">
+<div *ngIf="isLoggedIn" class="responder-form">
+    <form [formGroup]="responderForm" (ngSubmit)="onSubmitResponder()">
+      <div class="form-group">
+        <label for="respuesta">Respuesta</label>
+        <textarea id="respuesta" formControlName="respuesta" placeholder="Escribe tu respuesta aquí"></textarea>
+      </div>
+      <button type="submit" [disabled]="responderForm.invalid">Enviar Respuesta</button>
+    </form>
+  </div>
+</div>

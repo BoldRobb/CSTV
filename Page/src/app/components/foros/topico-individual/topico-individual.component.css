@@ -19,16 +19,7 @@
   }
   
   /* Línea que conecta los elementos */
-  .forum-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -20px;
-    width: 2px;
-    height: calc(100% + 20px);
-    background-color: #596d85;
-  }
-  
+
   .forum-item:first-child::before {
     display: none; /* No mostrar la línea en el primer elemento */
   }
@@ -68,7 +59,7 @@
   /* Subcontenedor (hijos) */
   .forum-children {
     margin-left: 30px;
-    border-left: 2px solid #9A9797;
+    border-left: 4px solid #9A9797;
     padding-left: 20px;
     background-color: none;
   }
@@ -95,6 +86,7 @@
   .forumbg{
     background-color: #212C39;
     margin-bottom: 1rem;
+    padding: 10px;
   }
   .divisoria{
     border-bottom: 1px solid #9A9797;
@@ -117,8 +109,12 @@
     margin: 5px 10px;
   }
   .responder{
-    color: #9A9797;
+    color: white;
     text-decoration: none;
+  }
+  .responder:hover{
+    color: #979797;
+    cursor: pointer;
   }
   .responder hover{
     color: white;

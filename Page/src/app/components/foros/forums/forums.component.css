@@ -50,11 +50,14 @@ hr{
     padding: 0.5rem;
 }
 .linkForos{
-color: #1B68DD;
+color: white;
 text-decoration: none;
 font-size: 32px;
 margin: 0;
 margin-left: 2rem;
+}
+.linkForos:hover{
+    color: #1B68DD;
 }
 .descForos{
     margin: 0;

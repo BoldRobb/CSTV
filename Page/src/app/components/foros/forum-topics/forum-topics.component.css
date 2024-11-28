@@ -54,11 +54,13 @@ hr{
     width: 100%;
 }
 .linkForos{
-color: #1B68DD;
+color: white;
 text-decoration: none;
-font-size: 32px;
+font-size: 24px;
 margin: 0;
-margin-left: 2rem;
+}
+.linkForos:hover{
+    color: #1B68DD;
 }
 .descForos{
     margin: 0;
@@ -132,10 +134,7 @@ input.form-control, textarea.form-control {
     font-size: 20px;
     text-align: left;
 }
-.topics-table a{
-    color: #1B68DD;
-    text-decoration: none;
-}
+
 .notLoggedText{
     color: #9A9797;
     font-size: 24px;

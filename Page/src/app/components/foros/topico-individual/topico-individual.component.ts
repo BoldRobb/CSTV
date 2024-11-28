@@ -6,11 +6,15 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ForoServiceService } from '../../../services/foro-service.service';
 import { RespuestaServiceService } from '../../../services/respuesta-service.service';
 import { RespuestasModel } from '../../../models/respuestas-model';
+import { AuthService } from '../../../services/auth.service';
+import { ResponderRespuestaComponent } from '../responder-respuesta/responder-respuesta.component';
+import { ResponderTopicoComponent } from '../responder-topico/responder-topico.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-topico-individual',
   standalone: true,
-  imports: [AlertComponent, CommonModule, RouterModule ],
+  imports: [AlertComponent, CommonModule, RouterModule, ResponderRespuestaComponent, ResponderTopicoComponent],
   templateUrl: './topico-individual.component.html',
   styleUrl: './topico-individual.component.css'
 })
@@ -22,11 +26,23 @@ export class TopicoIndividualComponent implements OnInit {
   topico?: TopicoModel;
   respuestas: RespuestasModel[] = [];
   respuestasDeRespuestas: { [key: number]: RespuestasModel[] } = {};
+  isLoggedIn = false;
+  showResponderForm = false;
+  responderForm: FormGroup;
+  currentUserId?: number;
+  respuestaPadreId?: number;
+
   constructor(
     private route: ActivatedRoute,
     private foroService: ForoServiceService,
-    private respuestaService: RespuestaServiceService
-  ) {}
+    private respuestaService: RespuestaServiceService,
+    private authService: AuthService,
+    private fb: FormBuilder
+  ) {
+    this.responderForm = this.fb.group({
+      respuesta: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -38,6 +54,9 @@ export class TopicoIndividualComponent implements OnInit {
         this.loadTopico(idTopico);
         this.loadRespuestas(idTopico);
       }
+    });
+    this.authService.isLoggedIn().subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
     });
   }
 
@@ -87,8 +106,10 @@ export class TopicoIndividualComponent implements OnInit {
     const anio = fecha.getFullYear();
     return `${dia}-${mes}-${anio}`;
   }
-  responderTopico(){
-    
+  toggleResponderForm(respuestaPadreId?: number): void {
+    this.showResponderForm = !this.showResponderForm;
+    this.respuestaPadreId = respuestaPadreId;
   }
+
 }
 

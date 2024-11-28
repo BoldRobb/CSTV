@@ -21,13 +21,16 @@
       <hr class="divisoria">
       <div class="forum-footer">
         <div class="forum-footer-left">
-            <a (click)="responderTopico()" class="responder">Responder</a>
+            <a *ngIf="isLoggedIn" (click)="toggleResponderForm()" class="responder">Responder</a>
         </div>
         <div class="forum-footer-right">
           {{ normalizeDate(topico?.fecha) }}
         </div>
       </div>
     </div>
+
+
+
       <!-- Subrespuesta -->
       <div *ngFor="let respuesta of respuestas"  class="forum-children">
         <div *ngIf="respuesta.respuestaPadre==null" >
@@ -42,7 +45,7 @@
             <hr class="divisoria">
           <div class="forum-footer">
             <div class="forum-footer-left">
-              <a (click)="responderTopico()" class="responder">Responder</a>
+              <a *ngIf="isLoggedIn" (click)="toggleResponderForm(respuesta.id)" class="responder">Responder</a>
           </div>
           <div class="forum-footer-right">
             {{ normalizeDate(respuesta.fecha) }}
@@ -50,6 +53,8 @@
           </div>
         
       </div>
+
+      
           <!-- Sub-subrespuesta -->
           <div *ngIf="respuestasDeRespuestas[respuesta.id]" class="forum-children">
             <div *ngFor="let respuestaDeRespuesta of respuestasDeRespuestas[respuesta.id]" class="forum-item">
@@ -69,10 +74,14 @@
             
           </div>
         </div>
+        <!-- Formulario para responder a una respuesta -->
+      <app-responder-respuesta *ngIf="showResponderForm && respuestaPadreId === respuesta.id" [respuestaPadre]="respuesta"></app-responder-respuesta>
         </div>
       </div>
-    
+    <!-- Formulario para responder al tópico -->
+  <app-responder-topico *ngIf="showResponderForm && topico" [topico]="topico"></app-responder-topico>
     </div>
+  
 
   </div>
   <ng-template #error>

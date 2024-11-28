@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RespuestasModel } from '../models/respuestas-model';
 import { Observable } from 'rxjs';
+import { RespuestaDTO } from '../models/DTO/respuestaDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class RespuestaServiceService {
   private apiUrl = 'http://localhost:8080/api/respuestas';
   constructor(private http: HttpClient) { }
 
-  addRespuesta(respuesta: any) {
+  addRespuesta(respuesta: RespuestaDTO) {
     return this.http.post(this.apiUrl, respuesta);
   }
 
