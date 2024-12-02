@@ -1,5 +1,7 @@
 package com.cstv.cstv.domain;
 
+import java.util.Date;
+
 public class PartidoDTO {
     private Long id;
     private Long equipo1;
@@ -8,7 +10,15 @@ public class PartidoDTO {
     private Long idGanador;
     private String formato;
     private String marcador;
+    private Date fecha;
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     public Long getId() {
         return id;
     }

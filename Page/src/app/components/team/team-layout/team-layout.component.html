@@ -9,15 +9,15 @@
     <div class="teambg">
       <div class="teamHolder">
         <div class="jugadores-container">
-          <div *ngFor="let jugador of jugadores" class="jugador">
+          <div *ngFor="let jugador of jugadores.length ? jugadores : defaultPlayers   " class="jugador">
             <img [src]="jugador.foto" [alt]="jugador.mote" class="jugador-foto">
-            <a [routerLink]="['player/', jugador.id]" class="jugador-link">{{ jugador.mote }}</a>
+            <a [routerLink]="['/player/', jugador.id]" class="jugador-link">{{ jugador.mote }}</a>
           </div>
         </div>
         <hr>
         <div class="team-info">
           <div class="team-info-left">
-            <img [src]="equipo?.foto" [alt]="equipo?.nombre" class="equipo-foto">
+            <img [src]="equipo?.foto || 'icons/help.png'" [alt]="equipo?.nombre" class="equipo-foto">
             <a class="team-info-title">{{ equipo?.nombre }}</a>
           </div>
           <div class="team-info-right">
@@ -30,6 +30,15 @@
                 <img src="icons/instagram.png" alt="Instagram" class="social-icon">
               </a>
             </div>
+          </div>
+        </div>
+        <hr>
+        <div class="team-info">
+          <div class="team-info-left">
+            <p class="team-info-title">World Ranking</p>
+          </div>
+          <div class="team-info-right">
+            <p class="team-info-title">#{{ equipo?.rankingActual }}</p>
           </div>
         </div>
         <hr>

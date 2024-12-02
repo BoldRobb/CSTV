@@ -24,7 +24,7 @@ public class Banlist {
     @Column(name = "Estatus", length = 100)
     private String estatus;
 
-    @Column(name="ID_Equipo", nullable = false, insertable = false, updatable = false)
+    @Column(name="ID_Equipo")
     private long idEquipo;
 
 

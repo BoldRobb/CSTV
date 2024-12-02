@@ -6,7 +6,14 @@
     <a routerLink="/forum" class="individualBox">Forum</a>
     <a [routerLink]="['/profile/', id]" class="individualBox">{{username}}</a>
     <div class="searchBar">
-      <input type="text" placeholder="Search" #Filter>
+      <input type="text" placeholder="Search" #Filter (input)="onSearch(Filter.value)">
       <button><img src="icons/search.png" alt="Search Icon" class="searchIcon"></button>
+      <div *ngIf="searchResults.length > 0" class="search-results">
+        <ul>
+          <li *ngFor="let result of searchResults" (click)="navigateToResult(result)">
+            {{ result.type }}: {{ result.name }}
+          </li>
+        </ul>
+      </div>  
     </div>
   </div>

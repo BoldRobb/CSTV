@@ -59,9 +59,7 @@ button {
 }
 
 .searchBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 .login-form-overlay {
   position: fixed;
@@ -74,4 +72,47 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+.searchBar input {
+  padding: 0.5rem;
+  width: 200px;
+  margin: 10px;
+}
+
+.searchBar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.searchIcon {
+  width: 25px;
+  height: 25px;
+}
+
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #182234;
+  border: 1px solid #1F242D;
+  color: #979797;
+  z-index: 1000;
+}
+
+.search-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results li {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: #212C39;
 }

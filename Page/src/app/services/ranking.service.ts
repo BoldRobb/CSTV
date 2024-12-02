@@ -14,7 +14,7 @@ export class RankingService {
 
   getRankingToday(): Observable<RankingModel[]>{
     const hoy = new Date().toISOString().split('T')[0]; // Convierte la fecha a formato yyyy-MM-dd
-    console.log(hoy);
+    
     return this.http.get<RankingModel[]>(`${this.apiUrlFecha}${hoy}`);
   }
   addRanking(ranking: RankingModel): Observable<RankingModel> {

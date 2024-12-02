@@ -5,8 +5,11 @@ package com.cstv.cstv.rest;
 import java.util.List;
 import java.util.Optional;
 
+import com.cstv.cstv.config.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,11 @@ public class UsuariosRest {
     private final  UsuariosService usuariosService;
     private final PasswordEncoder passwordEncoder;
 
+
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     public UsuariosRest(UsuariosService userService, PasswordEncoder passwordEncoder) {
         this.usuariosService = userService;
@@ -84,6 +92,7 @@ public class UsuariosRest {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             return ResponseEntity.status(401).body("Invalid password");
         }
+
         return ResponseEntity.ok(user);
     }
 }

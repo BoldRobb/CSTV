@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/partidos")
@@ -44,15 +45,29 @@ public class PartidoRestController {
         partido.getGanador().setId(partidoDTO.getIdGanador());
         partido.setFormato(partidoDTO.getFormato());
         partido.setMarcador(partidoDTO.getMarcador());
+        partido.setFecha(partidoDTO.getFecha());
+
         return partidoService.save(partido);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Partido> updatePartido(@PathVariable Long id, @RequestBody Partido partido) {
+    public ResponseEntity<Partido> updatePartido(@PathVariable Long id, @RequestBody PartidoDTO partidoDTO) {
         if (!partidoService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        partido.setId(id);
+        Partido partido = new Partido();
+        partido.setId(partidoDTO.getId());
+        partido.setEquipo1(new Equipos());
+        partido.getEquipo1().setId(partidoDTO.getEquipo1());
+        partido.setEquipo2(new Equipos());
+        partido.getEquipo2().setId(partidoDTO.getEquipo2());
+        partido.setTorneo(new Torneos());
+        partido.getTorneo().setId(partidoDTO.getIdTorneo());
+        partido.setGanador(new Equipos());
+        partido.getGanador().setId(partidoDTO.getIdGanador());
+        partido.setFormato(partidoDTO.getFormato());
+        partido.setMarcador(partidoDTO.getMarcador());
+        partido.setFecha(partidoDTO.getFecha());
         return ResponseEntity.ok(partidoService.save(partido));
     }
 
@@ -63,5 +78,35 @@ public class PartidoRestController {
         }
         partidoService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/torneo/{torneoId}")
+    public List<Partido> getPartidoByTorneoId(@PathVariable Long torneoId) {
+        return partidoService.findByTorneo_Id(torneoId);
+    }
+
+    @GetMapping("/equipo/{equipoId}")
+    public List<Partido> getPartidoByEquipoId(@PathVariable Long equipoId) {
+        return partidoService.findByEquipo1_IdOrEquipo2_Id(equipoId);
+    }
+    @PostMapping("/list")
+    public List<Partido> createPartidos(@RequestBody List<PartidoDTO> partidoDTOList) {
+        List<Partido> partidos = partidoDTOList.stream().map(dto -> {
+            Partido partido = new Partido();
+            partido.setId(dto.getId());
+            partido.setEquipo1(new Equipos());
+            partido.getEquipo1().setId(dto.getEquipo1());
+            partido.setEquipo2(new Equipos());
+            partido.getEquipo2().setId(dto.getEquipo2());
+            partido.setTorneo(new Torneos());
+            partido.getTorneo().setId(dto.getIdTorneo());
+            partido.setGanador(new Equipos());
+            partido.getGanador().setId(dto.getIdGanador());
+            partido.setFormato(dto.getFormato());
+            partido.setMarcador(dto.getMarcador());
+            partido.setFecha(dto.getFecha());
+            return partido;
+        }).collect(Collectors.toList());
+        return partidoService.saveAll(partidos);
     }
 }

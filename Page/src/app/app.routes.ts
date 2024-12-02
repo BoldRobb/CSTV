@@ -21,6 +21,8 @@ import { TestComponent } from './test/test/test.component';
 import { TopicoIndividualComponent } from './components/foros/topico-individual/topico-individual.component';
 import { TeamLayoutComponent } from './components/team/team-layout/team-layout.component';
 import { EventInidividualComponent } from './components/eventos/event-inidividual/event-inidividual.component';
+import { MatchIndividualComponent } from './components/matches/match-individual/match-individual.component';
+import { PlayerLayoutComponent } from './components/players/player-layout/player-layout.component';
 
 
 export const routes: Routes = [
@@ -49,11 +51,16 @@ export const routes: Routes = [
     //Eventos
     {path: 'events', component: EventsMainComponent},
     {path: 'events/:id', component: EventInidividualComponent},
+
+    //Match
+    {path: 'match/:id', component: MatchIndividualComponent},
     //Cuenta
     {path: 'register', component: SignupFormComponent},
     {path: 'profile/:id', component: ProfileComponent},
     {path: 'editProfile', component: EditProfileComponent},
 
+    //Players
+    {path: 'player/:id', component: PlayerLayoutComponent},
     //Teams
     {path: 'team/:id', component: TeamLayoutComponent},
     //test

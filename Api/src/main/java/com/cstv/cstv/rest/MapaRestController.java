@@ -61,4 +61,26 @@ public class MapaRestController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/partido/{idPartido}")
+    public List<Mapa> getMapasByPartidoId(@PathVariable(name = "idPartido") Long idPartido){
+        return mapaRepo.findByPartido_Id(idPartido);
+    }
+
+    @PostMapping("/list")
+    public List<Mapa> createListMapas(@RequestBody List<MapaDTO> mapasDTO){
+        List<Mapa> mapas = mapasDTO.stream().map(mapaDTO -> {
+            Mapa mapa = new Mapa();
+            mapa.setId(mapaDTO.getId());
+            mapa.setPartido(new Partido());
+            mapa.getPartido().setId(mapaDTO.getIdPartido());
+            mapa.setMapa(mapaDTO.getMapa());
+            mapa.setEquipo1T(mapaDTO.getEquipo1T());
+            mapa.setEquipo1CT(mapaDTO.getEquipo1CT());
+            mapa.setEquipo2T(mapaDTO.getEquipo2T());
+            mapa.setEquipo2CT(mapaDTO.getEquipo2CT());
+            return mapa;
+        }).toList();
+        return mapaRepo.saveAll(mapas);
+    }
+
 }

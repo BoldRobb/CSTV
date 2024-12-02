@@ -19,7 +19,20 @@
               </tr>
             </table>
           
-            
+            <div class="event-info">
+              <div class="event-info-item">
+                <strong>Date: </strong> {{ torneo?.fechaInicial | date:'yyyy-MM-dd' }} to {{ torneo?.fechaFinal | date:'yyyy-MM-dd' }}
+              </div>
+              <div class="event-info-item">
+                <strong>Prize Pool: </strong> {{ torneo?.prizepool | currency }}
+              </div>
+              <div class="event-info-item">
+                <strong>Teams: </strong> {{ torneo?.equipos_cant }}
+              </div>
+              <div class="event-info-item">
+                <strong>Location: </strong> <img [src]="'https://purecatamphetamine.github.io/country-flag-icons/3x2/' + torneo?.localizacion + '.svg'" alt="{{ torneo?.localizacion }}" class="imgBandera"> {{ torneo?.localizacion }}
+              </div>
+            </div>
             
         </div>
         <div class="event-content">
@@ -36,6 +49,8 @@
             <app-event-statistics [torneo]="torneo"></app-event-statistics>
           </div>  
         </div>
+
+
       </div>
       
       <div class="recentActivity">

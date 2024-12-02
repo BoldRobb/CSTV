@@ -29,4 +29,17 @@ public class PartidoService {
     public void deleteById(Long id) {
         partidoRepo.deleteById(id);
     }
+
+    public List<Partido> findByTorneo_Id(Long torneoId) {
+        return partidoRepo.findByTorneo_Id(torneoId);
+    }
+
+    public List<Partido> findByEquipo1_IdOrEquipo2_Id(Long equipoId1) {
+        return partidoRepo.findByEquipo1_IdOrEquipo2_Id(equipoId1, equipoId1);
+    }
+
+    public List<Partido> saveAll(List<Partido> partidos) {
+        return partidoRepo.saveAll(partidos);
+    }
+
 }

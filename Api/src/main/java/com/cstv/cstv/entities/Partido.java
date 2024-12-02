@@ -2,6 +2,8 @@ package com.cstv.cstv.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "partido")
 public class Partido {
@@ -31,6 +33,18 @@ public class Partido {
 
     @Column (name = "Marcador")
     private String marcador;
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Column(name = "Fecha")
+    private Date fecha;
+
 
     public String getFormato() {
         return formato;

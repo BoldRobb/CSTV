@@ -1,6 +1,7 @@
 package com.cstv.cstv.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +31,14 @@ public class BanlistRestController {
     }
 
     @GetMapping("/{idPartido}")
-    public List<Banlist> getBanlistById(@PathVariable Long id) {
-        return banlistService.findByIdPartido(id);
+    public List<Banlist> getBanlistById(@PathVariable Long idPartido) {
+        return banlistService.findByIdPartido(idPartido);
     }
 
     @PostMapping
     public ResponseEntity<Banlist> createBanlist(@RequestBody BanlistDTO banlistDTO) {
         Banlist banlist = new Banlist();
-        
+        banlist.setId(new BanlistId(banlistDTO.getIdPartido(), banlistDTO.getMapa()));
         banlist.setIdPartido(banlistDTO.getIdPartido());
         banlist.setMapa(banlistDTO.getMapa());
         banlist.setEstatus(banlistDTO.getEstatus());
@@ -47,6 +48,19 @@ public class BanlistRestController {
         return ResponseEntity.ok(savedBanlist);
     }
 
+    @PostMapping("/list")
+    public List<Banlist> createBanlists(@RequestBody List<BanlistDTO> banlistDTOList) {
+        List<Banlist> banlists = banlistDTOList.stream().map(dto -> {
+            Banlist banlist = new Banlist();
+            banlist.setId(new BanlistId(dto.getIdPartido(), dto.getMapa()));
+            banlist.setIdPartido(dto.getIdPartido());
+            banlist.setMapa(dto.getMapa());
+            banlist.setEstatus(dto.getEstatus());
+            banlist.setIdEquipo(dto.getIdEquipo());
+            return banlist;
+        }).collect(Collectors.toList());
+        return banlistService.saveAll(banlists);
+    }
 
     @DeleteMapping("/{idPartido}/{Mapa}")
     public ResponseEntity<Void> deleteBanlistMapa(@PathVariable Long idPartido, @PathVariable String mapa) {
@@ -66,5 +80,4 @@ public class BanlistRestController {
         banlistService.deleteByIdPartido(idPartido);
         return ResponseEntity.noContent().build();
     }
-    
 }

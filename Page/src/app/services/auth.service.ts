@@ -36,6 +36,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('user');
+    localStorage.removeItem('jwt');
     this.loggedIn.next(false);
     this.username.next(null);
     this.userId.next(null);
@@ -54,5 +55,13 @@ export class AuthService {
   }
   getUserPaisObservable(): Observable<string | null> {
     return this.userPais.asObservable();
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('jwt', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('jwt');
   }
 }

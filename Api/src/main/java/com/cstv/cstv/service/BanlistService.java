@@ -35,5 +35,8 @@ public class BanlistService {
     public void deleteById(BanlistId id) {
         banlistRepo.deleteById(id);
     }
-    
+
+    public List<Banlist> saveAll(List<Banlist> banlists) {
+        return banlistRepo.saveAll(banlists);
+    }
 }

@@ -29,4 +29,13 @@ public class MapaService {
     public void deleteById(Long id) {
         mapaRepo.deleteById(id);
     }
+
+    public List<Mapa> findByPartido_Id(Long idPartido) {
+        return mapaRepo.findByPartido_Id(idPartido);
+    }
+
+    public List<Mapa> saveAll(List<Mapa> mapas) {
+        return mapaRepo.saveAll(mapas);
+    }
+
 }
