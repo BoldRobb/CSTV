@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { TorneoModel } from '../models/torneo-model';
 import { Observable, switchMap } from 'rxjs';
 import { TorneomainModel } from '../models/torneomain-model';
+import { TorneoEquiposModel } from '../models/torneo-equipos-model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,8 @@ export class TorneoService {
   getTorneo(id: number): Observable<TorneoModel>{
     return this.http.get<TorneoModel>(`${this.apiUrl}/${id}`);
   }
-
+  getEquiposTorneo(id: number): Observable<TorneoEquiposModel[]>{
+    return this.http.get<TorneoEquiposModel[]>(`${this.apiUrlEquipos}/${id}`);
+  }
+  
 }

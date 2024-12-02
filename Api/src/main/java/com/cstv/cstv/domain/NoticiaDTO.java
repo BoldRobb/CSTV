@@ -1,6 +1,7 @@
 package com.cstv.cstv.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class NoticiaDTO {
     private Long id;
@@ -9,8 +10,34 @@ public class NoticiaDTO {
     private String html;
     private Date fecha;
     private String titulo;
-
+    private List<Long> equiposIds;
+    private List<Long> torneosIds;
+    private List<Long> jugadoresIds;
     // Getters y Setters
+
+    public List<Long> getEquiposIds() {
+        return equiposIds;
+    }
+
+    public void setEquiposIds(List<Long> equiposIds) {
+        this.equiposIds = equiposIds;
+    }
+
+    public List<Long> getTorneosIds() {
+        return torneosIds;
+    }
+
+    public void setTorneosIds(List<Long> torneosIds) {
+        this.torneosIds = torneosIds;
+    }
+
+    public List<Long> getJugadoresIds() {
+        return jugadoresIds;
+    }
+
+    public void setJugadoresIds(List<Long> jugadoresIds) {
+        this.jugadoresIds = jugadoresIds;
+    }
 
     public Long getId() {
         return id;

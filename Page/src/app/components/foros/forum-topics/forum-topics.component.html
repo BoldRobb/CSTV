@@ -39,12 +39,19 @@
                 <form [formGroup]="newTopicForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" formControlName="title" placeholder="Topic Title">
+                        <div *ngIf="newTopicForm.get('title')?.invalid && newTopicForm.get('title')?.touched" class="error">
+                            <div *ngIf="newTopicForm.get('title')?.errors?.['required']">Title is required.</div>
+                            <div *ngIf="newTopicForm.get('title')?.errors?.['maxlength']">Title cannot be more than 100 characters.</div>
+                          </div>
                         <h2>Description</h2>
                         <textarea class="form-control" id="description" formControlName="description" rows="6" style="resize: none;"></textarea>
+                        <div *ngIf="newTopicForm.get('description')?.invalid && newTopicForm.get('description')?.touched" class="error">
+                            <div *ngIf="newTopicForm.get('description')?.errors?.['required']">Description is required.</div>
+                          </div>
                         <div [ngClass]="{'char-counter': true, 'char-counter-exceed': newTopicForm.get('description')?.value?.length > 255}">
                             {{ newTopicForm.get('description')?.value?.length || 0 }} / 255 characters
                         </div>
-                        <button type="submit" class="btn-primary" >Submit</button>
+                        <button type="submit" class="btn-primary" [disabled]="newTopicForm.invalid">Submit</button>
                     </div>
                 </form>
             </div>

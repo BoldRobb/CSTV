@@ -1,0 +1,131 @@
+.content {
+    padding: 1rem;
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+  
+  h2 {
+    color: #979797;
+    margin-bottom: 1rem;
+    font-weight: semi-bold;
+    font-size: 40px;
+  }
+
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 1rem;
+  }
+  
+  .team-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    height: 150px;
+    background-color: #1F242D;
+    color: #9A9797;
+  }
+  .team-cell a{
+    color: #9A9797;
+    text-decoration: none;
+  }
+  
+  .ranking {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: #303D57;
+    color: #979797;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  .prize-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  .prize-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    height: auto;
+    background-color: #1F242D;
+    color: #9A9797;
+  }
+  
+  .position {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .prize-cell a{
+    color: #9A9797;
+    text-decoration: none;
+  }
+  .team-photo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .prize {
+    font-weight: bold;
+  }
+  .news-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .news-table th, .news-table td {
+    border: 1px solid #1F242D;
+    padding: 0.5rem;
+    text-align: left;
+    color: white;
+  }
+  
+  
+  .news-table tr {
+    cursor: pointer;
+  }
+  
+  .news-table tr:hover {
+    background-color: rgb(26, 35, 53);
+  }
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

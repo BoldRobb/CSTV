@@ -20,6 +20,7 @@ import { EditProfileComponent } from './components/profile/edit-profile/edit-pro
 import { TestComponent } from './test/test/test.component';
 import { TopicoIndividualComponent } from './components/foros/topico-individual/topico-individual.component';
 import { TeamLayoutComponent } from './components/team/team-layout/team-layout.component';
+import { EventInidividualComponent } from './components/eventos/event-inidividual/event-inidividual.component';
 
 
 export const routes: Routes = [
@@ -47,6 +48,7 @@ export const routes: Routes = [
     ]},
     //Eventos
     {path: 'events', component: EventsMainComponent},
+    {path: 'events/:id', component: EventInidividualComponent},
     //Cuenta
     {path: 'register', component: SignupFormComponent},
     {path: 'profile/:id', component: ProfileComponent},

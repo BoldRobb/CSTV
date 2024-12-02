@@ -111,6 +111,7 @@
   .responder{
     color: white;
     text-decoration: none;
+    font-weight: bold;
   }
   .responder:hover{
     color: #979797;
@@ -119,4 +120,19 @@
   .responder hover{
     color: white;
     cursor: pointer;
+  }
+  .header-respuesta{
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .imgBandera{
+    width: 30px;
+  }
+  .forum-header-right{
+    margin:auto 0;
   }

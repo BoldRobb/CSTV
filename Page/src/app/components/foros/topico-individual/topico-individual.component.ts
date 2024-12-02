@@ -28,7 +28,7 @@ export class TopicoIndividualComponent implements OnInit {
   respuestasDeRespuestas: { [key: number]: RespuestasModel[] } = {};
   isLoggedIn = false;
   showResponderForm = false;
-  responderForm: FormGroup;
+  showResponderRespuestaForm = false;
   currentUserId?: number;
   respuestaPadreId?: number;
 
@@ -39,9 +39,7 @@ export class TopicoIndividualComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder
   ) {
-    this.responderForm = this.fb.group({
-      respuesta: ['', Validators.required]
-    });
+    
   }
 
   ngOnInit(): void {
@@ -98,6 +96,12 @@ export class TopicoIndividualComponent implements OnInit {
       }
     );
   }
+  onResponderAgregada(): void {
+    this.loadRespuestas(this.topico!.id);
+    this.showResponderForm = false;
+    this.showResponderRespuestaForm = false;
+    this.showAlert('Reply added succesfully', 'success');
+  }
   normalizeDate(date: Date | undefined): string {        
     if(!date) return '';  
     const fecha = new Date(date);
@@ -106,9 +110,23 @@ export class TopicoIndividualComponent implements OnInit {
     const anio = fecha.getFullYear();
     return `${dia}-${mes}-${anio}`;
   }
-  toggleResponderForm(respuestaPadreId?: number): void {
+  toggleResponderForm(): void {
     this.showResponderForm = !this.showResponderForm;
-    this.respuestaPadreId = respuestaPadreId;
+  }
+  toggleResponderRespuestaForm(respuestaPadreId?: number): void {
+    if(this.respuestaPadreId === respuestaPadreId) {
+      this.showResponderRespuestaForm = !this.showResponderRespuestaForm;
+    } else {
+      this.respuestaPadreId = respuestaPadreId;
+      this.showResponderRespuestaForm = true;}
+    
+  }
+  private showAlert(message: string, type: 'success' | 'error'): void {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = '';
+    }, 5000);
   }
 
 }

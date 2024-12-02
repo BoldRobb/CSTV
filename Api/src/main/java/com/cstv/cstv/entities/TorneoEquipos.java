@@ -13,7 +13,10 @@ import jakarta.persistence.Table;
 @Table(name = "torneo_equipos")
 public class TorneoEquipos {
 
+
+
     @EmbeddedId
+
     private TorneoEquiposId id;
 
     // Relación con la entidad Equipo
@@ -31,7 +34,13 @@ public class TorneoEquipos {
 
     @Column(name = "Premio")
     private Integer premio;
+    public TorneoEquiposId getId() {
+        return id;
+    }
 
+    public void setId(TorneoEquiposId id) {
+        this.id = id;
+    }
     public Torneos getIdTorneo() {
         return idTorneo;
     }

@@ -34,4 +34,8 @@ public class TorneoEquiposService {
     public void deleteById(TorneoEquiposId id) {
         torneoEquiposRepo.deleteById(id);
     }
+
+    public List<TorneoEquipos> saveAll(List<TorneoEquipos> torneoEquipos) {
+        return torneoEquiposRepo.saveAll(torneoEquipos);
+    }
 }

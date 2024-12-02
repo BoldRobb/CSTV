@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { NavbarComponent } from '../../navbar/navbar.component';
 import { NoticiaService } from '../../../services/noticia-service.service';
 import { NoticiaModel } from '../../../models/noticia-model';
 import { CommonModule } from '@angular/common';
@@ -11,7 +10,7 @@ import { RecentActivityComponent } from '../../foros/recent-activity/recent-acti
 @Component({
   selector: 'app-noticia-individual',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, RouterModule, RecentActivityComponent],
+  imports: [ CommonModule, RouterModule, RecentActivityComponent],
   templateUrl: './noticia-individual.component.html',
   styleUrl: './noticia-individual.component.css'
 })

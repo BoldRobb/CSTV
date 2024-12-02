@@ -34,4 +34,14 @@ export class NoticiaService {
   getNoticiasByUserId(id: number): Observable<NoticiaModel[]> {
     return this.http.get<NoticiaModel[]>(this.apiUrl+'/user/'+id);
   }
+  getNoticiasForJugador(id: number): Observable<NoticiaModel[]> {
+    return this.http.get<NoticiaModel[]>(this.apiUrl+'/jugadores/'+id);
+  }
+  getNoticiasForEquipo(id: number): Observable<NoticiaModel[]> {
+    return this.http.get<NoticiaModel[]>(this.apiUrl+'/equipos/'+id);
+  }
+  getNoticiasForTorneo(id: number): Observable<NoticiaModel[]> {
+    return this.http.get<NoticiaModel[]>(this.apiUrl+'/torneos/'+id);
+  }
+  
 }

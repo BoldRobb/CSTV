@@ -1,0 +1,72 @@
+<div class="content">
+  <div *ngIf="isLoading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+  <div *ngIf="!isLoading">
+  <h2>Teams attending</h2>
+  <div class="teams-grid">
+    <div *ngFor="let equipo of getEquiposSortedByRanking()" class="team-cell">
+      <div class="ranking">{{ equipo?.idEquipo?.rankingActual || '?' }}</div>
+      <a [routerLink]="['/team', equipo?.idEquipo?.id]">
+        <img [src]="equipo?.idEquipo?.foto || 'icons/help.png'" [alt]="equipo?.idEquipo?.nombre || 'TBD'" class="team-photo">
+        
+      </a>
+      <a [routerLink]="['/team', equipo?.idEquipo?.id]">
+        <span>{{ equipo?.idEquipo?.nombre || 'TBD' }}</span>
+      </a>
+    </div>
+  </div>
+  <div class="teams-grid">
+    <div *ngIf="!equipos.length">
+      <div *ngFor="let i of [].constructor(torneo?.equipos_cant)" class="team-cell">
+      <div class="ranking">?</div>
+      <img src="icons/help.png" alt="TBD" class="team-photo">
+      <span>TBD</span>
+      </div>
+    </div>
+  </div>
+
+
+  <h2>Tournament format</h2>
+  <p>WIP</p>
+
+  <h2>Prize Distribution</h2>
+  <div class="prize-grid">
+    <div *ngFor="let equipo of equipos; let i = index" class="prize-cell">
+      <div class="position">{{ formatPosition(i + 1) }}</div>
+      <div class="team">
+        <a [routerLink]="['/team', equipo?.idEquipo?.id]">
+          <img [src]="equipo?.idEquipo?.foto || 'icons/help.png'" [alt]="equipo?.idEquipo?.nombre || 'TBD'" class="team-photo">
+        </a>
+        <a [routerLink]="['/team', equipo?.idEquipo?.id]">
+          <span>{{ equipo?.idEquipo?.nombre || 'TBD' }}</span>
+        </a>
+      </div>
+      <div class="prize">{{ formatCurrency(equipo?.premio) || 'TBD' }}</div>
+    </div>
+    <div *ngIf="!equipos.length"  >
+      <div *ngFor="let i of [].constructor(torneo?.equipos_cant)" class="prize-cell">
+      <div class="position">{{ formatPosition(i + 1) }}</div>
+      <div class="team">
+        <img src="icons/help.png" alt="TBD" class="team-photo">
+        <span>TBD</span>
+      </div>
+      <div class="prize">TBD</div>
+    </div>
+  </div>
+  </div>
+
+  <h2>Related news</h2>
+  <table class="news-table">
+    <tbody>
+      <tr *ngFor="let noticia of noticias" (click)="navigateToNoticia(noticia.id)">
+        <td>{{ noticia.titulo }}</td>
+        <td>{{ noticia.usuario.username }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  </div>
+
+</div>

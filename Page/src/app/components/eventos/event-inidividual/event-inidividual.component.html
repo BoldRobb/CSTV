@@ -6,13 +6,36 @@
   
     <div class="grid-container">
   
-      <div class="evenbg">
+      <div class="eventbg">
         <div class="eventHolder">
-          <div class="event-info">
-            <div class="event-info-left">
-                </div>
-                </div>
-              </div>
+            <img class="event-logo"[src]="torneo?.logo" alt="icons/search.png">
+            <div class="event-title">{{torneo?.nombre}}</div>
+            <table class="nav-table">
+              <tr>
+                <td><a (click)="openComponent('general')">General</a></td>
+                <td><a (click)="openComponent('matches')">Matches</a></td>
+                <td><a (click)="openComponent('results')">Results</a></td>
+                <td><a (click)="openComponent('statistics')">Statistics</a></td>
+              </tr>
+            </table>
+          
+            
+            
+        </div>
+        <div class="event-content">
+          <div *ngIf="currentComponent === 'general'" >
+            <app-event-general [torneo]="torneo"></app-event-general>
+          </div>
+          <div *ngIf="currentComponent === 'matches'">
+            <app-event-matches [torneo]="torneo"></app-event-matches>
+          </div>
+          <div *ngIf="currentComponent === 'results'">
+            <app-event-results [torneo]="torneo"></app-event-results>
+          </div>
+          <div *ngIf="currentComponent === 'statistics'">
+            <app-event-statistics [torneo]="torneo"></app-event-statistics>
+          </div>  
+        </div>
       </div>
       
       <div class="recentActivity">

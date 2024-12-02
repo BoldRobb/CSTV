@@ -145,10 +145,14 @@ ngOnInit(): void {
   async onSubmit(): Promise<void> {
 
     if (this.newTopicForm.valid) {
-      const titleHarmful = this.TestGeminiPro(this.newTopicForm.value.title);
-      const descriptionHarmful = this.TestGeminiPro(this.newTopicForm.value.description);
-
-      if(!(await titleHarmful) && !(await descriptionHarmful)){
+      const { title, description } = this.newTopicForm.value;
+      const content = `${title} ${description}`;
+      if(title.length > 100 ){
+        return this.showAlert('Error creating topic, title is longer than 100 characters', 'error');}
+      if(description.length > 255 ){
+        return this.showAlert('Error creating topic, description is longer than 255 characters', 'error');}
+      const isHarmful = await this.TestGeminiPro(content);
+      if(!(await isHarmful) ){
       const newTopic = this.newTopicForm.value;
       const topic = new TopicoDTO(
         0,

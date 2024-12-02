@@ -1,15 +1,10 @@
 package com.cstv.cstv.entities;
 
 import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "noticia")
@@ -36,6 +31,57 @@ public class Noticia {
 
     @Column(name= "titulo", nullable= false)
     private String titulo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "noticia_equipos",
+            joinColumns = @JoinColumn(name = "noticia_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipo_id")
+    )
+    @JsonIgnore
+    private List<Equipos> equipos;
+
+    @ManyToMany
+    @JoinTable(
+            name = "noticia_torneos",
+            joinColumns = @JoinColumn(name = "noticia_id"),
+            inverseJoinColumns = @JoinColumn(name = "torneo_id")
+    )
+    @JsonIgnore
+    private List<Torneos> torneos;
+
+    @ManyToMany
+    @JoinTable(
+            name = "noticia_jugadores",
+            joinColumns = @JoinColumn(name = "noticia_id"),
+            inverseJoinColumns = @JoinColumn(name = "jugador_id")
+    )
+    @JsonIgnore
+    private List<Jugadores> jugadores;
+
+    public List<Equipos> getEquipos() {
+        return equipos;
+    }
+
+    public void setEquipos(List<Equipos> equipos) {
+        this.equipos = equipos;
+    }
+
+    public List<Torneos> getTorneos() {
+        return torneos;
+    }
+
+    public void setTorneos(List<Torneos> torneos) {
+        this.torneos = torneos;
+    }
+
+    public List<Jugadores> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<Jugadores> jugadores) {
+        this.jugadores = jugadores;
+    }
 
     public Long getId() {
         return id;

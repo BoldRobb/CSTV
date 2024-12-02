@@ -1,6 +1,7 @@
 package com.cstv.cstv.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,7 @@ public class TorneoEquipoRestController {
     @PostMapping
     public TorneoEquipos createTorneoEquipo(@RequestBody TorneoEquiposDTO torneoEquipoDTO) {
         TorneoEquipos torneoEquipo = new TorneoEquipos();
+        torneoEquipo.setId(new TorneoEquiposId(torneoEquipoDTO.getIdTorneo(), torneoEquipoDTO.getIdEquipo()));
         torneoEquipo.setIdEquipo(new Equipos());
         torneoEquipo.setIdTorneo(new Torneos());
         torneoEquipo.getIdEquipo().setId(torneoEquipoDTO.getIdEquipo());
@@ -56,5 +58,22 @@ public class TorneoEquipoRestController {
         }
         torneoEquipoService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/list/")
+    public List<TorneoEquipos> createTorneoEquipos( @RequestBody List<TorneoEquiposDTO> torneoEquiposDTOList) {
+        List<TorneoEquipos> torneoEquiposList = torneoEquiposDTOList.stream().map(dto -> {
+
+            TorneoEquipos torneoEquipo = new TorneoEquipos();
+            torneoEquipo.setId(new TorneoEquiposId(dto.getIdTorneo(), dto.getIdEquipo()));
+            torneoEquipo.setIdEquipo(new Equipos());
+            torneoEquipo.setIdTorneo(new Torneos());
+            torneoEquipo.getIdEquipo().setId(dto.getIdEquipo());
+            torneoEquipo.getIdTorneo().setId(dto.getIdTorneo());
+            torneoEquipo.setPosicion(dto.getPosicion());
+            torneoEquipo.setPremio(dto.getPremio());
+            return torneoEquipo;
+        }).collect(Collectors.toList());
+        return torneoEquipoService.saveAll(torneoEquiposList);
     }
 }

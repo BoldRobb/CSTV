@@ -2,7 +2,7 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 75% 25%;
     width: 100%;
 }
 .noticiasHome {

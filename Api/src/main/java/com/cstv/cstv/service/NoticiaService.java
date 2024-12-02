@@ -36,4 +36,17 @@ public class NoticiaService {
     public List<Noticia> findAllByUsuario_Id(Long id) {
         return noticiaRepo.findAllByUsuario_Id(id);
     }
+
+    public List<Noticia> findAllByEquipos_Id(Long id) {
+        return noticiaRepo.findAllByEquipos_Id(id);
+    }
+
+    public List<Noticia> findAllByTorneos_Id(Long id) {
+        return noticiaRepo.findAllByTorneos_Id(id);
+    }
+
+    public List<Noticia> findAllByJugadores_Id(Long id) {
+        return noticiaRepo.findAllByJugadores_Id(id);
+    }
+
 }

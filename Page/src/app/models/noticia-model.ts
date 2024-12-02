@@ -1,3 +1,4 @@
+import { TorneoModel } from "./torneo-model";
 import { UsuarioModel } from "./usuario-model";
 
 export class NoticiaModel {
@@ -7,14 +8,19 @@ export class NoticiaModel {
   html: string;
   fecha: Date;
   titulo: string;
-
-  constructor(id: number, usuario: UsuarioModel, imagen: string, html: string, fecha: Date, titulo: string) {
+  equipos: TorneoModel[];
+  torneos: TorneoModel[];
+  jugadores: TorneoModel[];
+  constructor(id: number, usuario: UsuarioModel, imagen: string, html: string, fecha: Date, titulo: string, equipos: TorneoModel[], torneos: TorneoModel[], jugadores: TorneoModel[]) {
     this.id = id;
     this.usuario = usuario;
     this.imagen = imagen;
     this.html = html;
     this.fecha = fecha;
     this.titulo = titulo;
+    this.equipos = equipos;
+    this.torneos = torneos;
+    this.jugadores = jugadores;
   }
 
   getId(): number {

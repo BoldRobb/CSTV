@@ -1,3 +1,4 @@
+import { EquipoModel } from "../equipo-model";
 
 export class NoticiaDTO {
   usuarioId: number;
@@ -5,13 +6,18 @@ export class NoticiaDTO {
   html: string;
   fecha: Date;
   titulo: string;
-
-  constructor( usuario: number, imagen: string, html: string, fecha: Date, titulo: string) {
+  equipos?: EquipoModel[];
+  torneos?: EquipoModel[];
+  jugadores?: EquipoModel[];
+  constructor( usuario: number, imagen: string, html: string, fecha: Date, titulo: string, equipos?: EquipoModel[], torneos?: EquipoModel[], jugadores?: EquipoModel[]) {
     this.usuarioId = usuario;
     this.imagen = imagen;
     this.html = html;
     this.fecha = fecha;
     this.titulo = titulo;
+    this.equipos = equipos;
+    this.torneos = torneos;
+    this.jugadores = jugadores;
   }
 
 

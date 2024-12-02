@@ -43,5 +43,8 @@ export class ForoServiceService {
   createTopico(topico: TopicoDTO): Observable<TopicoModel> {
     return this.http.post<TopicoModel>(this.apiUrl, topico);
   }
+  updateTopico(topico: TopicoModel): Observable<TopicoModel> {
+    return this.http.put<TopicoModel>(this.apiUrl + '/' + topico.id, topico);
+  }
 
 }
