@@ -11,9 +11,9 @@
               <img [src]="match?.equipo1?.foto || 'icons/help.png'" alt="{{ match?.equipo1?.nombre }} logo" />
             </div>
             <div class="match-info">
-                <p>{{ match?.fecha | date:'HH:mm' }}</p>
+                <p class="match-text">{{ match?.fecha | date:'HH:mm' }}</p>
                 <a [routerLink]="['/events/', match?.torneo?.id]">{{ match?.torneo?.nombre }}</a>
-                <p>{{ formattedDate }}</p>
+                <p class="match-text">{{ formattedDate }}</p>
             </div>
             <div class="team-logo">
               <img [src]="match?.equipo2?.foto || 'icons/help.png'" alt="{{ match?.equipo2?.nombre }} logo" />
@@ -36,14 +36,14 @@
                   </ul>
             </div>
             <div class="BanlistImages">
-                <li *ngFor="let ban of banList">
+                <div *ngFor="let ban of banList" class="mapFoto">
                     <div class="map-container">
                     <img [src]="'icons/' + ban.mapa + 'Banner.png'" alt="{{ ban.mapa }} banner" class="map-banner" />
                     <span class="map-status" [ngClass]="{'banned': ban.estatus === 'Banned', 'picked': ban.estatus === 'Picked'}">
                         {{ ban.estatus === 'Banned' ? 'banned' : 'picked' }}
                       </span>
                     </div>
-                </li>
+                  </div>
             </div>
         </div>
           </div>
