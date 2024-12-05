@@ -20,6 +20,7 @@ export class TeamLayoutComponent implements OnInit{
   id? : number;
   equipo?:EquipoModel;
   jugadores: JugadorModel[] = [];
+  currentComponent: string = "general"
   
   defaultPlayers: JugadorModel[] = Array(5).fill({ foto: 'icons/defaultPlayer.png', mote: '? ?', pais: 'MX' });
   constructor(private route: ActivatedRoute, private equipoService: EquipoService) {
@@ -55,7 +56,9 @@ export class TeamLayoutComponent implements OnInit{
   }
 
 
-  
+  openComponent(componente: string ): void{
+    this.currentComponent = componente;
+  }
 }
 
 

@@ -38,12 +38,33 @@
             <p class="team-info-title">World Ranking</p>
           </div>
           <div class="team-info-right">
-            <p class="team-info-title">#{{ equipo?.rankingActual }}</p>
+            <p class="team-info-title">#{{ equipo?.rankingActual === 0 ? '?' : equipo?.rankingActual }}</p>
           </div>
         </div>
         <hr>
+        <table class="nav-table">
+          <tr>
+            <td><a (click)="openComponent('information')">Information</a></td>
+            <td><a (click)="openComponent('roster')">Roster</a></td>
+            <td><a (click)="openComponent('events')">Events</a></td>
+            <td><a (click)="openComponent('matches')">Matches</a></td>
+            <td><a (click)="openComponent('results')">Results</a></td>
+            <td><a (click)="openComponent('news')">News</a></td>
+          </tr>
+        </table>
+      </div>
+      <div class="event-content">
+        <div *ngIf="currentComponent === 'general'" >
+        </div>
+        <div *ngIf="currentComponent === 'matches'">
+        </div>
+        <div *ngIf="currentComponent === 'results'">
+        </div>
+        <div *ngIf="currentComponent === 'statistics'">
+        </div>  
       </div>
     </div>
+
     
     <div class="recentActivity">
      <app-recent-activity></app-recent-activity>
