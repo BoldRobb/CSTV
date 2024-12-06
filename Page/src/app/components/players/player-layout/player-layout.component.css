@@ -29,7 +29,7 @@
     margin-left: 10%;
   }
   
-  .teambg{
+  .playerbg{
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
@@ -39,82 +39,4 @@
     margin-left: auto;
     width: 60rem;
     margin-right: 5%;
-  }
-  .teamHolder{
-    margin-top: 10px;
-    background-color: #303D57;
-    padding: 10px;
-    width: 100%;
-    margin-bottom:2rem;
-  }
-  .jugadores-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-  }
-  
-  .jugador {
-    text-align: center;
-  }
-  
-  .jugador-foto {
-    width: 150px;
-    height: 150px;
-    border-radius: 20%;
-    object-fit: cover;
-  }
-  
-  .jugador-link {
-    display: block;
-    margin-top: 0.5rem;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  
-  .jugador-link:hover {
-    color: #979797;
-    text-decoration: underline;
-  }
-  .team-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  .team-info-left{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    width: 50%;
-  
-  }
-  .team-info-right{
-    text-align: center;
-    width: 50%;
-  }
-  .equipo-foto{
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin: 0 1rem;
-  }
-  .team-info-title{
-    color: #979797;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-  }
-  .team-info-social {
-    display: flex;
-    justify-content: center;
-    margin-top: 0.5rem;
-  }
-  
-  .team-info-social-link {
-    margin: 0 0.5rem;
-  }
-  .social-icon{
-    width: 50px;
-    height: 50px;
   }

@@ -20,4 +20,7 @@ export class RankingService {
   addRanking(ranking: RankingModel): Observable<RankingModel> {
     return this.http.post<RankingModel>(this.apiUrl, ranking);
   }
+  getRankingTeam(id: number): Observable<RankingModel[]> {
+    return this.http.get<RankingModel[]>(`${this.apiUrl}/equipo/${id}`);
+  }
 }

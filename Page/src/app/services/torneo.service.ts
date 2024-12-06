@@ -39,5 +39,9 @@ export class TorneoService {
   getTorneosByNombre(nombre: string): Observable<TorneoModel[]>{
     return this.http.get<TorneoModel[]>(`${this.apiUrl}/nombre/${nombre}`);
   }
+
+  getTorneosByEquipo(idEquipo: number): Observable<TorneoEquiposModel[]>{
+    return this.http.get<TorneoEquiposModel[]>(`${this.apiUrlEquipos}/equipo/${idEquipo}`);
+  }
   
 }

@@ -5,7 +5,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
+import {
+  provideCharts,
+  withDefaultRegisterables,
+  } from 'ng2-charts';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -15,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(ReactiveFormsModule),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideAnimations(), provideAnimationsAsync()
+    provideCharts(withDefaultRegisterables()),
+
   ]
 };

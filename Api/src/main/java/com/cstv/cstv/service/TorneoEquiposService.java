@@ -27,6 +27,10 @@ public class TorneoEquiposService {
         return torneoEquiposRepo.findById_IdTorneo(idTorneo);
     }
 
+    public List<TorneoEquipos> findByEquipoId(Long idEquipo) {
+        return torneoEquiposRepo.findById_IdEquipo(idEquipo);
+    }
+
     public TorneoEquipos save(TorneoEquipos torneoEquipos) {
         return torneoEquiposRepo.save(torneoEquipos);
     }

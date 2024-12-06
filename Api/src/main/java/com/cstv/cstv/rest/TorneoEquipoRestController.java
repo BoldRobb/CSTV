@@ -76,4 +76,11 @@ public class TorneoEquipoRestController {
         }).collect(Collectors.toList());
         return torneoEquipoService.saveAll(torneoEquiposList);
     }
+
+    @GetMapping("/equipo/{id}")
+    public List<TorneoEquipos> getTorneoEquipoByEquipoId(@PathVariable Long id) {
+        return  torneoEquipoService.findByEquipoId(id);
+
+    }
+
 }

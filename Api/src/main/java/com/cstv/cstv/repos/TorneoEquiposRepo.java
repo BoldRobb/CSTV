@@ -9,4 +9,5 @@ import com.cstv.cstv.entities.TorneoEquipos;
 public interface TorneoEquiposRepo extends JpaRepository<TorneoEquipos, com.cstv.cstv.entities.Ids.TorneoEquiposId> {
 
     List<TorneoEquipos> findById_IdTorneo(Long idTorneo);
+    List<TorneoEquipos> findById_IdEquipo(Long idEquipo);
 }

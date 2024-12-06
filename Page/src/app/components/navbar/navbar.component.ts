@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit {
     this.showLoginForm = false;
   }
   onSearch(query: string): void {
-    if (query.length > 2) {
+    if (query.length > 1) {
       this.searchResults = [];
       this.torneoService.getTorneosByNombre(query).subscribe((torneos: TorneoModel[]) => {
         torneos.forEach(torneo => {
@@ -84,5 +84,6 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/player/', result.id]);
     }
     this.searchResults = [];
+    
   }
 }

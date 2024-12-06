@@ -60,4 +60,15 @@ public class MapaStatsRestController {
         mapaStatsRepo.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/jugador/{id}")
+    public List<MapaStats> getMapaStatsByJugadorId(@PathVariable(name = "id") long id){
+        return mapaStatsRepo.findAllByJugador_Id(id);
+    }
+
+    @GetMapping("/equipo/{id}")
+    public List<MapaStats> getMapaStatsByEquipoId(@PathVariable(name = "id") long id){
+        return mapaStatsRepo.findAllByEquipo_Id(id);
+    }
+
 }

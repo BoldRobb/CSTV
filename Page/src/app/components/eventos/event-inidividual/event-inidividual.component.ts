@@ -9,6 +9,8 @@ import { EventGeneralComponent } from '../event-general/event-general.component'
 import { EventResultsComponent } from '../event-results/event-results.component';
 import { EventStatisticsComponent } from '../event-statistics/event-statistics.component';
 import { EventMatchesComponent } from '../event-matches/event-matches.component';
+import { PartidoModel } from '../../../models/partido-model';
+import { PartidoService } from '../../../services/partido.service';
 
 @Component({
   selector: 'app-event-inidividual',
@@ -22,9 +24,12 @@ export class EventInidividualComponent {
   isLoading=true;
   pageNotFound=false;
   torneo?: TorneoModel;
+  partidos: PartidoModel[] = [];
+  equipos: TorneoEquiposModel[] = [];
   currentComponent: string = "general";
   constructor(private route: ActivatedRoute,
     private torneoService: TorneoService,
+    private partidoService: PartidoService
 
   ) { }
 
@@ -39,7 +44,7 @@ export class EventInidividualComponent {
     if(this.id!=null){
     this.torneoService.getTorneo(this.id).subscribe(
       (data) => {
-        this.isLoading = false;
+        
         this.torneo = data;
       },
       (error) => {
@@ -47,7 +52,27 @@ export class EventInidividualComponent {
         this.isLoading = false;
       }
     );
+    this.partidoService.getPartidoByTorneoId(this.id).subscribe(
+      (data) => {
+        this.partidos = data;
+        
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.torneoService.getEquiposTorneo(this.id).subscribe(
+      (data) => {
+        this.equipos = data;
+        this.isLoading = false;
+      },
+      (error) => {
+        console.log(error);
+      }
+      );
+
   }
+
 }
 openComponent(component: string): void{
   this.currentComponent = component;

@@ -15,14 +15,15 @@ import { CommonModule } from '@angular/common';
 })
 export class EventResultsComponent {
   @Input() torneo: TorneoModel | undefined;
-  partidos: PartidoModel[] = [];
-  isLoading = true;
+  @Input() partidos: PartidoModel[] = [];
+  isLoading = false;
   constructor(private torneoService: TorneoService, 
     private partidoService: PartidoService,
     private router: Router
    ) { }
+   
   ngOnInit(): void {
-    this.getPartidos();
+    this.sortPartidosByFecha();
   }
 
   getPartidos(): void {
@@ -30,7 +31,7 @@ export class EventResultsComponent {
       this.partidoService.getPartidoByTorneoId(this.torneo.id).subscribe(
         (data) => {
           this.partidos = data;
-          this.sortPartidosByFecha();
+          
           this.isLoading = false;
         },
         (error) => {

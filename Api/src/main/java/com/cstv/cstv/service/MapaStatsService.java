@@ -29,4 +29,12 @@ public class MapaStatsService {
     public void deleteById(Long id) {
         mapaStatsRepo.deleteById(id);
     }
+
+    public List<MapaStats> findAllByJugador_Id(Long id) {
+        return mapaStatsRepo.findAllByJugador_Id(id);
+    }
+
+    public List<MapaStats> findAllByEquipo_Id(Long id) {
+        return mapaStatsRepo.findAllByEquipo_Id(id);
+    }
 }

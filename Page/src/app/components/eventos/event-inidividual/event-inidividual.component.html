@@ -37,13 +37,13 @@
         </div>
         <div class="event-content">
           <div *ngIf="currentComponent === 'general'" >
-            <app-event-general [torneo]="torneo"></app-event-general>
+            <app-event-general [torneo]="torneo" [equipos]="equipos"></app-event-general>
           </div>
           <div *ngIf="currentComponent === 'matches'">
-            <app-event-matches [torneo]="torneo"></app-event-matches>
+            <app-event-matches [torneo]="torneo" [partidos]="partidos"></app-event-matches>
           </div>
           <div *ngIf="currentComponent === 'results'">
-            <app-event-results [torneo]="torneo"></app-event-results>
+            <app-event-results [torneo]="torneo" [partidos]="partidos"></app-event-results>
           </div>
           <div *ngIf="currentComponent === 'statistics'">
             <app-event-statistics [torneo]="torneo"></app-event-statistics>

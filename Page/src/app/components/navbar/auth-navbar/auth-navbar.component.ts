@@ -37,7 +37,7 @@ export class AuthNavbarComponent implements OnInit {
     });
   }
   onSearch(query: string): void {
-    if (query.length > 2) {
+    if (query.length > 1) {
       this.searchResults = [];
       this.torneoService.getTorneosByNombre(query).subscribe((torneos: TorneoModel[]) => {
         torneos.forEach(torneo => {

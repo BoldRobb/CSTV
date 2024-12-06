@@ -52,17 +52,29 @@
             <td><a (click)="openComponent('news')">News</a></td>
           </tr>
         </table>
+
+        <div class="event-content">
+          <div *ngIf="currentComponent === 'information'" >
+            <app-team-information [equipo]="equipo" [ranking]="ranking" [jugadores]="jugadores"></app-team-information>
+          </div>
+          <div *ngIf="currentComponent === 'roster'">
+            <app-team-roster [jugadores]="jugadores"></app-team-roster>
+          </div>
+          <div *ngIf="currentComponent === 'events'">
+            <app-team-events [eventos]="eventos"></app-team-events>
+          </div>
+          <div *ngIf="currentComponent === 'matches'">
+            <app-team-matches [partidos]="partidos" ></app-team-matches>
+          </div>
+          <div *ngIf="currentComponent === 'results'">
+            <app-team-results [partidos]="partidos" ></app-team-results>
+          </div>
+          <div *ngIf="currentComponent === 'news'">
+            <app-team-news [noticias]="noticias"></app-team-news>
+          </div>  
+        </div>
       </div>
-      <div class="event-content">
-        <div *ngIf="currentComponent === 'general'" >
-        </div>
-        <div *ngIf="currentComponent === 'matches'">
-        </div>
-        <div *ngIf="currentComponent === 'results'">
-        </div>
-        <div *ngIf="currentComponent === 'statistics'">
-        </div>  
-      </div>
+
     </div>
 
     

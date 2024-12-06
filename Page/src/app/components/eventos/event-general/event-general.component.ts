@@ -16,9 +16,9 @@ import { NoticiaModel } from '../../../models/noticia-model';
 })
 export class EventGeneralComponent {
   @Input() torneo: TorneoModel | undefined;
-  equipos: TorneoEquiposModel[] = [];
+  @Input() equipos: TorneoEquiposModel[] = [];
   noticias: NoticiaModel[] = [];
-  isLoading = true;
+  isLoading = false;
   constructor(private torneoService: TorneoService, private router: Router, private noticiaService: NoticiaService) { }
   ngOnInit(): void {
     this.getEquipos();
@@ -26,15 +26,7 @@ export class EventGeneralComponent {
 
   getEquipos(): void {
     if (this.torneo != null) {
-      this.torneoService.getEquiposTorneo(this.torneo.id).subscribe(
-        (data) => {
-          this.equipos = data;
-          this.isLoading = false;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+
       this.noticiaService.getNoticiasForTorneo(this.torneo.id).subscribe(
         (data) => {
           this.noticias = data;

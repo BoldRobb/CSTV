@@ -1,43 +1,25 @@
 import { Component, Input } from '@angular/core';
 import { TorneoModel } from '../../../models/torneo-model';
 import { CommonModule } from '@angular/common';
-import { TorneoService } from '../../../services/torneo.service';
-import { PartidoService } from '../../../services/partido.service';
+import { Router, RouterModule } from '@angular/router';
 import { PartidoModel } from '../../../models/partido-model';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-event-matches',
+  selector: 'app-team-results',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './event-matches.component.html',
-  styleUrl: './event-matches.component.css'
+  imports: [CommonModule, RouterModule],
+  templateUrl: './team-results.component.html',
+  styleUrl: './team-results.component.css'
 })
-export class EventMatchesComponent {
-  @Input() torneo: TorneoModel | undefined;
+export class TeamResultsComponent {
   @Input()partidos: PartidoModel[] = [];
-  isLoading = false;
-  constructor(private torneoService: TorneoService, private partidoService: PartidoService,
-    private router: Router
-   ) { }
+
+  constructor(private router: Router) { }
   ngOnInit(): void {
-    this.sortPartidosByFecha();
+  
   }
 
-  getPartidos(): void {
-    if (this.torneo != null) {
-      this.partidoService.getPartidoByTorneoId(this.torneo.id).subscribe(
-        (data) => {
-          this.partidos = data;
-          this.isLoading = false;
-          
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
-  }
+
 
   sortPartidosByFecha(): void {
     this.partidos.sort((a, b) => {
