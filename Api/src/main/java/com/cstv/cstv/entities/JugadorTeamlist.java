@@ -64,4 +64,11 @@ public class JugadorTeamlist {
         this.fechaFinal = fechaFinal;
     }
 
+    public void setId(JugadorTeamlistId jugadorTeamlistId) {
+        this.id = jugadorTeamlistId;
+    }
+
+    public JugadorTeamlistId getId() {
+        return id;
+    }
 }

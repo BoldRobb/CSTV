@@ -1,7 +1,6 @@
 package com.cstv.cstv.domain;
 
 public class MapaStatsDTO {
-    private Long id;
     private Long idMapa;
     private Long idEquipo;
     private Long idJugador;
@@ -9,15 +8,6 @@ public class MapaStatsDTO {
     private int muertes;
     private double KD;
     private double ADR;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getIdMapa() {
         return idMapa;
     }

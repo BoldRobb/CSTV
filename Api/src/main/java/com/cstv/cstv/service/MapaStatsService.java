@@ -1,5 +1,6 @@
 package com.cstv.cstv.service;
 
+import com.cstv.cstv.entities.Mapa;
 import com.cstv.cstv.entities.MapaStats;
 import com.cstv.cstv.repos.MapaStatsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,9 @@ public class MapaStatsService {
 
     public List<MapaStats> findAllByEquipo_Id(Long id) {
         return mapaStatsRepo.findAllByEquipo_Id(id);
+    }
+
+    public List<MapaStats> findAllByMapaIn(List<Mapa> mapa) {
+        return mapaStatsRepo.findAllByMapaIn(mapa);
     }
 }

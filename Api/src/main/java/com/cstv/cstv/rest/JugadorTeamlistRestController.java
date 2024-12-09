@@ -34,10 +34,11 @@ public class JugadorTeamlistRestController {
     @PostMapping
     public JugadorTeamlist createJugadorTeamlist(@RequestBody JugadorTeamlistDTO jugadorTeamlistDTO) {
         JugadorTeamlist jugadorTeamlist = new JugadorTeamlist();
+        jugadorTeamlist.setId(new JugadorTeamlistId(jugadorTeamlistDTO.getIdJugador(), jugadorTeamlistDTO.getIdEquipo()));
         jugadorTeamlist.setIdEquipo(new Equipos());
         jugadorTeamlist.getIdEquipo().setId(jugadorTeamlistDTO.getIdEquipo());
         jugadorTeamlist.setIdJugador(new Jugadores());
-        jugadorTeamlist.getIdJugador().setId(jugadorTeamlistDTO.getIdEquipo());
+        jugadorTeamlist.getIdJugador().setId(jugadorTeamlistDTO.getIdJugador());
         jugadorTeamlist.setFechaInicio(jugadorTeamlistDTO.getFechaInicio());
         jugadorTeamlist.setFechaFinal(jugadorTeamlistDTO.getFechaFinal());        
         return jugadorTeamlistService.save(jugadorTeamlist);

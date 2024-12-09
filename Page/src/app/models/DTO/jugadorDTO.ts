@@ -4,7 +4,7 @@ export class jugadorDTO{
  estatus: string;
 foto: string;
 idEquipoActual: number;
- pais: string;
+pais: string;
 
     constructor(nombreReal: string, mote: string, estatus: string, foto: string, idEquipoActual: number, pais: string){
         this.nombreReal = nombreReal;

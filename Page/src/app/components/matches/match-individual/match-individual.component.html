@@ -46,7 +46,45 @@
                   </div>
             </div>
         </div>
+        <h4>Results</h4>
+          
+        <div *ngFor="let mapa of mapas" class="mapaResult">
+          <div class="noseAyuda">
+          <img [src]="'icons/' + mapa.mapa + 'Banner.png'" alt="{{ mapa.mapa }} banner" class="map-result-banner" />
+          <span class="map-status" >
+            {{mapa.mapa}}
+          </span>
+        </div>
+          <div class="map-info">
+            <div class="team-info">
+              <div class="resultTextBG">
+              <img [src]="mapa.partido.equipo1.foto || 'icons/help.png'" [alt]="mapa.partido.equipo1.foto" class="result-logo"/>
+              
+              <span>{{mapa.partido.equipo1.nombre}} :</span>
+              <span [ngStyle]="{ 'color': getResult(1, mapa) === 13 ? 'green' : 'red' }">
+                 {{getResult(1, mapa)}} 
+              </span>
+              
+             (
+              <span class="izq" [ngStyle]="{ 'color': 'blue' }">{{mapa.equipo1CT}}</span>:
+              <span class="der" [ngStyle]="{ 'color': 'orange' }">{{mapa.equipo2T}}</span>) - (
+              <span class="izq" [ngStyle]="{ 'color': 'orange' }">{{mapa.equipo1T}}</span>:
+              <span class="der" [ngStyle]="{ 'color': 'blue' }">{{mapa.equipo2CT}}</span>)
+            
+            
+              
+              
+              <span [ngStyle]="{ 'color': getResult(2, mapa) === 13 ? 'green' : 'red' }">
+               {{getResult(2, mapa)}} 
+              </span>
+              <span>: {{mapa.partido.equipo2.nombre}} </span>
+              <img [src]="mapa.partido.equipo2.foto || 'icons/help.png'" [alt]="mapa.partido.equipo2.foto" class="result-logo"/>
+            </div>
+            </div>
           </div>
+        </div>
+
+        </div>
 
         <div class="lineupHolder">
         <div class="team-lineup">
@@ -85,9 +123,11 @@
           </div>
         </div>
         </div>
-          
-
+        <div *ngIf="mapaFound && statsFound" class="resultHolder">
+          <app-match-scoreboard [match]="match" [stats]="stats" [mapas]="mapas"></app-match-scoreboard>
+        </div>
       </div>
+          
     </div>
   </div>
   

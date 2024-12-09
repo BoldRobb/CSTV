@@ -29,7 +29,9 @@ export class TorneoService {
       })
     );
   }
-
+  updateTorneo(ID: Number, torneo: TorneoModel): Observable<TorneoModel>{
+    return this.http.put<TorneoModel>(`${this.apiUrl}/${ID}`, torneo);
+    }
   getTorneo(id: number): Observable<TorneoModel>{
     return this.http.get<TorneoModel>(`${this.apiUrl}/${id}`);
   }

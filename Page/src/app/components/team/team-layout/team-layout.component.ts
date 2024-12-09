@@ -80,7 +80,6 @@ export class TeamLayoutComponent implements OnInit{
 
       this.torneoService.getTorneosByEquipo(this.id).subscribe(data=>{
         this.eventos=data;
-        console.log(this.eventos);
       });
       this.partidoService.getPartidoByEquipoId(this.id).subscribe(data=>{
         this.partidos=data;

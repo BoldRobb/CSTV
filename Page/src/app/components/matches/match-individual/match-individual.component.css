@@ -53,7 +53,13 @@
     color: #979797;
     padding: 20px;
   }
-  
+  .resultHolder{
+    width: 95%;
+    margin: 0 auto;
+    background-color: #303D57;
+    color: #979797;
+    padding: 20px;
+  }
   .header {
     display: flex;
     justify-content: space-between;
@@ -131,8 +137,7 @@
     margin-left: 10px;
   }
   .team-info {
-    display: flex;
-    justify-content: space-between;
+    width: 80%;
     font-size: 26px;
   }
   
@@ -237,3 +242,63 @@
   .mapFoto{
     width: 100%;
   }
+.map-result-banner{
+  width: 80%;
+  max-height: 40px;
+  object-fit:cover;
+  align-items: center;
+  margin: 0 auto;
+}
+.result-logo {
+  width: 32px;
+  height: 32px;
+}
+.mapaResult {
+  margin-bottom: 1rem;
+}
+
+
+
+.map-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.result-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 0.5rem;
+}
+
+.score-info {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.izq {
+  margin-left: 0.5rem; /* Add margin to the left to create space */
+}
+
+.der {
+  margin-right: 0.5rem; /* Add margin to the left to create space */
+}
+.resultTextBG{
+  background-color: #212C39;
+  width: 100%;
+  padding: 10px;
+  font-size: 24px;
+}
+.noseAyuda{
+  display: flex;
+  position: relative;
+  width: 100%;
+}

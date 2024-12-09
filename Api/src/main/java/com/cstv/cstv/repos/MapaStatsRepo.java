@@ -1,4 +1,5 @@
 package com.cstv.cstv.repos;
+import com.cstv.cstv.entities.Mapa;
 import com.cstv.cstv.entities.MapaStats;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,5 +9,6 @@ public interface MapaStatsRepo extends JpaRepository<MapaStats, Long> {
 
      List<MapaStats> findAllByJugador_Id(Long id);
      List<MapaStats> findAllByEquipo_Id(Long id);
-
+     List<MapaStats> findAllByMapaIn(List<Mapa> mapa);
 }
+

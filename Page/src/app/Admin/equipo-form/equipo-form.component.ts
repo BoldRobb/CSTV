@@ -18,6 +18,11 @@ export class EquipoFormComponent implements OnInit {
   alertMessage!: string;
   alertType!: 'success' | 'error';
   teamId!: number;
+  showForm: boolean = false;
+  isEditing: boolean = false;
+  searchQuery: string = '';
+  searchResults: EquipoModel[] = [];
+  currentEquipo?: EquipoModel;
   constructor(private fb: FormBuilder, private equipoService: EquipoService) {
     this.equipoForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -31,18 +36,64 @@ export class EquipoFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  showAddForm(): void {
+    this.isEditing = false;
+    this.showForm = true;
+    this.equipoForm.reset();
+  }
+
+  showEditForm(): void {
+    this.isEditing = true;
+    this.showForm = false;
+  }
+
+  searchEquipos(): void {
+    if (this.searchQuery.length > 2) {
+      this.equipoService.getEquiposNombre(this.searchQuery).subscribe((results) => {
+        this.searchResults = results;
+      });
+    } else {
+      this.searchResults = [];
+    }
+  }
+
+  selectEquipo(equipo: EquipoModel): void {
+    this.currentEquipo = equipo;
+    this.equipoForm.patchValue(equipo);
+    this.showForm = true;
+  }
+
   onSubmit(): void {
     if (this.equipoForm.valid) {
-      const nuevoEquipo: EquipoModel = this.equipoForm.value;
-      this.equipoService.addEquipo(nuevoEquipo).subscribe(
-        response => {
-          this.showAlert('Equipo guardado', 'success');
-        },
-        error => {
-          this.showAlert('Error al guardar el equipo', 'error');
-        }
-      );
-    }
+      const equipo: EquipoModel = this.equipoForm.value;
+      if (this.isEditing) {
+        if(this.currentEquipo){
+        // Lógica para actualizar el equipo
+        this.equipoService.updateEquipo(this.currentEquipo.id, equipo).subscribe(
+          () => {
+            this.alertMessage = 'Equipo actualizado con éxito';
+            this.alertType = 'success';
+          },
+          () => {
+            this.alertMessage = 'Error al actualizar el equipo';
+            this.alertType = 'error';
+          }
+        );}
+      } else {
+        // Lógica para agregar un nuevo equipo
+        this.equipoService.addEquipo(equipo).subscribe(
+          (response) => {
+            this.alertMessage = 'Equipo agregado con éxito';
+            this.alertType = 'success';
+          },
+          (error) => {
+            this.alertMessage = 'Error al agregar el equipo';
+            this.alertType = 'error';
+          }
+        );
+      }
+    
+  }
   }
   private showAlert(message: string, type: 'success' | 'error'): void {
     this.alertMessage = message;

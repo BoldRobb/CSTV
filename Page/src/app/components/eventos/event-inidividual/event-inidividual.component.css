@@ -35,7 +35,6 @@
     padding-left: 20px;
     padding-right: 20px;
     background-color: #182234;
-
     margin-left: auto;
     width: 60rem;
     margin-right: 5%;
@@ -114,4 +113,12 @@
     height: 16px;
     margin-right: 0.5rem;
     vertical-align: middle;
+  }
+  .event-content{
+
+    margin-top: 10px;
+    background-color: #303D57;
+    width: 100%;
+    margin-bottom:2rem;
+
   }

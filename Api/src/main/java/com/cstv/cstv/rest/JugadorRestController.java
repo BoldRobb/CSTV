@@ -54,11 +54,22 @@ public class JugadorRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Jugadores> updateJugador(@PathVariable Long id, @RequestBody Jugadores jugador) {
+    public ResponseEntity<Jugadores> updateJugador(@PathVariable Long id, @RequestBody JugadoresDTO jugadorDTO) {
         if (!jugadorService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
+        Jugadores jugador = new Jugadores();
         jugador.setId(id);
+        jugador.setNombreReal(jugadorDTO.getNombreReal());
+        jugador.setMote(jugadorDTO.getMote());
+        jugador.setEstatus(jugadorDTO.getEstatus());
+        jugador.setFoto(jugadorDTO.getFoto());
+        jugador.setPais(jugadorDTO.getPais());
+        if(jugadorDTO.getIdEquipoActual() != null){
+            jugador.setEquipoActual(new Equipos());
+            jugador.getEquipoActual().setId(jugadorDTO.getIdEquipoActual());
+        }
+
         return ResponseEntity.ok(jugadorService.save(jugador));
     }
 

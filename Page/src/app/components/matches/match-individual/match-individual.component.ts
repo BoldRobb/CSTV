@@ -9,11 +9,14 @@ import { JugadorService } from '../../../services/jugador.service';
 import { JugadorModel } from '../../../models/jugador-model';
 import { EquipoService } from '../../../services/equipo.service';
 import { BanlistModel } from '../../../models/banlist-model';
+import { MapaModel } from '../../../models/mapa-model';
+import { MapaStatsModel } from '../../../models/mapa-stats-model';
+import { MatchScoreboardComponent } from '../match-scoreboard/match-scoreboard.component';
 
 @Component({
   selector: 'app-match-individual',
   standalone: true,
-  imports: [RecentActivityComponent, CommonModule, RouterModule],
+  imports: [ CommonModule, RouterModule, MatchScoreboardComponent],
   templateUrl: './match-individual.component.html',
   styleUrl: './match-individual.component.css'
 })
@@ -27,6 +30,10 @@ export class MatchIndividualComponent {
   formattedDate: string = '';
   defaultPlayers: JugadorModel[] = Array(5).fill({ foto: 'icons/defaultPlayer.png', mote: '? ?', pais: 'MX' });
   banList: BanlistModel[] = [];
+  mapas: MapaModel[] = [];
+  stats: MapaStatsModel[] = [];
+  mapaFound=false;
+  statsFound=false;
   constructor(private route: ActivatedRoute, 
     private mapaService: MapasService,
     private partidoService: PartidoService,
@@ -49,6 +56,7 @@ export class MatchIndividualComponent {
         this.match = data;
         this.getPlayers();
         this.getBanlist();
+        this.getMapas();
         this.formattedDate = this.formatDateWithSuffix(new Date(this.match.fecha));
       },
       (error) => {
@@ -98,6 +106,25 @@ export class MatchIndividualComponent {
   }
   this.isLoading = false;
   }
+  getMapas(): void{
+    if(this.id!=null){
+    this.mapaService.getMapasByPartidoId(this.id).subscribe(
+      (data) => {
+        this.mapas = data;
+
+        this.mapaFound = true;
+      }
+    );
+    this.mapaService.getMapasStatsByPartidoId(this.id).subscribe(
+      (data) => {
+        this.stats = data;
+        this.statsFound = true;
+      }
+    );
+
+
+  }
+  }
 
   formatDateWithSuffix(date: Date): string {
     const day = date.getDate();
@@ -118,4 +145,11 @@ export class MatchIndividualComponent {
       default: return 'th';
     }
   }
+  getResult(equipo: number, match: MapaModel): number{
+      if(equipo==1){
+        return match.equipo1CT+match.equipo1T;
+  }else{
+    return match.equipo2CT+match.equipo2T;
+  }
+}
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { JugadorModel } from '../models/jugador-model';
 import { Observable } from 'rxjs';
 import { jugadorDTO } from '../models/DTO/jugadorDTO';
+import { JugadorTeamlistModel } from '../models/jugador-teamlist-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ export class JugadorService {
   createPlayer(player: jugadorDTO): Observable<JugadorModel> {
     return this.http.post<JugadorModel>(this.apiUrl, player);
   }
-  updatePlayer(player: JugadorModel): Observable<JugadorModel> {
-    return this.http.put<JugadorModel>(this.apiUrl + '/' + player.id, player);
+  updatePlayer(id:number,player: jugadorDTO): Observable<JugadorModel> {
+    return this.http.put<JugadorModel>(this.apiUrl + '/' + id, player);
   }
   deletePlayer(id: number): Observable<JugadorModel> {
     return this.http.delete<JugadorModel>(this.apiUrl + '/' + id);
@@ -35,8 +36,8 @@ export class JugadorService {
   getPlayerTrofeos(id: number): Observable<JugadorModel[]> {
     return this.http.get<JugadorModel[]>(this.apiUrlTrofeos + '/' + id);
   }
-  getPlayerTeamlist(id: number): Observable<JugadorModel[]> {
-    return this.http.get<JugadorModel[]>(this.apiUrlTeamlist + '/' + id);
+  getPlayerTeamlist(id: number): Observable<JugadorTeamlistModel[]> {
+    return this.http.get<JugadorTeamlistModel[]>(this.apiUrlTeamlist + '/' + id);
   }
   
 
