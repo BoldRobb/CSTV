@@ -18,7 +18,6 @@ export class AppComponent implements OnInit{
   title = 'Page';
   isLoggedIn = false;
   open($event: any) {
-    console.log($event);
   }
   
 

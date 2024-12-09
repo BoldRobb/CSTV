@@ -48,7 +48,6 @@ export class LoginFormComponent {
       const { username, password } = this.loginForm.value;
       this.usuarioService.login(username, password).subscribe(
         response => {
-          console.log('Login successful', response);
           this.authService.login(response);
           this.authService.saveToken(response.token);
           this.router.navigate(['/']); // Ejemplo de redirección

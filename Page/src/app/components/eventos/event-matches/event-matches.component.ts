@@ -33,7 +33,7 @@ export class EventMatchesComponent {
           
         },
         (error) => {
-          console.log(error);
+          ;
         }
       );
     }

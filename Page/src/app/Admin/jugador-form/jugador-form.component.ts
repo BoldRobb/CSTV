@@ -107,8 +107,8 @@ export class JugadorFormComponent implements OnInit {
       if (this.isEditing) {
         // Lógica para actualizar el jugador
         if(this.currentPlayer){
-          console.log(jugadorDTO);
-          console.log(jugador);
+          (jugadorDTO);
+          (jugador);
         this.jugadorService.updatePlayer(this.currentPlayer.id, jugadorDTO).subscribe(
           (response) => {
             this.alertMessage = 'Jugador actualizado con éxito';

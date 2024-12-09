@@ -105,7 +105,6 @@ ngOnInit(): void {
       this.foroService.getForo(this.id).subscribe(
         data => {
           this.foro = data;
-          console.log(this.foro);
         },
         error => {
           console.error(error);

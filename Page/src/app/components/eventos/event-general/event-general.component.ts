@@ -33,7 +33,6 @@ export class EventGeneralComponent {
           
         },
         (error) => {
-          console.log(error);
         }
       );
     }

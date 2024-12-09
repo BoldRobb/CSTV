@@ -35,7 +35,7 @@ export class EventResultsComponent {
           this.isLoading = false;
         },
         (error) => {
-          console.log(error);
+          ;
         }
       );
     }
