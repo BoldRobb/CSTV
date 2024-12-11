@@ -1,8 +1,9 @@
-<div *ngIf="gameState">
+<div class="layout">
+<div *ngIf="gameState" class="scoreboard">
     <h2>Scoreboard</h2>
     
     <div class="team">
-      <h3>CT Team - Score: {{ gameState.map.team_ct.score }}</h3>
+      <h3>Counter-Terrorist Team - Score: {{ gameState.map.team_ct.score }}</h3>
       <table>
         <tr>
           <th>Jugador</th>
@@ -22,7 +23,7 @@
     </div>
   
     <div class="team">
-      <h3>T Team - Score: {{ gameState.map.team_t.score }}</h3>
+      <h3>Terrorist Team - Score: {{ gameState.map.team_t.score }}</h3>
       <table>
         <tr>
           <th>Jugador</th>
@@ -41,3 +42,4 @@
       </table>
     </div>
   </div>
+</div>

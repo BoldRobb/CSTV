@@ -1,7 +1,11 @@
 <div class="grid-container">
 
     <div class="eventsContainer">
-        <img src="{{torneoMain?.logo}}" alt="{{torneoMain?.nombre}}" class="imgMain">
+        <div class="torneoMain-container">
+            <a [routerLink]="'/events/' + (torneoMain?.id || 0)"><img src="{{torneoMain?.logo}}" alt="{{torneoMain?.nombre}}" class="imgMain"></a>
+            <div class="noticia-title">{{ torneoMain?.nombre }}</div>
+        </div>
+        
 
         <div *ngIf="torneosActuales.length > 0">
             <p class="eventTitle">Ongoing events</p>

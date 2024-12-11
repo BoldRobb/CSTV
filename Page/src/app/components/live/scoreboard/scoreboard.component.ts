@@ -6,7 +6,7 @@ import { CommonModule, JsonPipe } from '@angular/common';
 @Component({
   selector: 'app-scoreboard',
   standalone: true,
-  imports: [JsonPipe, CommonModule],
+  imports: [CommonModule],
   templateUrl: './scoreboard.component.html',
   styleUrl: './scoreboard.component.css'
 })

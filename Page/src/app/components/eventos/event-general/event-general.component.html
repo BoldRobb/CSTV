@@ -28,7 +28,62 @@
 
 
   <h2>Tournament format</h2>
-  <p>WIP</p>
+<div *ngIf="torneo?.tipoBracket === 'Liga-SE'" >
+  <h3 class="league-standings-title">League Standings</h3>
+<table class="tablaTorneo">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Wins</th>
+      <th>Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let equipo of sortedEquipos">
+      <td><img [src]="equipo.logo || 'icons/help.png' " alt="{{ equipo.nombre }}">{{ equipo.nombre }}</td>
+      <td>{{ equipo.wins }}</td>
+      <td>{{ equipo.losses }}</td>
+    </tr>
+  </tbody>
+</table>
+  <h3>Bracket</h3>
+  <div class="bracket">
+    <!-- Bracket for Liga-SE -->
+    <div *ngFor="let partido of partidos">
+      <div *ngIf="partido " >
+      <div *ngIf="partido.tipo === 'PO' || partido.tipo === 'liga'">
+        <span>{{ partido.equipo1.nombre }} vs {{ partido.equipo2.nombre }}</span>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="torneo?.tipoBracket === 'SE'">
+
+  <div class="brackets-container">
+    <div class="ronda" *ngFor="let ronda of rondas">
+      <div class="rondaTitle">{{ ronda.nombre }}</div>
+      <div class="rondaimgs">
+      <div class="partido" *ngFor="let partido of getPartidosByRonda(ronda.id)">
+        <div class="equipo equipo-local" [class.ganador]="partido.idGanador === partido.equipo1">
+          <img [src]="partido.equipo1.foto || 'icons/help.png' " alt="{{ partido.equipo1.nombre }}" />
+          <span (click)="redirectToTeam(partido.equipo1.id)">{{ partido.equipo1.nombre }}</span>
+          <span class="score">{{ partido.marcador[0] }}</span>
+        </div>
+        <div class="equipo equipo-visitante" [class.ganador]="partido.idGanador === partido.equipo2">
+          <img [src]="partido.equipo2.foto || 'icons/help.png' " alt="{{ partido.equipo2.nombre }}" />
+          <span (click)="redirectToTeam(partido.equipo2.id)">{{ partido.equipo2.nombre }}</span>
+          <span class="score">{{ partido.marcador[2] }}</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</div>
+
 
   <h2>Prize Distribution</h2>
   <div class="prize-grid">

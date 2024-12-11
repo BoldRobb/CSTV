@@ -37,7 +37,7 @@
         </div>
         <div class="event-content">
           <div *ngIf="currentComponent === 'general'" >
-            <app-event-general [torneo]="torneo" [equipos]="equipos"></app-event-general>
+            <app-event-general [torneo]="torneo" [equipos]="equipos" [partidos]="partidos" [rondas]="rondas"></app-event-general>
           </div>
           <div *ngIf="currentComponent === 'matches'">
             <app-event-matches [torneo]="torneo" [partidos]="partidos"></app-event-matches>
@@ -46,7 +46,7 @@
             <app-event-results [torneo]="torneo" [partidos]="partidos"></app-event-results>
           </div>
           <div *ngIf="currentComponent === 'statistics'">
-            <app-event-statistics [torneo]="torneo"></app-event-statistics>
+            <app-event-statistics [torneo]="torneo" [equipos]="equipos" [partidos]="partidos"></app-event-statistics>
           </div>  
         </div>
 

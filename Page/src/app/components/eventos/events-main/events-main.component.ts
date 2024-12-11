@@ -4,12 +4,13 @@ import { TorneoModel } from '../../../models/torneo-model';
 import { TorneoService } from '../../../services/torneo.service';
 import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
 import { EventContainerComponent } from '../event-container/event-container.component';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-events-main',
   standalone: true,
-  imports: [RecentActivityComponent, CommonModule, EventContainerComponent],
+  imports: [RecentActivityComponent, CommonModule, EventContainerComponent, RouterModule],
   templateUrl: './events-main.component.html',
   styleUrl: './events-main.component.css',
 })

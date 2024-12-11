@@ -3,18 +3,18 @@
   grid-template-columns: repeat(7, 1fr);
   background-color: #303D57;
   outline: 4px solid #1F242D;
+  
 }
 
 .individualBox {
   color: #ffffff;
   text-decoration: none;
-  padding: .5rem 0 ;
+  padding: 0.75rem 0 ;
   font-weight: bold;
   transition: background-color 0.3s ease;
   font-size: 32px;
   text-align: center;
   outline-color: #1F242D;
-  margin: 0;
   outline: 1px solid #1F242D;
 }
 
@@ -22,6 +22,7 @@
   background-color: #1F242D;
   cursor: pointer;
 }
+
 
 input {
   background-color: #212C39;

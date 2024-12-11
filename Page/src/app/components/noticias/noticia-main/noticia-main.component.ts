@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NoticiaService } from '../../../services/noticia-service.service';
 import { NoticiaModel } from '../../../models/noticia-model';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-noticia-main',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './noticia-main.component.html',
   styleUrl: './noticia-main.component.css'
 })

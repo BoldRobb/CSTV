@@ -53,8 +53,10 @@ export const routes: Routes = [
     {path: 'events', component: EventsMainComponent},
     {path: 'events/:id', component: EventInidividualComponent},
 
-    //Foro
-    {path: 'forum', component: ScoreboardComponent}
+
+
+    //live
+    {path: 'live', component: ScoreboardComponent},
     //Match
     {path: 'match/:id', component: MatchIndividualComponent},
     //Cuenta

@@ -129,3 +129,126 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  .brackets-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .ronda {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 2rem;
+    color: #979797;
+    
+  }
+.rondaTitle{
+  min-height: 2rem;
+  font-size: 26px;
+}
+.rondaimgs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 30px;
+}
+  .rondaimgs:nth-child(2){
+    padding: 1rem 0;
+  }
+  .partido {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    border: 2px solid #979797;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #182234;
+  }
+  
+  .equipo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #212C39;
+  }
+  
+  .equipo img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  
+  .equipo span {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #fff;
+
+  }
+  .equipo span:hover{
+    cursor: pointer;
+  }
+  
+  .equipo .score {
+    font-weight: bold;
+    margin-left: 5px;
+  }
+  
+  .equipo.ganador {
+    background-color: #28a745;
+  }
+  
+  .equipo-local {
+    border-bottom: 1px solid #666;
+  }
+  
+  .equipo-visitante {
+    border-top: 1px solid #666;
+  }
+  .league-standings-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .tablaTorneo {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  .tablaTorneo img{
+    width: 24px;
+    height: 24px;
+  }
+  
+  .tablaTorneo th,
+  .tablaTorneo td {
+    border: 1px solid #979797;
+    padding: 0.75rem;
+    text-align: left;
+  }
+  
+  .tablaTorneo th {
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+  }
+
+  .tablaTorneo td {
+    color: #979797;
+    font-size: 20px;
+  }

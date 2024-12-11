@@ -3,6 +3,7 @@ package com.cstv.cstv.rest;
 import com.cstv.cstv.domain.PartidoDTO;
 import com.cstv.cstv.entities.Equipos;
 import com.cstv.cstv.entities.Partido;
+import com.cstv.cstv.entities.Ronda;
 import com.cstv.cstv.entities.Torneos;
 import com.cstv.cstv.service.PartidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class PartidoRestController {
         partido.setFormato(partidoDTO.getFormato());
         partido.setMarcador(partidoDTO.getMarcador());
         partido.setFecha(partidoDTO.getFecha());
+        partido.setTipo(partidoDTO.getTipo());
+        partido.setRonda(new Ronda());
+        partido.getRonda().setId(partidoDTO.getIdronda());
 
         return partidoService.save(partido);
     }

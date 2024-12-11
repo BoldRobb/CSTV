@@ -78,6 +78,7 @@ export class TeamInformationComponent {
 
   ngOnInit(): void {
     this.getChart();
+    console.log(this.rankingData);
   }
 
   getChart() : void {

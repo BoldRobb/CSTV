@@ -31,9 +31,15 @@ public class Partido {
     @Column(name = "Formato", length = 100)
     private String formato;
 
+    @Column (name = "Tipo")
+    private String tipo;
+
     @Column (name = "Marcador")
     private String marcador;
 
+    @ManyToOne
+    @JoinColumn(name = "ronda", nullable = true)
+    private Ronda ronda;
     public Date getFecha() {
         return fecha;
     }
@@ -100,5 +106,21 @@ public class Partido {
 
     public void setMarcador(String marcador) {
         this.marcador = marcador;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Ronda getRonda() {
+        return ronda;
+    }
+
+    public void setRonda(Ronda ronda) {
+        this.ronda = ronda;
     }
 }

@@ -2,6 +2,8 @@
     <div class="spinner"></div>
   </div>
   
-  <div *ngIf="!isLoading" >
-    <img class="NoticiaMain" [src]="noticia.imagen" [alt]="noticia.titulo">
+  <div *ngIf="!isLoading" class="noticia-container">
+    <a [routerLink]="['news/',noticia.id]"><img class="NoticiaMain" [src]="noticia.imagen" [alt]="noticia.titulo"></a>
+    
+    <div class="noticia-title">{{ noticia.titulo }}</div>
   </div>

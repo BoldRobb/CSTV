@@ -11,7 +11,8 @@ public class PartidoDTO {
     private String formato;
     private String marcador;
     private Date fecha;
-
+    private String tipo;
+    private Long idronda;
     public Date getFecha() {
         return fecha;
     }
@@ -73,5 +74,21 @@ public class PartidoDTO {
 
     public void setMarcador(String marcador) {
         this.marcador = marcador;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Long getIdronda() {
+        return idronda;
+    }
+
+    public void setIdronda(Long idronda) {
+        this.idronda = idronda;
     }
 }

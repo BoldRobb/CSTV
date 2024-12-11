@@ -11,6 +11,7 @@ import { EventStatisticsComponent } from '../event-statistics/event-statistics.c
 import { EventMatchesComponent } from '../event-matches/event-matches.component';
 import { PartidoModel } from '../../../models/partido-model';
 import { PartidoService } from '../../../services/partido.service';
+import { RondaModel } from '../../../models/rondaModel';
 
 @Component({
   selector: 'app-event-inidividual',
@@ -26,6 +27,7 @@ export class EventInidividualComponent {
   torneo?: TorneoModel;
   partidos: PartidoModel[] = [];
   equipos: TorneoEquiposModel[] = [];
+  rondas: RondaModel[] = [];
   currentComponent: string = "general";
   constructor(private route: ActivatedRoute,
     private torneoService: TorneoService,
@@ -46,32 +48,49 @@ export class EventInidividualComponent {
       (data) => {
         
         this.torneo = data;
+        this.getDataTorneo();
       },
       (error) => {
         this.pageNotFound = true;
         this.isLoading = false;
       }
     );
+
+  }
+
+}
+
+  getDataTorneo(): void {
+    if(this.id!=null){
     this.partidoService.getPartidoByTorneoId(this.id).subscribe(
       (data) => {
         this.partidos = data;
         
       },
       (error) => {
+        console.error('Error loading main torneo', error);
       }
     );
     this.torneoService.getEquiposTorneo(this.id).subscribe(
       (data) => {
         this.equipos = data;
+      },
+      (error) => {
+        console.error('Error loading main torneo', error);
+      }
+      );
+    this.torneoService.getRondaTorneo(this.id).subscribe(
+      (data) => {
+        this.rondas = data;
         this.isLoading = false;
       },
       (error) => {
+      console.error('Error loading main torneo', error);
       }
+
       );
-
+    }
   }
-
-}
 openComponent(component: string): void{
   this.currentComponent = component;
 };

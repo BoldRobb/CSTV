@@ -1,4 +1,5 @@
 import { EquipoModel } from "./equipo-model";
+import { RondaModel } from "./rondaModel";
 import { TorneoModel } from "./torneo-model";
 
 export class PartidoModel{
@@ -11,6 +12,8 @@ export class PartidoModel{
     formato: string;
     marcador:string;
     fecha: Date;
+    tipo: string;
+    ronda: RondaModel;
     constructor(
         id: number,
         equipo1: EquipoModel,
@@ -19,7 +22,10 @@ export class PartidoModel{
         idGanador: EquipoModel,
         formato: string,
         marcador: string,
-        fecha: Date
+        fecha: Date,
+        tipo: string,
+        ronda: RondaModel
+
     ) {
         this.id = id;
         this.equipo1 = equipo1;
@@ -29,6 +35,8 @@ export class PartidoModel{
         this.formato = formato;
         this.marcador = marcador;
         this.fecha = fecha;
+        this.tipo = tipo;
+        this.ronda = ronda;
     }
 
 

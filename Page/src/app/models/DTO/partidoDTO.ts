@@ -6,8 +6,9 @@ export class PartidoDTO{
      idGanador: number;
      formato: string;
      marcador: string;
-fecha: Date;
-
+     fecha: Date;
+     tipo: string;
+     ronda: number;
     constructor(
         id: number,
         equipo1: number,
@@ -16,7 +17,9 @@ fecha: Date;
         idGanador: number,
         formato: string,
         marcador: string,
-        fecha: Date
+        fecha: Date,
+        tipo: string,
+        ronda: number
     ) {
         this.id = id;
         this.equipo1 = equipo1;
@@ -26,5 +29,7 @@ fecha: Date;
         this.formato = formato;
         this.marcador = marcador;
         this.fecha = fecha;
+        this.tipo = tipo;
+        this.ronda = ronda;
     }
 }
