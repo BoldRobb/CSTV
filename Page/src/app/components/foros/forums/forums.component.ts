@@ -17,7 +17,6 @@ export class ForumsComponent {
   ngOnInit() {
    this.foroService.getForos().subscribe(data =>{
       this.foros = data;
-      console.log(this.foros);
    },error=>
     {
       console.error(error);

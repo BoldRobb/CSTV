@@ -19,7 +19,6 @@ export class TeamEventsComponent {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.eventos);
     const today = new Date();
     this.upcomingEvents = this.eventos.filter(evento => new Date(evento.idTorneo.fechaFinal) >= today);
     this.endedEvents = this.eventos.filter(evento => new Date(evento.idTorneo.fechaFinal) < today);

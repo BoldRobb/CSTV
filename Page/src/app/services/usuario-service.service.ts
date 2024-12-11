@@ -20,7 +20,6 @@ export class UsuarioService {
   }
 
   createUsuario(usuario: UsuarioModel): Observable<UsuarioModel> {
-    console.log(usuario);
     return this.http.post<UsuarioModel>(this.apiUrl, usuario);
   }
 

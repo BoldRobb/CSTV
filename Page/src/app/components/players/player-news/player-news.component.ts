@@ -15,7 +15,6 @@ export class PlayerNewsComponent {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.noticias);
   }
   navigateToNoticia(id: number): void {
     this.router.navigate(['/news', id]);

@@ -19,7 +19,6 @@ export class PlayerTeamsComponent {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.teamHistory);
     this.calculateSummary();
   }
   calculateSummary() {

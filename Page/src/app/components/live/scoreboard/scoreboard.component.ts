@@ -46,7 +46,6 @@ export class ScoreboardComponent {
       } else if (typedPlayer.team === 'T') {
         this.tPlayers.push(typedPlayer);
       }
-      console.log(typedPlayer.match_stats);
     }
   }
 }

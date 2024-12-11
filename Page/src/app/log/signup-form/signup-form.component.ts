@@ -107,13 +107,11 @@ async TestGeminiPro(mensaje: string): Promise<boolean> {
       const nuevoUsuario: UsuarioModel = this.createUsuarioModel(this.signupForm.value);
       this.usuarioService.createUsuario(nuevoUsuario).subscribe(
         response => {
-          console.log('Usuario creado', response);
           this.showAlert('User succesfully created', 'success');
           this.signupForm.reset();
         },
         error => {
           this.showAlert('Error creating the user', 'error');
-          console.log('Error creating the user', error);
         }
       );
       }else{

@@ -58,7 +58,6 @@ export class EventInidividualComponent {
         
       },
       (error) => {
-        console.log(error);
       }
     );
     this.torneoService.getEquiposTorneo(this.id).subscribe(
@@ -67,7 +66,6 @@ export class EventInidividualComponent {
         this.isLoading = false;
       },
       (error) => {
-        console.log(error);
       }
       );
 

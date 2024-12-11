@@ -32,9 +32,7 @@ export class EventsMainComponent {
         this.torneosProximos = this.torneos.filter(torneo => new Date(torneo.fechaInicial) > today);
         this.torneosActuales = this.torneos.filter(torneo => new Date(torneo.fechaInicial) <= today && new Date(torneo.fechaFinal) >= today);
         this.torneosTerminados = this.torneos.filter(torneo => new Date(torneo.fechaFinal) < today);
-        console.log(this.torneosProximos);
-        console.log(this.torneosActuales);
-        console.log(this.torneosTerminados);
+
       }
     });
 

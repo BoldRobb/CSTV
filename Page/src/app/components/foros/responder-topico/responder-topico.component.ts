@@ -80,15 +80,12 @@ export class ResponderTopicoComponent implements OnInit {
         topico.latest = new Date();
         this.foroService.updateTopico(topico).subscribe(
           response => {
-            console.log('Topico updated successfully');
           },
           error => {
-            console.error('Error updating topico', error);
           }
         );
       },
       error => {
-        console.error('Error getting topico', error);
       }
     );
   }

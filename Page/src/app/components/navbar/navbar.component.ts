@@ -44,7 +44,6 @@ export class NavbarComponent implements OnInit {
   }
 
   openLoginForm(): void {
-    console.log(this.showLoginForm);
     this.showLoginForm = true;
     
   }
@@ -69,7 +68,6 @@ export class NavbarComponent implements OnInit {
           this.searchResults.push({ type: 'Jugador', name: jugador.mote, id: jugador.id });
         });
       });
-      console.log(this.searchResults);
     } else {
       this.searchResults = [];
     }

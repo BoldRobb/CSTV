@@ -23,6 +23,7 @@ import { TeamLayoutComponent } from './components/team/team-layout/team-layout.c
 import { EventInidividualComponent } from './components/eventos/event-inidividual/event-inidividual.component';
 import { MatchIndividualComponent } from './components/matches/match-individual/match-individual.component';
 import { PlayerLayoutComponent } from './components/players/player-layout/player-layout.component';
+import { ScoreboardComponent } from './components/live/scoreboard/scoreboard.component';
 
 
 export const routes: Routes = [
@@ -52,6 +53,8 @@ export const routes: Routes = [
     {path: 'events', component: EventsMainComponent},
     {path: 'events/:id', component: EventInidividualComponent},
 
+    //Foro
+    {path: 'forum', component: ScoreboardComponent}
     //Match
     {path: 'match/:id', component: MatchIndividualComponent},
     //Cuenta

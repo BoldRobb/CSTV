@@ -122,7 +122,6 @@ ngOnInit(): void {
           this.topicos = data.map(topic => {
             return topic;
           });
-          console.log(this.topicos);
         },
         error => {
           console.error(error);

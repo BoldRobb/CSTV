@@ -34,7 +34,6 @@ export class TestComponent implements OnInit {
     const prompt = 'Regresame true o false si este mensaje es dañino: hola j0vencit0s los de Astralis ptos';
     const result =  this.model.generateContent(prompt);
     const response =  (await result).response;
-    console.log(response.text());
   }
   constructor(private geminiService: GeminiAiService) {}
 

@@ -75,7 +75,6 @@ export class PlayerLayoutComponent {
         this.noticiaService.getNoticiasForJugador(this.id).subscribe(
           (data) => {
             this.noticias = data;
-            console.log(" noticias",this.noticias);
           });
   
 

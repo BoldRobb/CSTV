@@ -1,29 +1,27 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { MapasService } from '../../../services/mapas.service';
-import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
-import { CommonModule } from '@angular/common';
-import { PartidoService } from '../../../services/partido.service';
 import { PartidoModel } from '../../../models/partido-model';
-import { JugadorService } from '../../../services/jugador.service';
 import { JugadorModel } from '../../../models/jugador-model';
-import { EquipoService } from '../../../services/equipo.service';
 import { BanlistModel } from '../../../models/banlist-model';
 import { MapaModel } from '../../../models/mapa-model';
 import { MapaStatsModel } from '../../../models/mapa-stats-model';
-import { MatchScoreboardComponent } from '../match-scoreboard/match-scoreboard.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MapasService } from '../../../services/mapas.service';
+import { PartidoService } from '../../../services/partido.service';
+import { EquipoService } from '../../../services/equipo.service';
+import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 
 @Component({
-  selector: 'app-match-individual',
+  selector: 'app-match-live',
   standalone: true,
-  imports: [ CommonModule, RouterModule, MatchScoreboardComponent],
-  templateUrl: './match-individual.component.html',
-  styleUrl: './match-individual.component.css'
+  imports: [CommonModule, RouterModule, ScoreboardComponent],
+  templateUrl: './match-live.component.html',
+  styleUrl: './match-live.component.css'
 })
-export class MatchIndividualComponent {
+export class MatchLiveComponent {
   isLoading=true;
   pageNotFound=false;
-  id?: number;
+  id = 6;
   match?: PartidoModel;
   jugadores1: JugadorModel[] = [];
   jugadores2: JugadorModel[] = [];
@@ -34,19 +32,13 @@ export class MatchIndividualComponent {
   stats: MapaStatsModel[] = [];
   mapaFound=false;
   statsFound=false;
-  constructor(private route: ActivatedRoute, 
-    private mapaService: MapasService,
-    private partidoService: PartidoService,
-    private jugadorService: JugadorService,
-    private equipoService: EquipoService
-  ) { }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.id = +params['id'];
-    });
-    this.getMatch();
-    
+  constructor(private mapaService: MapasService, private partidoService: PartidoService, private equipoService: EquipoService){
+
+  }
+
+  ngOnInit(){
+
   }
 
   getMatch(): void{
@@ -66,9 +58,7 @@ export class MatchIndividualComponent {
     );
     }
   }
-  getMatchFormat(): void{
 
-  }
   getBanlist(): void{
     if(this.match?.torneo?.id!=null){
     this.partidoService.getBanlistPartido(this.match.id).subscribe(
@@ -153,4 +143,5 @@ export class MatchIndividualComponent {
     return match.equipo2CT+match.equipo2T;
   }
 }
+
 }

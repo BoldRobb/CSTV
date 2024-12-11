@@ -54,7 +54,6 @@ export class AuthNavbarComponent implements OnInit {
           this.searchResults.push({ type: 'Jugador', name: jugador.mote, id: jugador.id });
         });
       });
-      console.log(this.searchResults);
     } else {
       this.searchResults = [];
     }

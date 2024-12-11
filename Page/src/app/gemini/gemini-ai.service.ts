@@ -31,6 +31,5 @@ export class GeminiAiService {
     const prompt = 'tonto';
     const result =  this.model.generateContent(prompt);
     const response =  (await result).response;
-    console.log(response.text());
   }
 }
