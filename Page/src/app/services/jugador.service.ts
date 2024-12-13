@@ -4,6 +4,7 @@ import { JugadorModel } from '../models/jugador-model';
 import { Observable } from 'rxjs';
 import { jugadorDTO } from '../models/DTO/jugadorDTO';
 import { JugadorTeamlistModel } from '../models/jugador-teamlist-model';
+import { JugadorTeamlistDTO } from '../models/DTO/jugadorTeamlistDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,12 @@ export class JugadorService {
   getPlayerTeamlist(id: number): Observable<JugadorTeamlistModel[]> {
     return this.http.get<JugadorTeamlistModel[]>(this.apiUrlTeamlist + '/' + id);
   }
-  
+  addEquipoToPlayer(Teamlist: JugadorTeamlistDTO): Observable<JugadorTeamlistDTO> {
+    return this.http.post<JugadorTeamlistDTO>(this.apiUrlTeamlist, Teamlist);
+  }  
+  deleteEquipoToPlayer(idJugador: number, idEquipo: number): Observable<JugadorTeamlistDTO> {
+    return this.http.delete<JugadorTeamlistDTO>(this.apiUrlTeamlist + '/' + idJugador + '/' + idEquipo);
+  }
 
   
 }

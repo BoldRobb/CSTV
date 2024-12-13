@@ -6,18 +6,18 @@ export class NoticiaDTO {
   html: string;
   fecha: Date;
   titulo: string;
-  equipos?: number[];
-  torneos?: number[];
-  jugadores?: number[];
+  equiposIds?: number[];
+  torneosIds?: number[];
+  jugadoresIds?: number[];
   constructor( usuario: number, imagen: string, html: string, fecha: Date, titulo: string, equipos?: number[], torneos?: number[], jugadores?: number[]) {
     this.usuarioId = usuario;
     this.imagen = imagen;
     this.html = html;
     this.fecha = fecha;
     this.titulo = titulo;
-    this.equipos = equipos;
-    this.torneos = torneos;
-    this.jugadores = jugadores;
+    this.equiposIds = equipos;
+    this.torneosIds = torneos;
+    this.jugadoresIds = jugadores;
   }
 
 

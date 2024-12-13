@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../../components/global/alert/alert.component';
 import { COUNTRIES } from '../../../global/countries';
 import { jugadorDTO } from '../../models/DTO/jugadorDTO';
+import { JugadorTeamlistModel } from '../../models/jugador-teamlist-model';
+import { JugadorTeamlistDTO } from '../../models/DTO/jugadorTeamlistDTO';
 
 @Component({
   selector: 'app-jugador-form',
@@ -25,8 +27,10 @@ export class JugadorFormComponent implements OnInit {
   isEditing: boolean = false;
   searchQuery: string = '';
   searchResults: JugadorModel[] = [];
+  equipos: JugadorTeamlistModel[] = [];
   equiposFiltrados: EquipoModel[] = [];
-  currentPlayer?: JugadorModel;
+  searchEquipoResults: EquipoModel[] = [];
+  currentJugador: JugadorModel | undefined;
   constructor(private fb: FormBuilder, private jugadorService: JugadorService, private equipoService: EquipoService) {
     this.jugadorForm = this.fb.group({
       nombreReal: ['', Validators.required],
@@ -34,7 +38,11 @@ export class JugadorFormComponent implements OnInit {
       estatus: ['', Validators.required],
       foto: ['', Validators.required],
       equipoActual: ['', Validators.required],
-      country: ['', Validators.required]
+      country: ['', Validators.required],
+      searchQuery: [''],
+      searchEquipoQuery: [''],
+      fechaInicio: [''],
+      fechaFinal: ['']
     });
   }
 
@@ -51,10 +59,10 @@ export class JugadorFormComponent implements OnInit {
     this.isEditing = true;
     this.showForm = false;
   }
-
   searchJugadores(): void {
-    if (this.searchQuery.length > 2) {
-      this.jugadorService.getPlayerByNombre(this.searchQuery).subscribe((results) => {
+    const searchQuery = this.jugadorForm.get('searchQuery')?.value;
+    if (searchQuery.length > 1) {
+      this.jugadorService.getPlayerByNombre(searchQuery).subscribe((results) => {
         this.searchResults = results;
       });
     } else {
@@ -63,78 +71,116 @@ export class JugadorFormComponent implements OnInit {
   }
 
   selectJugador(jugador: JugadorModel): void {
+    this.currentJugador = jugador;
     this.jugadorForm.patchValue(jugador);
+    this.jugadorForm.get('equipoActual')?.setValue(jugador.equipoActual?.nombre);
     this.showForm = true;
-    this.currentPlayer = jugador;
+    this.loadEquipos(jugador.id);
+  }
+  onEquipoInput(): void {
+  
+      const searchEquipoQuery = this.jugadorForm.get('equipoActual')?.value;
+      if (searchEquipoQuery.length > 1) {
+        this.equipoService.getEquiposNombre(searchEquipoQuery).subscribe((results) => {
+          this.equiposFiltrados = results;
+        });
+      } else {
+        this.equiposFiltrados = [];
+
+  }
+}
+  loadEquipos(jugadorId: number): void {
+    this.jugadorService.getPlayerTeamlist(jugadorId).subscribe((equipos) => {
+      this.equipos = equipos;
+    });
   }
 
-  onEquipoInput(): void {
-    const query = this.jugadorForm.get('equipoActual')?.value;
-    if (query.length > 2) {
-      this.equipoService.getEquiposNombre(query).subscribe((results) => {
-        this.equiposFiltrados = results;
+  searchEquipos(): void {
+    const searchEquipoQuery = this.jugadorForm.get('searchEquipoQuery')?.value;
+    if (searchEquipoQuery.length > 1) {
+      this.equipoService.getEquiposNombre(searchEquipoQuery).subscribe((results) => {
+        this.searchEquipoResults = results;
       });
     } else {
-      this.equiposFiltrados = [];
+      this.searchEquipoResults = [];
     }
-  }
-  async getEquipoIdByName(nombre: string): Promise<number> {
-    let equipoId = 0;
-    const results = await this.equipoService.getEquiposNombre(nombre).toPromise();
-    if (results && results.length > 0) {
-      equipoId = results[0].id;
-    }
-    return equipoId;
   }
 
 
-  async onSubmit(): Promise<void> {
+  addEquipo(equipo: EquipoModel): void {
+    if (this.currentJugador) {
+      const fechaInicio = this.jugadorForm.get('fechaInicio')?.value;
+      const fechaFinal = this.jugadorForm.get('fechaFinal')?.value;
+      const jugadorTeamlistDTO = new JugadorTeamlistDTO(this.currentJugador.id, equipo.id, fechaInicio, fechaFinal);
+      this.jugadorService.addEquipoToPlayer(jugadorTeamlistDTO).subscribe(() => {
+        this.loadEquipos(this.currentJugador!.id);
+        this.jugadorForm.get('searchEquipoQuery')?.reset();
+        this.jugadorForm.get('fechaInicio')?.reset();
+        this.jugadorForm.get('fechaFinal')?.reset();
+        this.searchEquipoResults = [];
+      });
+    }
+  }
+
+  removeEquipo(equipoId: number): void {
+    if (this.currentJugador) {
+      this.jugadorService.deleteEquipoToPlayer(this.currentJugador.id, equipoId).subscribe(() => {
+        this.loadEquipos(this.currentJugador!.id);
+      });
+    }
+  }
+
+  deleteJugador(): void {
+    if (this.currentJugador) {
+      this.jugadorService.deletePlayer(this.currentJugador.id).subscribe(() => {
+        this.showAlert('Jugador eliminado con éxito', 'success');
+        this.showForm = false;
+        this.isEditing = false;
+        this.currentJugador = undefined;
+        this.jugadorForm.reset();
+        this.searchResults = [];
+      }, (error) => {
+        this.showAlert('Error al agregar el jugador', 'error');
+      });
+    }
+  }
+
+  onSubmit(): void {
     if (this.jugadorForm.valid) {
-      const jugador: JugadorModel = this.jugadorForm.value;
-      const equipoId = await this.getEquipoIdByName(this.jugadorForm.get('equipoActual')?.value);
-      
-      const jugadorDTO: jugadorDTO = {
-      
-        nombreReal: jugador.nombreReal,
-        mote: jugador.mote,
-        estatus: jugador.estatus,
-        foto: jugador.foto,
-        idEquipoActual: equipoId,
-        pais: jugador.pais
-
-      }
-    
+      const jugador: jugadorDTO = new jugadorDTO(
+        this.jugadorForm.get('nombreReal')?.value,
+        this.jugadorForm.get('mote')?.value,
+        this.jugadorForm.get('estatus')?.value,
+        this.jugadorForm.get('foto')?.value,
+        this.jugadorForm.get('equipoActual')?.value,
+        this.jugadorForm.get('country')?.value
+      );
       if (this.isEditing) {
         // Lógica para actualizar el jugador
-        if(this.currentPlayer){
-          (jugadorDTO);
-          (jugador);
-        this.jugadorService.updatePlayer(this.currentPlayer.id, jugadorDTO).subscribe(
-          (response) => {
-            this.alertMessage = 'Jugador actualizado con éxito';
-            this.alertType = 'success';
-          },
-          (error) => {
-            this.alertMessage = 'Error al actualizar el jugador';
-            this.alertType = 'error';
-          }
-        );}
+        if (this.currentJugador) {
+          this.jugadorService.updatePlayer(this.currentJugador.id, jugador).subscribe(
+            (response) => {
+              this.showAlert('Jugador agregado con éxito', 'success');
+            },
+            (error) => {
+              this.showAlert('Error al agregar el jugador', 'error');
+            }
+          );
+        }
       } else {
         // Lógica para agregar un nuevo jugador
-        this.jugadorService.createPlayer(jugadorDTO).subscribe(
+        this.jugadorService.createPlayer(jugador).subscribe(
           (response) => {
-            this.alertMessage = 'Jugador agregado con éxito';
-            this.alertType = 'success';
+            this.showAlert('Jugador agregado con éxito', 'success');
           },
           (error) => {
-            this.alertMessage = 'Error al agregar el jugador';
-            this.alertType = 'error';
+            this.showAlert('Error al agregar el jugador', 'error');
           }
         );
       }
-    
+    }
   }
-  }
+  
   private showAlert(message: string, type: 'success' | 'error'): void {
     this.alertMessage = message;
     this.alertType = type;

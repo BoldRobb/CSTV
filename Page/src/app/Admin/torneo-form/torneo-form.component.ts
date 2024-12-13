@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../../components/global/alert/alert.component';
 import { COUNTRIES } from '../../../global/countries';
 import { TorneoEquiposModel } from '../../models/torneo-equipos-model';
+import { EquipoService } from '../../services/equipo.service';
+import { EquipoModel } from '../../models/equipo-model';
+import { TorneoEquiposDTO } from '../../models/DTO/torneoEquipoDTO';
 
 @Component({
   selector: 'app-torneo-form',
@@ -24,20 +27,22 @@ export class TorneoFormComponent implements OnInit {
   isEditing: boolean = false;
   searchQuery: string = '';
   searchResults: TorneoModel[] = [];
-  equipos: TorneoEquiposModel[] = [];
+  equipos: EquipoModel[] = [];
+  searchEquipoQuery: string = '';
+  searchEquipoResults: EquipoModel[] = [];
   currentTorneo: TorneoModel | undefined;
 
-  constructor(private fb: FormBuilder, private torneoService: TorneoService) {
+  constructor(private fb: FormBuilder, private torneoService: TorneoService, private equipoService: EquipoService) {
     this.torneoForm = this.fb.group({
       nombre: ['', Validators.required],
       fechaInicial: ['', Validators.required],
       fechaFinal: ['', Validators.required],
       logo: ['', Validators.required],
-      tipo_bracket: ['', Validators.required],
+      tipoBracket: ['', Validators.required],
       prizepool: ['', Validators.required],
       equipos_cant: ['', Validators.required],
       localizacion: ['', Validators.required],
-      tipo: ['', Validators.required]
+      
     });
   }
 
@@ -55,7 +60,7 @@ export class TorneoFormComponent implements OnInit {
   }
 
   searchTorneos(): void {
-    if (this.searchQuery.length > 2) {
+    if (this.searchQuery.length > 1) {
       this.torneoService.getTorneosByNombre(this.searchQuery).subscribe((results) => {
         this.searchResults = results;
       });
@@ -68,35 +73,96 @@ export class TorneoFormComponent implements OnInit {
     this.currentTorneo = torneo;
     this.torneoForm.patchValue(torneo);
     this.showForm = true;
+    this.equipos = [];
+    this.loadEquipos(torneo.id);
+  }
+  loadEquipos(torneoId: number): void {
+    this.torneoService.getEquiposTorneo(torneoId).subscribe((equipos) => {
+      equipos.forEach((equipo) => {
+        this.equipos.push(equipo.idEquipo);
+      });
+    });
   }
 
+  searchEquipos(): void {
+    if (this.searchEquipoQuery.length > 1) {
+      this.equipoService.getEquiposNombre(this.searchEquipoQuery).subscribe((results) => {
+        this.searchEquipoResults = results;
+      });
+    } else {
+      this.searchEquipoResults = [];
+    }
+  }
+
+  addEquipo(equipo: EquipoModel): void {
+    if (this.currentTorneo) {
+      const torneoEquipo: TorneoEquiposDTO = {
+        idTorneo: this.currentTorneo.id,
+        idEquipo: equipo.id
+      }
+      this.torneoService.addEquipoTorneo(torneoEquipo).subscribe(() => {
+        this.equipos = [];
+        this.loadEquipos(this.currentTorneo!.id);
+        this.searchEquipoQuery = '';
+        this.searchEquipoResults = [];
+      });
+    }
+  }
+
+  removeEquipo(equipoId: number): void {
+    if (this.currentTorneo) {
+      this.torneoService.removeEquipoTorneo(this.currentTorneo.id, equipoId).subscribe(() => {
+        this.equipos = [];
+        this.loadEquipos(this.currentTorneo!.id);
+
+      });
+    }
+  }
+  deleteTorneo(): void {
+    if (this.currentTorneo) {
+      this.torneoService.deleteTorneo(this.currentTorneo.id).subscribe(() => {
+        this.showAlert('Torneo eliminado con éxito', 'success');
+        this.showForm = false;
+        this.isEditing = false;
+        this.currentTorneo = undefined;
+        this.torneoForm.reset();
+        this.searchResults = [];
+      }, (error) => {
+        this.showAlert('Error al eliminar el torneo', 'error');
+      });
+    }
+  }
   onSubmit(): void {
+    console.log(this.torneoForm.value);
+    console.log(this.torneoForm.valid);
+    console.log(this.torneoForm.errors);
+    console.log(this.isEditing);
     if (this.torneoForm.valid) {
       const torneo: TorneoModel = this.torneoForm.value;
+      torneo.tipo = 'ONLINE';
       if (this.isEditing) {
         // Lógica para actualizar el torneo
         if (this.currentTorneo) {
           this.torneoService.updateTorneo(this.currentTorneo.id, torneo).subscribe(
             (response) => {
-              this.alertMessage = 'Torneo actualizado con éxito';
-              this.alertType = 'success';
+              this.showAlert('Torneo agregado con éxito', 'success'); 
+
             },
             (error) => {
-              this.alertMessage = 'Error al actualizar el torneo';
-              this.alertType = 'error';
+              this.showAlert('Error al agregar el torneo', 'error');
             }
           );
         }
       } else {
+        console.log(torneo);
         // Lógica para agregar un nuevo torneo
         this.torneoService.addTorneo(torneo).subscribe(
           (response) => {
-            this.alertMessage = 'Torneo agregado con éxito';
-            this.alertType = 'success';
+
+            this.showAlert('Torneo agregado con éxito', 'success'); 
           },
           (error) => {
-            this.alertMessage = 'Error al agregar el torneo';
-            this.alertType = 'error';
+            this.showAlert('Error al agregar el torneo', 'error');
           }
         );
       }

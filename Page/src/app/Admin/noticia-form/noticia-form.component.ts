@@ -98,9 +98,10 @@ export class NoticiaFormComponent implements OnInit{
         new Date(formValue.fecha),
         formValue.titulo,
         this.equiposSeleccionados,
-        this.jugadoresSeleccionados,
-        this.torneosSeleccionados
+        this.torneosSeleccionados,
+        this.jugadoresSeleccionados
       );
+      console.log(nuevaNoticia);
       this.noticiaService.addNoticia(nuevaNoticia).subscribe(
         response => {
           this.showAlert('Noticia guardada', 'success');
@@ -136,6 +137,7 @@ export class NoticiaFormComponent implements OnInit{
     const torneo = this.torneosFiltrados.find(t => t.nombre === torneoNombre);
     if (torneo) {
       this.torneosSeleccionados.push(torneo.id);
+      console.log(this.torneosSeleccionados);
       this.noticiaForm.patchValue({ torneos: '' });
     }
   }

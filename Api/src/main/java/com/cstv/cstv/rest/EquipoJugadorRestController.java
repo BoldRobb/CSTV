@@ -72,6 +72,7 @@ public class EquipoJugadorRestController {
         if (equipoJugadorService.findByIdJugador(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+
         equipoJugadorService.deleteByIdJugador(id);
         return ResponseEntity.noContent().build();
     }

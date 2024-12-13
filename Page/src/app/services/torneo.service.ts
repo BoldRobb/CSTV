@@ -5,6 +5,7 @@ import { Observable, switchMap } from 'rxjs';
 import { TorneomainModel } from '../models/torneomain-model';
 import { TorneoEquiposModel } from '../models/torneo-equipos-model';
 import { RondaModel } from '../models/rondaModel';
+import { TorneoEquiposDTO } from '../models/DTO/torneoEquipoDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +38,20 @@ export class TorneoService {
   getTorneo(id: number): Observable<TorneoModel>{
     return this.http.get<TorneoModel>(`${this.apiUrl}/${id}`);
   }
+  deleteTorneo(id: number): Observable<TorneoModel>{
+    return this.http.delete<TorneoModel>(`${this.apiUrl}/${id}`);
+  }
   getEquiposTorneo(id: number): Observable<TorneoEquiposModel[]>{
     return this.http.get<TorneoEquiposModel[]>(`${this.apiUrlEquipos}/${id}`);
   }
   getTorneosByNombre(nombre: string): Observable<TorneoModel[]>{
     return this.http.get<TorneoModel[]>(`${this.apiUrl}/nombre/${nombre}`);
+  }
+  addEquipoTorneo(torneoEquipo: TorneoEquiposDTO): Observable<TorneoEquiposDTO>{
+    return this.http.post<TorneoEquiposDTO>(this.apiUrlEquipos, torneoEquipo);
+  }
+  removeEquipoTorneo(idTorneo: number, idEquipo: number): Observable<TorneoEquiposModel>{
+    return this.http.delete<TorneoEquiposModel>(`${this.apiUrlEquipos}/${idTorneo}/${idEquipo}`);
   }
 
   getTorneosByEquipo(idEquipo: number): Observable<TorneoEquiposModel[]>{

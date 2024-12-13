@@ -5,6 +5,7 @@ import com.cstv.cstv.entities.Ids.EquipoJugadoresId;
 import com.cstv.cstv.repos.EquipoJugadoresRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,7 @@ public class EquipoJugadoresService {
     public EquipoJugadores save(EquipoJugadores equipoJugadores) {
         return equipoJugadoresRepo.save(equipoJugadores);
     }
+    @Transactional
     public void deleteByIdJugador(Long idJugador) {
         equipoJugadoresRepo.deleteById_IdJugador(idJugador);
     }
