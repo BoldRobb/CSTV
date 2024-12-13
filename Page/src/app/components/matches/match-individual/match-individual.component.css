@@ -216,6 +216,9 @@
     object-fit: cover;
 
   }
+  .teams span:hover{
+    cursor: pointer;
+  }
   .map-status {
     position: absolute;
     top: 50%;
@@ -270,12 +273,16 @@
   display: flex;
   align-items: center;
   margin: 0;
+  justify-content: space-between;
 }
 
 .result-logo {
   width: 50px;
   height: 50px;
   margin-right: 0.5rem;
+}
+.player-info span:hover{
+  cursor: pointer;
 }
 
 .score-info {

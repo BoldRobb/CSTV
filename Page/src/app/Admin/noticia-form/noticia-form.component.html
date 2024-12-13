@@ -26,6 +26,32 @@
       <label for="htmlFile">Archivo HTML:</label>
       <input type="file" id="htmlFile" (change)="onFileChange($event)" class="form-control" required>
     </div>
+    <div class="form-group">
+      <label for="torneos">Torneos</label>
+      <input type="text" id="torneos" formControlName="torneos" list="torneosList" (input)="onTorneoInput()" class="form-control">
+      <datalist id="torneosList">
+        <option *ngFor="let torneo of torneosFiltrados" [value]="torneo.nombre" [attr.data-id]="torneo.id"></option>
+      </datalist>
+      <button type="button" (click)="addTorneo()">Agregar Torneo</button>
+    </div>
+    
+    <div class="form-group">
+      <label for="equipos">Equipos:</label>
+      <input type="text" id="equipos" formControlName="equipos" list="equiposList" (input)="onEquipoInput()" class="form-control">
+      <datalist id="equiposList">
+        <option *ngFor="let equipo of equiposFiltrados" [value]="equipo.nombre" [attr.data-id]="equipo.id"></option>
+      </datalist>
+      <button type="button" (click)="addEquipo()">Agregar Equipo</button>
+    </div>
+    
+    <div class="form-group">
+      <label for="jugadores">Jugadores:</label>
+      <input type="text" id="jugadores" formControlName="jugadores" list="jugadoresList" (input)="onJugadorInput()" class="form-control">
+      <datalist id="jugadoresList">
+        <option *ngFor="let jugador of jugadoresFiltrados" [value]="jugador.mote" [attr.data-id]="jugador.id"></option>
+      </datalist>
+      <button type="button" (click)="addJugador()">Agregar Jugador</button>
+    </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
 </div>

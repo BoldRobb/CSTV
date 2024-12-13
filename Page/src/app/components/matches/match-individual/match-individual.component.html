@@ -20,8 +20,8 @@
             </div>
           </div>
           <div class="teams">
-            <span>{{ match?.equipo1?.nombre }}</span>
-            <span>{{ match?.equipo2?.nombre }}</span>
+            <span (click)="navigatetoTeam(match?.equipo1?.id)">{{ match?.equipo1?.nombre }}</span>
+            <span (click)="navigatetoTeam(match?.equipo2?.id)">{{ match?.equipo2?.nombre }}</span>
           </div>    
         </div>
 
@@ -100,7 +100,7 @@
               <img [src]="player.foto || 'icons/defaultPlayer.png'" alt="{{ player.mote }}" class="imgPlayer" />
               <div class="player-info">
                 <img src="https://purecatamphetamine.github.io/country-flag-icons/3x2/{{ player.pais }}.svg" alt="{{ player.pais }}" class="countryFlag">
-                <span>{{ player.mote }}</span>
+                <span (click)="navigatetoPlayer(player.id)">{{ player.mote }}</span>
               </div>
             </div>
           </div>

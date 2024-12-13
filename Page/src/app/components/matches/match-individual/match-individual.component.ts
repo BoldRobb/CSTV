@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MapasService } from '../../../services/mapas.service';
 import { RecentActivityComponent } from '../../foros/recent-activity/recent-activity.component';
 import { CommonModule } from '@angular/common';
@@ -38,7 +38,8 @@ export class MatchIndividualComponent {
     private mapaService: MapasService,
     private partidoService: PartidoService,
     private jugadorService: JugadorService,
-    private equipoService: EquipoService
+    private equipoService: EquipoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +83,16 @@ export class MatchIndividualComponent {
     }
   }
 
+  navigatetoTeam(id: number | undefined): void {
+    if (id != null) {
+      this.router.navigate(['/team/', id]);
+    }
+  }
+  navigatetoPlayer(id: number | undefined): void {
+    if (id != null) {
+      this.router.navigate(['/player/', id]);
+    }
+  }
   getPlayers(): void{
     if(this.id!=null){
 
