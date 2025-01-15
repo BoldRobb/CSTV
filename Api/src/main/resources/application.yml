@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:mysql://upoztd88l50x7tbu:v6eIATV1cAVN7zKNLTvW@b7gly0oyfylhymgzzvae-mysql.services.clever-cloud.com:3306/b7gly0oyfylhymgzzvae}
+    url: ${JDBC_DATABASE_URL:jdbc:mysql://b7gly0oyfylhymgzzvae-mysql.services.clever-cloud.com:3306/b7gly0oyfylhymgzzvae}
     username: ${JDBC_DATABASE_USERNAME:upoztd88l50x7tbu}
     password: ${JDBC_DATABASE_PASSWORD:v6eIATV1cAVN7zKNLTvW}
     hikari:
