@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:mysql://localhost:3306/cstv}
-    username: ${JDBC_DATABASE_USERNAME:root}
-    password: ${JDBC_DATABASE_PASSWORD:Elder2316394}
+    url: ${JDBC_DATABASE_URL:jdbc:mysql://upoztd88l50x7tbu:v6eIATV1cAVN7zKNLTvW@b7gly0oyfylhymgzzvae-mysql.services.clever-cloud.com:3306/b7gly0oyfylhymgzzvae}
+    username: ${JDBC_DATABASE_USERNAME:upoztd88l50x7tbu}
+    password: ${JDBC_DATABASE_PASSWORD:v6eIATV1cAVN7zKNLTvW}
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
